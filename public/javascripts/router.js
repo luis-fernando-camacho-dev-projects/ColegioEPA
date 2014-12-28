@@ -1,40 +1,42 @@
-Todos.Router.map(function () {
-  this.resource('todos', { path: '/' }, function() {
-        this.route('active');
-        this.route('completed')
-  });
-});
 
-Todos.TodosRoute = Ember.Route.extend({
-  model: function() {
-    return this.store.find('todo');
-  }
-});
+ColegioEPA.Router.map(function () {
 
-Todos.TodosIndexRoute = Ember.Route.extend({
-  model: function() {
-    return this.modelFor('todos');
-  }
-});
+    this.route("index", { path: "/" });
 
-Todos.TodosActiveRoute = Ember.Route.extend({
-  model: function(){
-    return this.store.filter('todo', function(todo) {
-      return !todo.get('isCompleted');
+    this.resource("students", {path: "/"}, function() {
+      this.route("new", {path:"/new"});
+      this.route("edit", {path:"/:student_id"});
     });
-  },
-  renderTemplate: function(controller) {
-    this.render('todos/index', {controller: controller});
-  }
+
+    
 });
 
-Todos.TodosCompletedRoute = Ember.Route.extend({
-  model: function() {
-    return this.store.filter('todo', function(todo) {
-      return todo.get('isCompleted');
+
+    ColegioEPA.StudentsIndexRoute = Ember.Route.extend({
+        setupController: function(controller) {
+            var students = this.get('store').find('student'); // App.Location.find();
+            controller.set('content', students);
+        },
+        renderTemplate: function() {
+          this.render('students.index',{into:'application'});
+        }
     });
-  },
-  renderTemplate: function(controller) {
-    this.render('todos/index', {controller: controller});
-  }
-});
+
+    ColegioEPA.StudentsNewRoute = Ember.Route.extend({
+      setupController: function(controller, model) {
+        var newStudent = this.store.createRecord('student', {});
+        this.controllerFor('students.edit').setProperties({isNew: true, content:newStudent});
+      },
+      renderTemplate: function() {
+        this.render('students.edit', {into:'application'})
+      }
+    });
+
+    ColegioEPA.StudentsEditRoute = Ember.Route.extend({
+      setupController: function(controller, model) {
+          this.controllerFor('students.edit').setProperties({isNew: false,content:model});
+      },
+      renderTemplate: function() {
+          this.render('students.edit',{into:'application'});
+      }
+    });

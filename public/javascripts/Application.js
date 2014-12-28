@@ -1,6 +1,6 @@
 /* /app.js
 */
-window.Todos = Ember.Application.create({
+window.ColegioEPA = Ember.Application.create({
     LOG_TRANSITIONS: true,
     LOG_BINDINGS: true,
     LOG_VIEW_LOOKUPS: true,
@@ -10,10 +10,10 @@ window.Todos = Ember.Application.create({
 });
 
 /*
-Todos.ApplicationAdapter = DS.LSAdapter.extend({
-  namespace: 'todos-emberjs'
+ColegioEPA.ApplicationAdapter = DS.LSAdapter.extend({
+  namespace: 'ColegioEPA-emberjs'
 });*/
 
-Todos.ApplicationAdapter = DS.FixtureAdapter.extend();
+ColegioEPA.ApplicationAdapter = DS.FixtureAdapter.extend();
 
 

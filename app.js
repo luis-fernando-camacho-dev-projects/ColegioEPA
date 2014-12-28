@@ -18,7 +18,53 @@ var app = express();
 // view engine setup
 
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('view engine','ejs');
+
+app.get('/', function(req, res) {
+    res.render('index');
+});
+
+// ----------------- routes for student ----------------------------//
+app.get('/student', function(req, res) {
+    res.render('student/index');
+});
+
+app.get('/teacher', function(req, res) {
+    res.render('teacher/index');
+});
+
+app.get('/administrator', function(req, res) {
+    res.render('administrator/index');
+});
+
+
+// ----------------- end routes for student -------------------------//
+
+
+
+
+//------------------------exta configuration ---------------------------------//
+
+var allowCrossDomain = function(req, res, next) {
+    console.log("writing cross domain headers...");
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
+    // intercept OPTIONS method
+    if ('OPTIONS' == req.method) {
+      res.send(200);
+    }
+    else {
+      next();
+    }
+};
+
+
+app.use(allowCrossDomain);
+
+//-------------------------end extra configuration ----------------------------//
+
 
 
 
@@ -61,6 +107,12 @@ app.get('/contact', function(req, res) {
 app.get('/hello', function(req, res) {
     res.sendfile(html_dir + 'hello.html');
 });
+
+app.get('/index', function(req, res) {
+    res.sendfile(html_dir + 'index.html');
+});
+
+
 //end static html content should be inserted here
 
 
