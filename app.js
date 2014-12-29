@@ -9,7 +9,9 @@ var mongo = require('mongoskin');
 var db = mongo.db("mongodb://localhost:27017/colegioEPA", {native_parser:true});
 
 var routes = require('./routes/index');
-var student = require('./routes/students');
+var student = require('./routes/student');
+
+var subject = require('./routes/subject');
 
 var teacher = require('./routes/teachers');
 
@@ -25,17 +27,19 @@ app.get('/', function(req, res) {
 });
 
 // ----------------- routes for student ----------------------------//
-app.get('/student', function(req, res) {
-    res.render('student/index');
-});
 
 app.get('/teacher', function(req, res) {
-    res.render('teacher/index');
+    res.render('administrator/teacher');
 });
 
-app.get('/administrator', function(req, res) {
-    res.render('administrator/index');
+app.get('/student', function(req, res) {
+    res.render('administrator/student');
 });
+
+app.get('/subject', function(req, res) {
+    res.render('administrator/subject');
+});
+
 
 
 // ----------------- end routes for student -------------------------//
@@ -92,6 +96,7 @@ app.use(function(req,res,next) {
 app.use('/', routes);
 app.use('/student', student);
 app.use('/teacher', teacher);
+app.use('/subject', subject);
 
 
 
@@ -111,6 +116,9 @@ app.get('/hello', function(req, res) {
 app.get('/index', function(req, res) {
     res.sendfile(html_dir + 'index.html');
 });
+
+
+
 
 
 //end static html content should be inserted here

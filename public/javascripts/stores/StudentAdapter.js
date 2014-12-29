@@ -1,7 +1,6 @@
 /*
 ColegioEPA.StudentAdapter = DS.FixtureAdapter.extend();
 */
-
 ColegioEPA.StudentAdapter = DS.RESTAdapter.extend({
   host: 'http://localhost:3000/student'
 });
