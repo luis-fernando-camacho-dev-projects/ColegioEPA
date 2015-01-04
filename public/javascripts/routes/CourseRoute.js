@@ -1,17 +1,11 @@
 
 ColegioEPA.Router.map(function () {
-
     this.route("index", { path: "/" });
-
     this.resource("courses", {path: "/"}, function() {
-      this.route("new", {path:"/new"});
-      this.route("edit", {path:"/:courses_id"});
+        this.route("new", {path:"/new"});
+        this.route("edit", {path:"/:courses_id"});
     });
-
-
 });
-
-
     ColegioEPA.CoursesIndexRoute = Ember.Route.extend({
         setupController: function(controller) {
             var courses = this.get('store').find('course');
@@ -25,11 +19,11 @@ ColegioEPA.Router.map(function () {
     ColegioEPA.CoursesNewRoute = Ember.Route.extend({
       setupController: function(controller, model) {
         var newStudent = this.store.createRecord('course', {});
-        this.controllerFor('courses.edit').setProperties({isNew: true, teachers: this.store.findAll('teacher'), content:newStudent});
+        this.controllerFor('courses.edit').setProperties({isNew: true, teachers: this.store.findAll('teacher'), content: newStudent});
 
       },
       renderTemplate: function() {
-        this.render('courses.edit', {into:'application'})
+        this.render('courses.edit', {into:'application'});
       }
     });
 
@@ -38,6 +32,6 @@ ColegioEPA.Router.map(function () {
           this.controllerFor('courses.edit').setProperties({isNew: false,content:model});
       },
       renderTemplate: function() {
-          this.render('courses.edit',{into:'application'});
+          this.render('courses.edit', {into:'application'});
       }
     });

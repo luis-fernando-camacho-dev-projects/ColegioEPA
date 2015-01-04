@@ -15,6 +15,7 @@ var routes = require('./routes/index');
     subject = require('./routes/subject'),
     teacher = require('./routes/teacher'),
     course = require('./routes/course'),
+    enrollment = require('./routes/enrollment'),
     app = express();
 /* rest classes End*/
 
@@ -44,6 +45,19 @@ app.get('/subject', function(req, res) {
 app.get('/course', function(req, res) {
     res.render('administrator/course');
 });
+
+app.get('/enrollment', function(req,res) {
+    res.render('administrator/enrollment')
+});
+
+app.get('/modal', function(req,res) {
+    res.render('administrator/modal')
+});
+
+app.get('/jquerymodal', function(req,res) {
+    res.render('administrator/jqueryModal')
+});
+
 // ----------------- routes App End----------------------------//
 
 
@@ -101,6 +115,7 @@ app.use('/student', student);
 app.use('/teacher', teacher);
 app.use('/subject', subject);
 app.use('/course', course);
+app.use('/enrollment', enrollment);
 /** define uris end */
 
 

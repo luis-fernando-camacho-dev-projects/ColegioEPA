@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://rawgithub.com/emberjs/starter-kit/v1.0.0/js/libs/jquery-1.9.1.js"></script>
+  <script src="https://rawgithub.com/emberjs/starter-kit/v1.0.0/js/libs/handlebars-1.0.0.js"></script>
+  <script src="http://builds.emberjs.com/tags/v1.4.0/ember.js"></script>
+   <link rel="stylesheet" href="https://rawgithub.com/emberjs/starter-kit/v1.0.0/css/normalize.css">
+</head>
+</head>
+</head>
+<body>
+<style>
+html, body {
+  margin: 20px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.modal {
+  position: relative;
+  margin: 10px auto;
+  width: 300px;
+  background-color: #fff;
+  padding: 1em;
+}
+
+input {
+  width: 100%;
+}
+
+.overlay {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.flush--top {
+  margin-top: 0;
+}
+</style>
+<script type="text/javascript">
+
+var App = Ember.Application.create();
+
+App.ApplicationRoute = Ember.Route.extend({
+  actions: {
+    openModal: function(modalName, model) {
+      this.controllerFor(modalName).set('model', model);
+      return this.render(modalName, {
+        into: 'application',
+        outlet: 'modal'
+      });
+    },
+
+    closeModal: function() {
+      return this.disconnectOutlet({
+        outlet: 'modal',
+        parentView: 'application'
+      });
+    }
+  }
+});
+
+App.IndexRoute = Ember.Route.extend({
+  model: function() {
+    return Em.Object.create({name: 'Mitch'});
+  },
+  actionss : {
+    closeModal: function() {
+      return this.disconnectOutlet({
+        outlet: 'modal',
+        parentView: 'application'
+      });
+    }
+  }
+});
+
+App.ModalController = Ember.ObjectController.extend({
+  actions: {
+    close: function() {
+      return this.send('closeModal');
+    }
+  }
+});
+
+App.ModalDialogComponent = Ember.Component.extend({
+  actions: {
+    close: function() {
+      return this.sendAction();
+    }
+  }
+});
+</script>
+
+  <script type="text/x-handlebars">
+    {{outlet}}
+    {{outlet modal}}
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="index">
+    <h4>The current name is: {{name}}</h4>
+    {{outlet}}
+    <button {{action 'openModal' 'modal' model}}>Change Name</button>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="modal">
+    {{#modal-dialog action="close"}}
+      <h3 class="flush--top">Name Change Modal</h3>
+      <p>Enter a new name:</p>
+      <p>{{input value=name}}</p>
+      <button {{action "close"}}>Done</button>
+    {{/modal-dialog}}
+  </script>
+
+  <script type="text/x-handlebars" id="components/modal-dialog">
+    <div class="overlay" {{action "close"}}>
+    </div>
+    <div class="modal">
+      {{yield}}
+    </div>
+  </script>
+
+
+</body>
+</html>
