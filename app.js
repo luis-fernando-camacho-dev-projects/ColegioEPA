@@ -1,21 +1,23 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-// Database
-var mongo = require('mongoskin');
-var db = mongo.db("mongodb://localhost:27017/colegioEPA", {native_parser:true});
+var express = require('express'),
+    path = require('path'),
+    favicon = require('serve-favicon'),
+    logger = require('morgan'),
+    cookieParser = require('cookie-parser'),
+    bodyParser = require('body-parser');
+// Database connection start //
+var mongo = require('mongoskin'),
+    db = mongo.db("mongodb://localhost:27017/colegioEPA", {native_parser:true});
+// Database connection end //
 
+/* rest classes Start*/
 var routes = require('./routes/index');
-var student = require('./routes/student');
+    student = require('./routes/student'),
+    subject = require('./routes/subject'),
+    teacher = require('./routes/teacher'),
+    course = require('./routes/course'),
+    app = express();
+/* rest classes End*/
 
-var subject = require('./routes/subject');
-
-var teacher = require('./routes/teachers');
-
-var app = express();
 
 // view engine setup
 
@@ -26,8 +28,7 @@ app.get('/', function(req, res) {
     res.render('index');
 });
 
-// ----------------- routes for student ----------------------------//
-
+//----------------- routes App Start----------------------------//
 app.get('/teacher', function(req, res) {
     res.render('administrator/teacher');
 });
@@ -40,9 +41,10 @@ app.get('/subject', function(req, res) {
     res.render('administrator/subject');
 });
 
-
-
-// ----------------- end routes for student -------------------------//
+app.get('/course', function(req, res) {
+    res.render('administrator/course');
+});
+// ----------------- routes App End----------------------------//
 
 
 
@@ -93,11 +95,13 @@ app.use(function(req,res,next) {
     next();
 });
 
+/** define uris start */
 app.use('/', routes);
 app.use('/student', student);
 app.use('/teacher', teacher);
 app.use('/subject', subject);
-
+app.use('/course', course);
+/** define uris end */
 
 
 //static html content should be inserted here
@@ -117,13 +121,7 @@ app.get('/index', function(req, res) {
     res.sendfile(html_dir + 'index.html');
 });
 
-
-
-
-
 //end static html content should be inserted here
-
-
 
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {
@@ -155,9 +153,5 @@ app.use(function(err, req, res, next) {
         error: {}
     });
 });
-
-
-
-
 
 module.exports = app;

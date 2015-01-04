@@ -2,7 +2,7 @@
 var express = require('express');
 var router = express.Router();
 var mongo = require('mongodb');
- 
+
 var Server = mongo.Server,
     Db = mongo.Db,
     BSON = mongo.BSONPure;
@@ -20,25 +20,12 @@ router.get('/subjects', function(req, res) {
             res.send(allLocations);
         });
     });
-
-    /*
-    db.collection('studentList').find().toArray(function (err, items) {
-        res.json(items);
-    });*/
 });
 
 /*
  * POST to addstudent.
  */
 router.post('/subjects', function(req, res) {
-    /*
-    var db = req.db;
-    db.collection('studentList').insert(req.body, function(err, result){
-        res.send(
-            (err === null) ? { msg: 'success' } : { msg: err }
-        );
-    });*/
-
     var subject = req.body.subject;
     var db = req.db;
     console.log('Adding location: ' + JSON.stringify(subject));
@@ -57,19 +44,10 @@ router.post('/subjects', function(req, res) {
 });
 
 router.put('/subjects/:id' , function(req, res) {
-    /*
-    var db = req.db;
-    var student =req.db;
-    var studentId = req.params.id;
-    db.collection('studentList').update({_id: req.collection.id(req.params.id)},{$set:req.body}, {safe:true, multi:false}, function(e, result){
-        if (e) return next(e)
-            res.send((result===1)?{msg:'success'}:{msg:'error'});
-    });*/
-
     var db = req.db;
     var id = req.params.id;
     var subject = req.body.subject;
-    
+
     console.log(req.body);
     console.log('Updating subject with id [' + id + ']');
     console.log('subject payload = ' + JSON.stringify(subject));
@@ -93,12 +71,6 @@ router.put('/subjects/:id' , function(req, res) {
  * DELETE to deletestudent.
  */
 router.delete('/subjects/:id', function(req, res) {
-    /*
-    var db = req.db;
-    var studentId = req.params.id;
-    db.collection('studentList').removeById(studentId, function(err, result) {
-        res.send((result === 1) ? { msg: '' } : { msg:'error: ' + err });
-    });*/
     var db = req.db;
     var id = req.params.id;
     console.log('Deleting location: ' + id);

@@ -5,11 +5,15 @@
 </head>
 <body>
 <script src="javascripts/application.js"></script>
-<script src="javascripts/routes/StudentRoute.js"></script>
-<script src="javascripts/controllers/StudentController.js"></script>
-<script src="javascripts/stores/StudentAdapter.js"></script>
+<script src="javascripts/routes/TeacherRoute.js"></script>
+<script src="javascripts/controllers/TeacherController.js"></script>
+<script src="javascripts/stores/TeacherAdapter.js"></script>
 <script src="javascripts/helpers/DatePicker.js"></script>
+<script src="javascripts/stores/CourseAdapter.js"></script>
+<script src="javascripts/models/Course.js"></script>
+<script src="javascripts/stores/StudentAdapter.js"></script>
 <script src="javascripts/models/Student.js"></script>
+<script src="javascripts/models/Teacher.js"></script>
 <script src="http://momentjs.com/downloads/moment.min.js"></script>
 <script src="http://dbushell.github.io/Pikaday/pikaday.js"></script>
 <link rel="stylesheet" href="http://dbushell.github.io/Pikaday/css/pikaday.css">
@@ -59,7 +63,7 @@
                         <a href="/teacher">Profesores</a>
                     </li>
                     <li>
-                        <a href="guitar.html">Ver Profesores</a>
+                        <a href="/course">Cursos</a>
                     </li>
                     <li>
                         <a href="drums.html">Registrar Curso</a>
@@ -75,7 +79,7 @@
                     </li>
                 </ul>
                 <div class="content">
-                    
+
                          {{outlet}}
                 </div>
             </div>
@@ -128,62 +132,60 @@
 <p> This is the homePage studers </p>
 </script>
 
-<script type="text/x-handlebars" data-template-name="students/index">
+<script type="text/x-handlebars" data-template-name="teachers/index">
     {{#if exitStudent}}
-        <p>Nr of students = {{content.length}}</p>
+        <p>Nro de profesores= {{content.length}}</p>
     <table class="table table-hover">
         <tr>
             <th>Selected</th>
             <th>nombre</th>
             <th>email</th>
             <th>ci</th>
-            <th></th>
-            <th></th>
+            <th>birthDate</th>
           </tr>
-            {{#each student in controller itemController="studentsEdit"}}
+            {{#each teacher in controller itemController="teachersEdit"}}
               <tr {{bindAttr class="selected:warning"}}>
               <td>{{view Ember.Checkbox checkedBinding="selected"}}</td>
-              <td>{{student.nombre}}</td>
-              <td>{{student.email}}</td>
-              <td>{{student.ci}}</td>
-              <td>{{#linkTo "students.edit" student}}<img src="images/edit-icon.png"/>{{/linkTo}}</td>
-              <td><a href="#" {{action removeItem student}}><img src="images/delete-icon.png" border="0"/></a></td>
+              <td>{{teacher.name}}</td>
+              <td>{{teacher.email}}</td>
+              <td>{{teacher.ci}}</td>
+              <td>{{teacher.birthDate}}</td>
+              <td>{{#linkTo "teachers.edit" teacher}}<img src="images/edit-icon.png"/>{{/linkTo}}</td>
+              <td><a href="#" {{action removeItem teacher}}><img src="images/delete-icon.png" border="0"/></a></td>
               </tr>
             {{/each}}
     </table>
     {{else}}
-     NO students
+    No existen profesores registrados
     {{/if}}
-    <p>{{#linkTo "students.new"}}<img src="images/add-icon.png"/> New Student{{/linkTo}}</p>
+    <p>{{#linkTo "teachers.new"}}<img src="images/add-icon.png"/> New Teacher{{/linkTo}}</p>
 </script>
 
-<script source="" type="text/x-handlebars" data-template-name="_studentForm" >
+<script source="" type="text/x-handlebars" data-template-name="_teacherForm" >
       <form class="form-horizontal">
-        <label for="nombre">nombre</label>
-          {{view Ember.TextField valueBinding="nombre"}}
+        <label for="name">nombre</label>
+          {{view Ember.TextField valueBinding="name"}}
         <label  for="email">email</label>
           {{view Ember.TextField valueBinding="email"}}
         <label for="ci">ci</label>
           {{view Ember.TextField valueBinding="ci"}}
         <label  for="birthDate">birthDate</label>
-          {{view Ember.TextField valueBinding="birthDate"}}
+          {{custom-date-picker valueBinding="birthDate"}}
     </form>
   </script>
- <script type="text/x-handlebars" data-template-name="students/edit" >
-    
+ <script type="text/x-handlebars" data-template-name="teachers/edit" >
+
     {{#if controller.isNew}}
-      <h1>New student</h1>
+      <h1>New Teacher</h1>
     {{else}}
-      <h1>Edit student</h1>
+      <h1>Edit Teacher</h1>
     {{/if}}
-
-      {{partial "studentForm"}}
-
+      {{partial "teacherForm"}}
       <p>
         <button {{action updateItem this}}>Update record</button>
       </p>
   </script>
 
-  
+
 </body>
 </html>
