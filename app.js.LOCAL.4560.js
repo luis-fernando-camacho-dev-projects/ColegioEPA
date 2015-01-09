@@ -15,9 +15,9 @@ var routes = require('./routes/index');
     subject = require('./routes/subject'),
     teacher = require('./routes/teacher'),
     course = require('./routes/course'),
-    schedule = require('./routes/schedule'),
     app = express();
 /* rest classes End*/
+
 
 // view engine setup
 
@@ -41,18 +41,12 @@ app.get('/subject', function(req, res) {
     res.render('administrator/subject');
 });
 
-app.get('/schedule', function(req, res) {
-    res.render('schedule/index');
-});
-
 app.get('/course', function(req, res) {
     res.render('administrator/course');
 });
 // ----------------- routes App End----------------------------//
 
 
-
-// ----------------- end routes for student -------------------------//
 
 
 //------------------------exta configuration ---------------------------------//
@@ -76,6 +70,9 @@ var allowCrossDomain = function(req, res, next) {
 app.use(allowCrossDomain);
 
 //-------------------------end extra configuration ----------------------------//
+
+
+
 
 
 // uncomment after placing your favicon in /public
@@ -103,11 +100,8 @@ app.use('/', routes);
 app.use('/student', student);
 app.use('/teacher', teacher);
 app.use('/subject', subject);
-app.use('/schedule', schedule);
 app.use('/course', course);
 /** define uris end */
-
-
 
 
 //static html content should be inserted here
