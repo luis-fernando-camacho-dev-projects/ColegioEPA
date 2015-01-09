@@ -1,36 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <% include ../partials/head %>
+    <% include ../partials/HeaderPartial %>
 </head>
 <body>
-<script src="javascripts/application.js"></script>
-<script src="javascripts/routes/CourseRoute.js"></script>
-<script src="javascripts/controllers/CourseController.js"></script>
-<script src="javascripts/stores/SubjectMatterAdapter.js"></script>
-<script src="javascripts/stores/CourseAdapter.js"></script>
-<script src="javascripts/stores/TeacherAdapter.js"></script>
-<script src="javascripts/helpers/DatePicker.js"></script>
-<script src="javascripts/models/Teacher.js"></script>
-<script src="javascripts/models/SubjectMatter.js"></script>
-<script src="javascripts/models/Student.js"></script>
-<script src="javascripts/models/Course.js"></script>
+<script src="/../javascripts/application.js"></script>
+<script src="/../javascripts/routes/CourseRoute.js"></script>
+<script src="/../javascripts/controllers/CourseController.js"></script>
+<script src="/../javascripts/stores/SubjectMatterAdapter.js"></script>
+<script src="/../javascripts/stores/CourseAdapter.js"></script>
+<script src="/../javascripts/stores/TeacherAdapter.js"></script>
+<script src="/../javascripts/helpers/DatePicker.js"></script>
+<script src="/../javascripts/models/Teacher.js"></script>
+<script src="/../javascripts/models/SubjectMatter.js"></script>
+<script src="/../javascripts/models/Student.js"></script>
+<script src="/../javascripts/models/Course.js"></script>
 <script src="http://momentjs.com/downloads/moment.min.js"></script>
 <script src="http://dbushell.github.io/Pikaday/pikaday.js"></script>
 <link rel="stylesheet" href="http://dbushell.github.io/Pikaday/css/pikaday.css">
 
-<script src="javascripts/lib/bootstrap.js"></script>
-<link rel="stylesheet" href="stylesheets/bootstrap.css" type="text/css">
-<link rel="stylesheet" href="stylesheets/bootstrap.min.css" type="text/css">
-<link rel="stylesheet" href="stylesheets/bootstrap-responsive.css" type="text/css">
-<link rel="stylesheet" href="stylesheets/bootstrap-responsive.min.css" type="text/css">
-<link rel="stylesheet" href="stylesheets/normalize.css" type="text/css">
-<link rel="stylesheet" href="stylesheets/style.css" type="text/css">
+<script src="/../javascripts/lib/bootstrap.js"></script>
+<link rel="stylesheet" href="/../stylesheets/bootstrap.css" type="text/css">
+<link rel="stylesheet" href="/../stylesheets/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="/../stylesheets/bootstrap-responsive.css" type="text/css">
+<link rel="stylesheet" href="/../stylesheets/bootstrap-responsive.min.css" type="text/css">
+<link rel="stylesheet" href="/../stylesheets/normalize.css" type="text/css">
+<link rel="stylesheet" href="/../stylesheets/style.css" type="text/css">
+
 
 <script type="text/x-handlebars" id="application">
     <div class="page">
         <div class="header">
-            <a href="index.html" id="logo"><img src="images/logo.png" alt="logo"></a>
+            <a href="index.html" id="logo"><img src="http://localhost:3000/images/logo.png" alt="logo"></a>
             <ul class="navigation">
                 <li>
                     <a href="index.html">Home</a>
@@ -53,10 +54,10 @@
             <div class="guitar">
                 <ul>
                     <li>
-                        <a href="/student">Estudiantes</a>
+                        <a href="teacher/attendance">Registrar assitencia</a>
                     </li>
                     <li>
-                        <a href="/subject">Contenido De Cursos</a>
+                        <a href="teacher/viewAttendance">Contenido De Cursos</a>
                     </li>
                     <li>
                         <a href="/teacher">Profesores</a>
@@ -88,7 +89,7 @@
             <div class="about">
                 <h3>About</h3>
                 <div>
-                    <a href="about.html"><img src="images/instructors.jpg" alt=""></a>
+                    <a href="about.html"><img src="http://localhost:3000/images/instructors.jpg" alt=""></a>
                     <p>
                         This is just a place holder. You can replace all this text with your own text. Youre free to use this website template.
                     </p>
@@ -160,15 +161,15 @@
               <td>{{course.endTime}}</td>
               <td>{{course.cost}}</td>
               <td> numero de studiantes link</td>
-              <td>{{#linkTo "courses.edit" course}}<img src="images/edit-icon.png"/>{{/linkTo}}</td>
-              <td><a href="#" {{action removeItem course}}><img src="images/delete-icon.png" border="0"/></a></td>
+              <td>{{#linkTo "courses.edit" course}}<img src="http://localhost:3000/images/edit-icon.png"/>{{/linkTo}}</td>
+              <td><a href="#" {{action removeItem course}}><img src="http://localhost:3000/images/delete-icon.png" border="0"/></a></td>
               </tr>
             {{/each}}
     </table>
     {{else}}
      No hay cusos registrados
     {{/if}}
-    <p>{{#linkTo "courses.new"}}<img src="images/add-icon.png"/> New Course{{/linkTo}}</p>
+    <p>{{#linkTo "courses.new"}}<img src="http://localhost:3000/images/add-icon.png"/> New Course{{/linkTo}}</p>
 </script>
 
 <script type="text/x-handlebars" data-template-name="_courseForm" >

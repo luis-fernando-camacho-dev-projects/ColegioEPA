@@ -1,22 +1,26 @@
 ColegioEPA.Enrollment = DS.Model.extend({
-    payDate:DS.attr('date'),
+    student: DS.belongsTo('student'),
+    courses: DS.hasMany('course'),
+    payDate: DS.attr('string'),
     costEnrollment: DS.attr('number'),
-    nit:DS.attr('number'),
-    student : DS.belongsTo('student'),
-    courses : DS.hasMany('course'),
+    nit: DS.attr('number'),
+    discount: DS.attr('number', {defaultValue:0}),
     totalCostCourse: function() {
+        /*
         var courses = this.get('courses'),
         totalCost =0;
         courses.foreach(function(course){
             totalCost + = course.get('cost');
         });
-        return totalCost;
+        return totalCost;*/
+        return 0;
     }.property('courses'),
-    discount: DS.attr('number', {defaultValue:0},
     totalPay: function () {
+        /*
         var totalCost = (this.get('totalCostCourse') + this.get('costEnrollment')),
             discount =(this.get('totalCostCourse') + this.get('costEnrollment')) * this.get('discount'),
             netCost = totalCost -discount;
-            return netCost;
-    }.property('totalCostCourse','costEnrollment','discount');
+            return netCost;*/
+            return 0;
+    }.property('totalCostCourse','costEnrollment','discount')
 });

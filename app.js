@@ -16,6 +16,9 @@ var routes = require('./routes/index');
     teacher = require('./routes/teacher'),
     course = require('./routes/course'),
     schedule = require('./routes/schedule'),
+    enrollment = require('./routes/enrollment'),
+    attendance = require('./routes/attendance'),
+
     app = express();
 /* rest classes End*/
 
@@ -48,6 +51,22 @@ app.get('/schedule', function(req, res) {
 app.get('/course', function(req, res) {
     res.render('administrator/course');
 });
+
+app.get('/enrollment', function(req,res) {
+    res.render('administrator/enrollment')
+});
+
+app.get('/teacher/attendance', function(req, res) {
+    res.render('teacher/attendance');
+});
+app.get('/teacher/viewAttendance', function(req, res) {
+    res.render('teacher/viewAttendance');
+});
+
+app.get('/student/attendance', function(req, res) {
+    res.render('student/attendance');
+});
+
 // ----------------- routes App End----------------------------//
 
 
@@ -77,6 +96,8 @@ app.use(allowCrossDomain);
 
 //-------------------------end extra configuration ----------------------------//
 
+//------------------------- start load javascript libraries ---------------------------//
+
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
@@ -105,6 +126,8 @@ app.use('/teacher', teacher);
 app.use('/subject', subject);
 app.use('/schedule', schedule);
 app.use('/course', course);
+app.use('/enrollment', enrollment);
+app.use('/attendance', attendance);
 /** define uris end */
 
 
