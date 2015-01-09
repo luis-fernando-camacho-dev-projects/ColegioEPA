@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../partials/HeaderPartial %>
+</head>
+<body>
+<script src="/../javascripts/application.js"></script>
+<script src="/../javascripts/routes/CourseRoute.js"></script>
+<script src="/../javascripts/controllers/CourseController.js"></script>
+<script src="/../javascripts/stores/SubjectMatterAdapter.js"></script>
+<script src="/../javascripts/stores/CourseAdapter.js"></script>
+<script src="/../javascripts/stores/TeacherAdapter.js"></script>
+<script src="/../javascripts/helpers/DatePicker.js"></script>
+<script src="/../javascripts/models/Teacher.js"></script>
+<script src="/../javascripts/models/SubjectMatter.js"></script>
+<script src="/../javascripts/models/Student.js"></script>
+<script src="/../javascripts/models/Course.js"></script>
+<script src="http://momentjs.com/downloads/moment.min.js"></script>
+<script src="http://dbushell.github.io/Pikaday/pikaday.js"></script>
+<link rel="stylesheet" href="http://dbushell.github.io/Pikaday/css/pikaday.css">
+
+<script src="/../javascripts/lib/bootstrap.js"></script>
+<link rel="stylesheet" href="/../stylesheets/bootstrap.css" type="text/css">
+<link rel="stylesheet" href="/../stylesheets/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="/../stylesheets/bootstrap-responsive.css" type="text/css">
+<link rel="stylesheet" href="/../stylesheets/bootstrap-responsive.min.css" type="text/css">
+<link rel="stylesheet" href="/../stylesheets/normalize.css" type="text/css">
+<link rel="stylesheet" href="/../stylesheets/style.css" type="text/css">
+
+
+<script type="text/x-handlebars" id="application">
+    <div class="page">
+        <div class="header">
+            <a href="index.html" id="logo"><img src="http://localhost:3000/images/logo.png" alt="logo"></a>
+            <ul class="navigation">
+                <li>
+                    <a href="index.html">Home</a>
+                </li>
+                <li>
+                    <a href="about.html">About</a>
+                </li>
+                <li class="selected">
+                    <a href="programs.html">Programs and Fees</a>
+                </li>
+                <li>
+                    <a href="blog.html">Blog</a>
+                </li>
+                <li>
+                    <a href="contact.html">Contact</a>
+                </li>
+            </ul>
+        </div>
+        <div class="body">
+            <div class="guitar">
+                <ul>
+                    <li>
+                        <a href="teacher/attendance">Registrar assitencia</a>
+                    </li>
+                    <li>
+                        <a href="teacher/viewAttendance">Contenido De Cursos</a>
+                    </li>
+                    <li>
+                        <a href="/teacher">Profesores</a>
+                    </li>
+                    <li>
+                        <a href="/course">cursos</a>
+                    </li>
+                    <li>
+                        <a href="drums.html">Registrar Curso</a>
+                    </li>
+                    <li>
+                        <a href="drums.html">Ver Cursos</a>
+                    </li>
+                    <li>
+                        <a href="drums.html">Registrar Inscripcion</a>
+                    </li>
+                    <li class="last">
+                        <a href="drums.html">Registrar Inscripcion</a>
+                    </li>
+                </ul>
+                <div class="content">
+
+                         {{outlet}}
+                </div>
+            </div>
+
+        </div>
+        <div class="footer">
+            <div class="about">
+                <h3>About</h3>
+                <div>
+                    <a href="about.html"><img src="http://localhost:3000/images/instructors.jpg" alt=""></a>
+                    <p>
+                        This is just a place holder. You can replace all this text with your own text. Youre free to use this website template.
+                    </p>
+                    <a href="blog.html" class="more">(more)</a>
+                </div>
+            </div>
+            <div class="contact">
+                <h3>Contact</h3>
+                <ul>
+                    <li>
+                        <span>Location :</span>
+                        <p>
+                            126-U This is just a place holder, so you can see
+                            what the site would look like.
+                        </p>
+                    </li>
+                    <li>
+                        <span>Email :</span>
+                        <p>
+                            <a href="http://www.freewebsitetemplates.com/misc/contact">contact@freewebsitetemplates.com</a>
+                        </p>
+                    </li>
+                    <li>
+                        <span>Phone :</span>
+                        <p>
+                            (000) 987 65 43 2100
+                        </p>
+                    </li>
+                </ul>
+            </div>
+            <div class="connect">
+                <a href="http://freewebsitetemplates.com/go/twitter/" id="twitter">twitter</a> <a href="http://freewebsitetemplates.com/go/facebook/" id="facebook">facebook</a> <a href="http://freewebsitetemplates.com/go/googleplus/" id="googleplus">google+</a>
+            </div>
+            <p class="footnote">
+                &#169; Copyright 2012. All rights reserved
+            </p>
+        </div>
+    </div>
+</script>
+<script type="text/x-handlebars" id="index">
+<p> This is the homePage studers </p>
+</script>
+
+<script type="text/x-handlebars" data-template-name="courses/index">
+    {{#if exitStudent}}
+        <p>Nr of courses = {{content.length}}</p>
+    <table class="table table-hover">
+        <tr>
+            <th>selecionar1</th>
+            <th>nombre del curso</th>
+            <th>profesor</th>
+            <th>fecha de inicio</th>
+            <th>fecha de fin</th>
+            <th>hora inicio</th>
+            <th>hora fin</th>
+            <th>Costo del Curso</th>
+            <th> Studiantes Inscriptos </th>
+            <th>Editar</th>
+            <th>Eliminar</th>
+          </tr>
+            {{#each course in controller itemController="coursesEdit"}}
+              <tr {{bindAttr class="selected:warning"}}>
+              <td>{{view Ember.Checkbox checkedBinding="selected"}}</td>
+              <td><a href="#" > {{course.name}} </td>
+              <td><a {{bindAttr href="{{course.teacherUrl}}"}}>{{course.teacher.name}}</a></td>
+              <td>{{course.startDate}}</td>
+              <td>{{course.endDate}}</td>
+              <td>{{course.startTime}}</td>
+              <td>{{course.endTime}}</td>
+              <td>{{course.cost}}</td>
+              <td> numero de studiantes link</td>
+              <td>{{#linkTo "courses.edit" course}}<img src="http://localhost:3000/images/edit-icon.png"/>{{/linkTo}}</td>
+              <td><a href="#" {{action removeItem course}}><img src="http://localhost:3000/images/delete-icon.png" border="0"/></a></td>
+              </tr>
+            {{/each}}
+    </table>
+    {{else}}
+     No hay cusos registrados
+    {{/if}}
+    <p>{{#linkTo "courses.new"}}<img src="http://localhost:3000/images/add-icon.png"/> New Course{{/linkTo}}</p>
+</script>
+
+<script type="text/x-handlebars" data-template-name="_courseForm" >
+      <form class="form-horizontal">
+        <label for="name">nombre del curso</label>
+            {{view Ember.TextField valueBinding="name"}}
+
+        {{#if controller.isNew}}
+            <label for="teacher">Profesor</label>
+            {{view Ember.Select contentBinding="teachers" optionLabelPath="content.name" selectionBinding="teacherValue" valueBinding="teacher" }}
+            <label for="subject">Profesor</label>
+            {{view Ember.Select contentBinding="subjects" optionLabelPath="content.name" selectionBinding="subjectValue" valueBinding="subject" }}
+        {{else}}
+            <label for="teacher">Profesor</label>
+            {{view Ember.Select contentBinding="teachers" optionLabelPath="content.name" selectionBinding="teacher" valueBinding="teacher" }}
+            <label for="subject">Profesor</label>
+            {{view Ember.Select contentBinding="subjects" optionLabelPath="content.name" selectionBinding="subject" valueBinding="subject" }}
+        {{/if}}
+        <label for="startDate">Fecha de Inicio </label>
+            {{custom-date-picker valueBinding="startDate"}}
+        <label for="endDate">Fecha de Inicio </label>
+            {{custom-date-picker valueBinding="endDate"}}
+        <label for="startTime">Hora de inicio </label>
+            {{input type="time" valueBinding="startTime"}}
+        <label for="endTime">Hora Fin </label>
+            {{input type="time" valueBinding="endTime"}}
+        <label for="cost">costo Bs</label>
+            {{view Ember.TextField valueBinding="cost" type="money" }}
+
+    </form>
+</script>
+
+
+<script type="text/x-handlebars" data-template-name="courses/edit">
+    {{#if controller.isNew}}
+      <h1>New course</h1>
+    {{else}}
+      <h1>Edit course</h1>
+    {{/if}}
+      {{partial "courseForm"}}
+      <p>
+        <button {{action updateItem this}}>Update record</button>
+      </p>
+</script>
+</body>
+</html>

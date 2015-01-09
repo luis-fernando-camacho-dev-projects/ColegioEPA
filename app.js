@@ -16,6 +16,7 @@ var routes = require('./routes/index');
     teacher = require('./routes/teacher'),
     course = require('./routes/course'),
     enrollment = require('./routes/enrollment'),
+    attendance = require('./routes/attendance'),
     app = express();
 /* rest classes End*/
 
@@ -50,12 +51,15 @@ app.get('/enrollment', function(req,res) {
     res.render('administrator/enrollment')
 });
 
-app.get('/modal', function(req,res) {
-    res.render('administrator/modal')
+app.get('/teacher/attendance', function(req, res) {
+    res.render('teacher/attendance');
+});
+app.get('/teacher/viewAttendance', function(req, res) {
+    res.render('teacher/viewAttendance');
 });
 
-app.get('/jquerymodal', function(req,res) {
-    res.render('administrator/jqueryModal')
+app.get('/student/attendance', function(req, res) {
+    res.render('student/attendance');
 });
 
 // ----------------- routes App End----------------------------//
@@ -84,6 +88,8 @@ var allowCrossDomain = function(req, res, next) {
 app.use(allowCrossDomain);
 
 //-------------------------end extra configuration ----------------------------//
+
+//------------------------- start load javascript libraries ---------------------------//
 
 
 
@@ -116,6 +122,7 @@ app.use('/teacher', teacher);
 app.use('/subject', subject);
 app.use('/course', course);
 app.use('/enrollment', enrollment);
+app.use('/attendance', attendance);
 /** define uris end */
 
 
