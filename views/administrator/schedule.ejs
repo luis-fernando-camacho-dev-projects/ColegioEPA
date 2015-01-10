@@ -5,18 +5,21 @@
 </head>
 <body>
 <script src="javascripts/application.js"></script>
-<script src="javascripts/routes/StudentRoute.js"></script>
-<script src="javascripts/controllers/StudentController.js"></script>
-<script src="javascripts/stores/StudentAdapter.js"></script>
+<script src="javascripts/routes/Schedule.js"></script>
+<script src="javascripts/controllers/ScheduleController.js"></script>
+<script src="javascripts/stores/SubjectMatterAdapter.js"></script>
+<script src="javascripts/stores/ScheduleAdapter.js"></script>
+<script src="javascripts/stores/TeacherAdapter.js"></script>
 <script src="javascripts/helpers/DatePicker.js"></script>
+<script src="javascripts/models/Teacher.js"></script>
+<script src="javascripts/models/SubjectMatter.js"></script>
 <script src="javascripts/models/Student.js"></script>
+<script src="javascripts/models/Course.js"></script>
 <script src="http://momentjs.com/downloads/moment.min.js"></script>
 <script src="http://dbushell.github.io/Pikaday/pikaday.js"></script>
 <link rel="stylesheet" href="http://dbushell.github.io/Pikaday/css/pikaday.css">
 
-
 <script src="javascripts/lib/bootstrap.js"></script>
-
 <link rel="stylesheet" href="stylesheets/bootstrap.css" type="text/css">
 <link rel="stylesheet" href="stylesheets/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="stylesheets/bootstrap-responsive.css" type="text/css">
@@ -59,7 +62,7 @@
                         <a href="/teacher">Profesores</a>
                     </li>
                     <li>
-                        <a href="guitar.html">Ver Profesores</a>
+                        <a href="/course">cursos</a>
                     </li>
                     <li>
                         <a href="drums.html">Registrar Curso</a>
@@ -75,10 +78,11 @@
                     </li>
                 </ul>
                 <div class="content">
-                    
+
                          {{outlet}}
                 </div>
             </div>
+
         </div>
         <div class="footer">
             <div class="about">
@@ -125,12 +129,37 @@
     </div>
 </script>
 <script type="text/x-handlebars" id="index">
-<p> This is the homePage studers </p>
+<p> This is schedules page</p>
 </script>
 
 <script type="text/x-handlebars" data-template-name="schedule/index">
-    
+    {{#if exitStudent}}
+        <p>Nr of schedule = {{content.length}}</p>
+    <table class="table table-hover">
+        <tr>
+            <th>selecionar1</th>
+            <th>nombre del curso</th>
+            <th>profesor</th>
+            <th>fecha de inicio</th>
+            <th>fecha de fin</th>
+            <th>hora inicio</th>
+            <th>hora fin</th>            
+          </tr>
+            {{#each course in controller itemController="coursesEdit"}}
+              <tr {{bindAttr class="selected:warning"}}>
+              <td>{{view Ember.Checkbox checkedBinding="selected"}}</td>
+              <td><a href="#" > {{course.name}} </td>
+              <td><a {{bindAttr href="{{course.teacherUrl}}"}}>{{course.teacher.name}}</a></td>
+              <td>{{course.startDate}}</td>
+              <td>{{course.endDate}}</td>
+              <td>{{course.startTime}}</td>
+              <td>{{course.endTime}}</td>
+              </tr>
+            {{/each}}
+    </table>
+    {{else}}
+     No hay cusos registrados
+    {{/if}}
 </script>
-  
 </body>
 </html>

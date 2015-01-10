@@ -45,7 +45,8 @@ app.get('/subject', function(req, res) {
 });
 
 app.get('/schedule', function(req, res) {
-    res.render('schedule/index');
+    //res.render('schedule/index');
+    res.render('administrator/schedule');
 });
 
 app.get('/course', function(req, res) {

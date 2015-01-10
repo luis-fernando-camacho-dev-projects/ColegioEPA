@@ -1,7 +1,9 @@
 
 ColegioEPA.Router.map(function () {
     this.route("index", { path: "/" });
-    this.resource("courses", {path: "/"}, function() {
+    this.resource("courses", {path: "/"}, 
+      function() 
+      {
         this.route("new", {path:"/new"});
         this.route("edit", {path:"/:courses_id"});
     });
