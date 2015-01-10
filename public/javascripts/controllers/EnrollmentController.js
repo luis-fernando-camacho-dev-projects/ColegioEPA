@@ -2,7 +2,9 @@
 ColegioEPA.EnrollmentsEditController = Ember.ObjectController.extend({
     actions: {
         updateItem: function(enrollment) {
-            enrollment.set('student', this.studentValue);
+            if (this.isNew) {
+                enrollment.set('student', this.studentValue);
+            }
             enrollment.get('courses').clear();
             console.log('nro courses {0}',enrollment.get('courses').get('length'));
             ColegioEPA.CourseValues.forEach(function(item, index, enumerable) {
@@ -14,6 +16,7 @@ ColegioEPA.EnrollmentsEditController = Ember.ObjectController.extend({
         },
         deleteCourse:function(course) {
             ColegioEPA.CourseValues.removeObject(course);
+            this.courseBackup.removeObject(course);
         },
         editCourse: function(course) {
         }
@@ -29,11 +32,9 @@ ColegioEPA.EnrollmentsEditController = Ember.ObjectController.extend({
         return this.store.findAll('course');
     }.property(),
     init:function() {
-        this._super();
         var students = this.store.all('student');
         this.studentValue = students.get('length') > 0 ? students.get('firstObject'): null ;
-        var courseList = this.store.all('course');
-        this.courseSelected = courseList.get('length') > 0 ? courseList.get('firstObject'): null ;
+        this._super();
     },
     loadCourse: function(courses) {
         courses.forEach(function(item) {
@@ -41,7 +42,26 @@ ColegioEPA.EnrollmentsEditController = Ember.ObjectController.extend({
             ColegioEPA.CourseValues.pushObject(item);
         })
     },
-    courseSelected: null
+    courseBackup: Ember.ArrayController.create({content: []}),
+    totalCourses: function() {
+
+        var totalCostCourses = 0;
+        ColegioEPA.CourseValues.forEach(function(course) {
+            totalCostCourses += course.get('cost');
+        })
+        return totalCostCourses;
+    }.property('courseBackup.@each.cost'),
+    matricula: function() {
+        return this.get('content').get('costEnrollment');
+    }.property('content.costEnrollment'),
+    total : function() {
+        var totalEnrollment = this.get('totalCourses');
+        if(!isNaN(parseInt(this.get('matricula')))) {
+            totalEnrollment += parseInt(this.get('matricula'));
+        }
+        return totalEnrollment;
+    }.property('courseBackup.@each.cost'),
+    studentValue:null
 });
 
 

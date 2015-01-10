@@ -134,6 +134,7 @@
 
 <script type="text/x-handlebars" data-template-name="courses/index">
     {{#if exitStudent}}
+        Busqueda de curso : {{input type='text' value=filter placeholder='Nombre del curso,profesor , fecha inicio or fecha fin'}}
         <p>Nr of courses = {{content.length}}</p>
     <table class="table table-hover">
         <tr>
@@ -149,7 +150,7 @@
             <th>Editar</th>
             <th>Eliminar</th>
           </tr>
-            {{#each course in controller itemController="coursesEdit"}}
+            {{#each course in filteredContent itemController="coursesEdit"}}
               <tr {{bindAttr class="selected:warning"}}>
               <td>{{view Ember.Checkbox checkedBinding="selected"}}</td>
               <td><a href="#" > {{course.name}} </td>

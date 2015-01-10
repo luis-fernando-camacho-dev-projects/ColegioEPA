@@ -7,10 +7,5 @@ ColegioEPA.Course = DS.Model.extend({
     endDate: DS.attr('string'),
     startTime: DS.attr('string'),
     endTime: DS.attr('string'),
-    cost: DS.attr('number'),
-    teacherUrl: function(){
-        debugger;
-        var url = 'http://localhost:3000/teacher/#/'+ this.get('teacher').get('id');
-        return url;
-    }.property('teacher')
+    cost: DS.attr('number')
 });

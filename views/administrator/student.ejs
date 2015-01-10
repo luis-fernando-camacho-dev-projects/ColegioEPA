@@ -10,6 +10,9 @@
 <script src="javascripts/stores/StudentAdapter.js"></script>
 <script src="javascripts/helpers/DatePicker.js"></script>
 <script src="javascripts/models/Student.js"></script>
+<script src="javascripts/models/SubjectMatter.js"></script>
+<script src="javascripts/models/Course.js"></script>
+<script src="javascripts/models/Teacher.js"></script>
 <script src="http://momentjs.com/downloads/moment.min.js"></script>
 <script src="http://dbushell.github.io/Pikaday/pikaday.js"></script>
 <link rel="stylesheet" href="http://dbushell.github.io/Pikaday/css/pikaday.css">
@@ -130,17 +133,18 @@
 
 <script type="text/x-handlebars" data-template-name="students/index">
     {{#if exitStudent}}
+        Busqueda de Estudiante : {{input type='text' value=filter placeholder='Nombre, Ci or correo electronico'}}
         <p>Nr of students = {{content.length}}</p>
     <table class="table table-hover">
         <tr>
             <th>Selected</th>
-            <th>nombre</th>
-            <th>email</th>
-            <th>ci</th>
-            <th></th>
-            <th></th>
+            <th {{action 'sortBy' 'nombre'}}><a>nombre</a></th>
+            <th {{action 'sortBy' 'email'}}><a>email</a></th>
+            <th {{action 'sortBy' 'ci'}}><a>ci</a></th>
+            <th>Editar</th>
+            <th>Eliminar</th>
           </tr>
-            {{#each student in controller itemController="studentsEdit"}}
+            {{#each student in filteredContent itemController="studentsEdit"}}
               <tr {{bindAttr class="selected:warning"}}>
               <td>{{view Ember.Checkbox checkedBinding="selected"}}</td>
               <td>{{student.nombre}}</td>

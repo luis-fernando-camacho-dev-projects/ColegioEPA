@@ -4,11 +4,14 @@
 ColegioEPA.SettingsModalController = Ember.ObjectController.extend({
   actions: {
     save: function(test) {
+
         if (this.previousCourse != null)
         {
             var indexCourse = ColegioEPA.CourseValues.indexOf(this.previousCourse, 0);
             ColegioEPA.CourseValues.replaceContent(indexCourse, 1, [this.courseSelected]);
+            this.controllerFor('enrollments.edit').replaceContent(indexCourse, 1, [this.courseSelected]);
         } else {
+            this.controllerFor('enrollments.edit').courseBackup.pushObject(this.courseSelected);
             ColegioEPA.CourseValues.pushObject(this.courseSelected)
         }
         this.get('target').send('removeModal');
@@ -22,8 +25,14 @@ ColegioEPA.SettingsModalController = Ember.ObjectController.extend({
 courses: function() {
         return this.store.findAll('course');
     }.property(),
+    init:function() {
+        var courseList = this.store.all('course');
+        this.courseSelected = courseList.get('length') > 0 ? courseList.get('firstObject'): null ;
+        this._super();
+    },
     courseSelected:null,
     previousCourse:null
+
 
 });
 
