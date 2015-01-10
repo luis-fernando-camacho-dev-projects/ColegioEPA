@@ -1,6 +1,6 @@
 ColegioEPA.Enrollment = DS.Model.extend({
-    student: DS.belongsTo('student'),
-    courses: DS.hasMany('course'),
+    student: DS.belongsTo('student', {async:false}),
+    courses: DS.hasMany('course',  {async:false}),
     payDate: DS.attr('string'),
     costEnrollment: DS.attr('number'),
     nit: DS.attr('number'),

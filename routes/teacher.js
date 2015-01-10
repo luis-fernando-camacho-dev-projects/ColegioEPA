@@ -26,7 +26,7 @@ router.get('/teachers/:id', function(req, res) {
     console.log('teacherId',teacherId);
     db.collection('teacherList',function(err, collection) {
         console.log('teacherId2',teacherId);
-        collection.findOne({_id: teacherId}, function(err, teacher) {
+        collection.findOne({'_id': new BSON.ObjectID(teacherId)}, function(err, teacher) {
             console.log(err);
             console.log(teacher);
             res.send(teacher);

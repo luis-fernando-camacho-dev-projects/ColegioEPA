@@ -1,7 +1,7 @@
 ColegioEPA.TeachersEditController = Ember.ObjectController.extend({
     actions: {
-        updateItem: function(location) {
-        location.save();
+        updateItem: function(teacher) {
+        teacher.save();
         this.get("target").transitionTo("teachers");
       }
     },
@@ -45,7 +45,6 @@ ColegioEPA.TeachersIndexController = Ember.ArrayController.extend({
             }
         }
     }
-  //}.property("content.isLoaded")
 });
 
 Ember.Handlebars.registerBoundHelper('locsPresent',

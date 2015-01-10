@@ -30,6 +30,13 @@ ColegioEPA.CoursesEditController = Ember.ObjectController.extend({
 
 
 ColegioEPA.CoursesIndexController = Ember.ArrayController.extend({
+    filter:'',
+    filteredContent: function(){
+        var filter = this.get('filter'), rx = new RegExp(filter, 'gi'), courses = this.get('arrangedContent');
+        return courses.filter(function(course) {
+            return course.get('startDate').match(rx) || course.get('endDate').match(rx) ||course.get('name').match(rx) || course.get('teacher').get('name').match(rx) ;
+        });
+    }.property('arrangedContent', 'filter'),
     editCounter: function () {
         return this.filterProperty('selected', true).get('length');
     }.property('@each.selected'),
@@ -53,19 +60,11 @@ ColegioEPA.CoursesIndexController = Ember.ArrayController.extend({
         viewCourse: function(course) {
             console.log('test');
         },
-        removeSelectedLocations: function() {
-            arr = this.filterProperty('selected', true);
-            if (arr.length==0) {
-                output = "nothing selected";
-            } else {
-                output = "";
-                for (i=0 ; i<arr.length ; i++) {
-                  arr[i].destroyRecord()
-                }
-            }
+        sortBy: function(property) {
+            this.set('sortProperties', [property]);
+            this.set('sortAscending', !this.get('sortAscending'));
         }
     }
-  //}.property("content.isLoaded")
 });
 
 Ember.Handlebars.registerBoundHelper('locsPresent',

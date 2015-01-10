@@ -14,7 +14,6 @@ router.get('/enrollments', function(req, res) {
     var value = {};
     db.collection('enrollmentList', function(err, collection) {
          collection.find().toArray(function(err, enrollments) {
-
             value['enrollments'] = enrollments;
             db.collection('courseList', function(err, collection){
                 collection.find().toArray(function(err, courses) {
@@ -22,7 +21,12 @@ router.get('/enrollments', function(req, res) {
                     db.collection('teacherList', function(err, collection) {
                         collection.find().toArray(function(err, teachers) {
                             value['teachers'] = teachers;
-                            res.json(value);
+                            db.collection('studentList', function(err, collection){
+                                collection.find().toArray(function(err, students) {
+                                    value['students'] = students;
+                                    res.json(value);
+                                });
+                            });
                         });
                     });
                 });

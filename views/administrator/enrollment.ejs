@@ -158,7 +158,7 @@
 
             {{#each enrollment in controller itemController="enrollmentsEdit"}}
               <td><a {{bindAttr href="{{enrollment.id}}"}}>{{enrollment.id}}</a></td>
-              <td>{{enrollment.student.name}}</td>
+              <td>{{enrollment.student.nombre}}</td>
               <td>{{enrollment.payDate}}</td>
               <td>15</td>
               <td>{{enrollment.nit}}</td>
@@ -221,6 +221,15 @@
             <td><a {{action "deleteCourse" course}}>eliminar</a></td>
             </tr>
         {{/each}}
+        <tr>
+         <td colspan="9"> <p style="float:right;margin:20px"><b>Total Costo de los Cursos : {{controller.totalCourses}}</p> </td>
+        </tr>
+        <tr>
+        <td colspan="9"> <p style="float:right;margin:20px"><b>Matricula : {{controller.matricula}}</p> </td>
+        </tr>
+        <tr>
+        <td colspan="9"> <p style="float:right;margin:20px"><b>Total A Pagar : {{controller.total}}</p> </td>
+        </tr>
         </table>
     </form>
 </script>
