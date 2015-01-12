@@ -115,14 +115,20 @@ app.use(function(req,res,next) {
     next();
 });
 
+// Auth Middleware - This will check if the token is valid
+// Only the requests that start with /api/* will be checked for the token.
+// Any URL's that do not follow the below pattern should be avoided unless you
+// are sure that authentication is not needed
+app.all('/api/*', [require('./middlewares/validateRequest')]);
+
 /** define uris start */
 app.use('/', routes);
-app.use('/student', student);
-app.use('/teacher', teacher);
-app.use('/subject', subject);
-app.use('/course', course);
-app.use('/enrollment', enrollment);
-app.use('/attendance', attendance);
+app.use('/api/student', student);
+app.use('/api/teacher', teacher);
+app.use('/api/subject', subject);
+app.use('/api/course', course);
+app.use('/api/enrollment', enrollment);
+app.use('/api/attendance', attendance);
 /** define uris end */
 
 
