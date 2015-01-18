@@ -4,30 +4,23 @@ var router = express.Router();
 var jwt = require('jwt-simple');
 var sha1 = require('sha1');
 
-
 /*
 * Routes that can be accessed by any one
 */
 router.post('/login', function(req, res) {
+    var db = req.db, username = req.body.username || '', password = req.body.password || '';
 
-    var username = req.body.username || '';
-    var password = req.body.password || '';
-
-    if (username == '' || password == '') {
+    if (username === '' || password === '') {
         _failWithInvalidCredentials(res);
         return;
     }
-
-    var db = req.db;
-    db.collection('users').findOne({'username': username}, function(err, user) {
-
+    db.collection('userList').findOne({'login': username}, function(err, user) {
         if (err) {
             res.send({
                 'error':'An error has occurred - ' + err
             });
             return;
         }
-
         if (user && _isValidPassword(password, user.password)) {
             // If authentication is success, we will generate a token
             // and dispatch it to the client
@@ -35,11 +28,9 @@ router.post('/login', function(req, res) {
         } else {
             // If authentication fails, we send a 401 back
             _failWithInvalidCredentials(res);
-
             return;
         }
     });
-
 });
 
 function _failWithInvalidCredentials(res) {
@@ -70,7 +61,8 @@ function _expiresIn(numDays) {
 };
 
 function _isValidPassword(rawPassword, encodedPassword) {
-    return encodedPassword == sha1(rawPassword);
+    return encodedPassword == rawPassword;
+    //return encodedPassword == sha1(rawPassword);//preguntar al beto como le envio un sha1  o hash desde un controllador
 };
 
 exports.index = function(req, res){

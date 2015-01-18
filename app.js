@@ -17,6 +17,7 @@ var routes = require('./routes/index');
     course = require('./routes/course'),
     enrollment = require('./routes/enrollment'),
     attendance = require('./routes/attendance'),
+    user = require('./routes/user'),
     app = express();
 /* rest classes End*/
 
@@ -31,6 +32,7 @@ app.get('/', function(req, res) {
 });
 
 //----------------- routes App Start----------------------------//
+//--------Administrator Options ------------------------------//
 app.get('/teacher', function(req, res) {
     res.render('administrator/teacher');
 });
@@ -51,15 +53,28 @@ app.get('/enrollment', function(req,res) {
     res.render('administrator/enrollment')
 });
 
+app.get('/user', function(req, res) {
+    res.render('administrator/user')
+});
+//---------------------End Administrators Options---------------------------//
+
+//---------------------Teachers Options ---------------------------------//
 app.get('/teacher/attendance', function(req, res) {
     res.render('teacher/attendance');
 });
 app.get('/teacher/viewAttendance', function(req, res) {
     res.render('teacher/viewAttendance');
 });
+//--------------------- End Teachers Options ---------------------------------//
 
+//------------------------Student Options -------------------------------------//
 app.get('/student/attendance', function(req, res) {
     res.render('student/attendance');
+});
+//------------------------ END Student Options -------------------------------------//
+
+app.get('/login', function(req, res) {
+    res.render('login');
 });
 
 // ----------------- routes App End----------------------------//
@@ -75,9 +90,10 @@ var allowCrossDomain = function(req, res, next) {
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
+
     // intercept OPTIONS method
     if ('OPTIONS' == req.method) {
-      res.send(200);
+        res.send(200);
     }
     else {
       next();
@@ -129,6 +145,9 @@ app.use('/api/subject', subject);
 app.use('/api/course', course);
 app.use('/api/enrollment', enrollment);
 app.use('/api/attendance', attendance);
+// modificar esto //
+app.use('/user', user);
+
 /** define uris end */
 
 
