@@ -1,164 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <% include ../partials/head %>
-</head>
-<body>
-<script src="javascripts/application.js"></script>
+<% include ../partialsViewAdministrator/header %>
 <script src="javascripts/routes/StudentRoute.js"></script>
-<script src="javascripts/controllers/StudentController.js"></script>
-<script src="javascripts/stores/StudentAdapter.js"></script>
-<script src="javascripts/helpers/DatePicker.js"></script>
-<script src="javascripts/models/Student.js"></script>
-<script src="javascripts/models/SubjectMatter.js"></script>
-<script src="javascripts/models/Course.js"></script>
-<script src="javascripts/models/Teacher.js"></script>
-<script src="http://momentjs.com/downloads/moment.min.js"></script>
-<script src="http://dbushell.github.io/Pikaday/pikaday.js"></script>
-<link rel="stylesheet" href="http://dbushell.github.io/Pikaday/css/pikaday.css">
-
-
-<script src="javascripts/lib/bootstrap.js"></script>
-
-<link rel="stylesheet" href="stylesheets/bootstrap.css" type="text/css">
-<link rel="stylesheet" href="stylesheets/bootstrap.min.css" type="text/css">
-<link rel="stylesheet" href="stylesheets/bootstrap-responsive.css" type="text/css">
-<link rel="stylesheet" href="stylesheets/bootstrap-responsive.min.css" type="text/css">
-<link rel="stylesheet" href="stylesheets/normalize.css" type="text/css">
-<link rel="stylesheet" href="stylesheets/style.css" type="text/css">
-
-<script type="text/x-handlebars" id="application">
-    <div class="page">
-        <div class="header">
-            <a href="index.html" id="logo"><img src="images/logo.png" alt="logo"></a>
-            <ul class="navigation">
-                <li>
-                    <a href="index.html">Home</a>
-                </li>
-                <li>
-                    <a href="about.html">About</a>
-                </li>
-                <li class="selected">
-                    <a href="programs.html">Programs and Fees</a>
-                </li>
-                <li>
-                    <a href="blog.html">Blog</a>
-                </li>
-                <li>
-                    <a href="contact.html">Contact</a>
-                </li>
-            </ul>
-        </div>
-        <div class="body">
-            <div class="guitar">
-                <ul>
-                    <li>
-                        <a href="/student">Estudiantes</a>
-                    </li>
-                    <li>
-                        <a href="/subject">Contenido De Cursos</a>
-                    </li>
-                    <li>
-                        <a href="/teacher">Profesores</a>
-                    </li>
-                    <li>
-                        <a href="/course">Cursos</a>
-                    </li>
-                    <li>
-                        <a href="drums.html">Registrar Curso</a>
-                    </li>
-                    <li>
-                        <a href="drums.html">Ver Cursos</a>
-                    </li>
-                    <li>
-                        <a href="drums.html">Registrar Inscripcion</a>
-                    </li>
-                    <li class="last">
-                        <a href="drums.html">Registrar Inscripcion</a>
-                    </li>
-                </ul>
-                <div class="content">
-
-                         {{outlet}}
-                </div>
-            </div>
-        </div>
-        <div class="footer">
-            <div class="about">
-                <h3>About</h3>
-                <div>
-                    <a href="about.html"><img src="images/instructors.jpg" alt=""></a>
-                    <p>
-                        This is just a place holder. You can replace all this text with your own text. Youre free to use this website template.
-                    </p>
-                    <a href="blog.html" class="more">(more)</a>
-                </div>
-            </div>
-            <div class="contact">
-                <h3>Contact</h3>
-                <ul>
-                    <li>
-                        <span>Location :</span>
-                        <p>
-                            126-U This is just a place holder, so you can see
-                            what the site would look like.
-                        </p>
-                    </li>
-                    <li>
-                        <span>Email :</span>
-                        <p>
-                            <a href="http://www.freewebsitetemplates.com/misc/contact">contact@freewebsitetemplates.com</a>
-                        </p>
-                    </li>
-                    <li>
-                        <span>Phone :</span>
-                        <p>
-                            (000) 987 65 43 2100
-                        </p>
-                    </li>
-                </ul>
-            </div>
-            <div class="connect">
-                <a href="http://freewebsitetemplates.com/go/twitter/" id="twitter">twitter</a> <a href="http://freewebsitetemplates.com/go/facebook/" id="facebook">facebook</a> <a href="http://freewebsitetemplates.com/go/googleplus/" id="googleplus">google+</a>
-            </div>
-            <p class="footnote">
-                &#169; Copyright 2012. All rights reserved
-            </p>
-        </div>
-    </div>
-</script>
 <script type="text/x-handlebars" id="index">
 <p> This is the homePage studers </p>
 </script>
 
 <script type="text/x-handlebars" data-template-name="students/index">
-    {{#if exitStudent}}
-        Busqueda de Estudiante : {{input type='text' value=filter placeholder='Nombre, Ci or correo electronico'}}
-        <p>Nr of students = {{content.length}}</p>
-    <table class="table table-hover">
-        <tr>
-            <th>Selected</th>
-            <th {{action 'sortBy' 'nombre'}}><a>nombre</a></th>
-            <th {{action 'sortBy' 'email'}}><a>email</a></th>
-            <th {{action 'sortBy' 'ci'}}><a>ci</a></th>
-            <th>Editar</th>
-            <th>Eliminar</th>
-          </tr>
-            {{#each student in filteredContent itemController="studentsEdit"}}
-              <tr {{bindAttr class="selected:warning"}}>
-              <td>{{view Ember.Checkbox checkedBinding="selected"}}</td>
-              <td>{{student.nombre}}</td>
-              <td>{{student.email}}</td>
-              <td>{{student.ci}}</td>
-              <td>{{#linkTo "students.edit" student}}<img src="images/edit-icon.png"/>{{/linkTo}}</td>
-              <td><a href="#" {{action removeItem student}}><img src="images/delete-icon.png" border="0"/></a></td>
-              </tr>
-            {{/each}}
-    </table>
-    {{else}}
-     NO students
+    {{#if localStorage.token}}
+      {{#if exitStudent}}
+          Busqueda de Estudiante : {{input type='text' value=filter placeholder='Nombre, Ci or correo electronico'}}
+          <p>Nr of students = {{content.length}}</p>
+      <table class="table table-hover">
+          <tr>
+              <th>Selected</th>
+              <th {{action 'sortBy' 'nombre'}}><a>nombre</a></th>
+              <th {{action 'sortBy' 'email'}}><a>email</a></th>
+              <th {{action 'sortBy' 'ci'}}><a>ci</a></th>
+              <th>Editar</th>
+              <th>Eliminar</th>
+            </tr>
+              {{#each student in filteredContent itemController="studentsEdit"}}
+                <tr {{bindAttr class="selected:warning"}}>
+                <td>{{view Ember.Checkbox checkedBinding="selected"}}</td>
+                <td>{{student.nombre}}</td>
+                <td>{{student.email}}</td>
+                <td>{{student.ci}}</td>
+                <td>{{#linkTo "students.edit" student}}<img src="images/edit-icon.png"/>{{/linkTo}}</td>
+                <td><a href="#" {{action removeItem student}}><img src="images/delete-icon.png" border="0"/></a></td>
+                </tr>
+              {{/each}}
+      </table>
+      {{else}}
+       NO students
+      {{/if}}
+      <p>{{#linkTo "students.new"}}<img src="images/add-icon.png"/> New Student{{/linkTo}}</p>
     {{/if}}
-    <p>{{#linkTo "students.new"}}<img src="images/add-icon.png"/> New Student{{/linkTo}}</p>
 </script>
 
 <script source="" type="text/x-handlebars" data-template-name="_studentForm" >
@@ -176,9 +51,9 @@
  <script type="text/x-handlebars" data-template-name="students/edit" >
 
     {{#if controller.isNew}}
-      <h1>New student</h1>
+      <h1>Nuevo Studiante</h1>
     {{else}}
-      <h1>Edit student</h1>
+      <h1>Editar Studiante</h1>
     {{/if}}
       {{partial "studentForm"}}
       <p>

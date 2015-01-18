@@ -8,7 +8,7 @@ ColegioEPA.Router.map(function () {
 });
 
 
-ColegioEPA.EnrollmentsIndexRoute = Ember.Route.extend({
+ColegioEPA.EnrollmentsIndexRoute = ColegioEPA.AuthenticatedRoute.extend({
     setupController: function(controller) {
         var enrollment = this.get('store').find('enrollment');
         controller.set('content', enrollment);
@@ -18,7 +18,7 @@ ColegioEPA.EnrollmentsIndexRoute = Ember.Route.extend({
     }
 });
 
-ColegioEPA.EnrollmentsNewRoute = Ember.Route.extend({
+ColegioEPA.EnrollmentsNewRoute = ColegioEPA.AuthenticatedRoute.extend({
 
     actions: {
         showModal: function(name, model) {
@@ -53,7 +53,7 @@ ColegioEPA.EnrollmentsNewRoute = Ember.Route.extend({
   }
 });
 
-ColegioEPA.EnrollmentsEditRoute = Ember.Route.extend({
+ColegioEPA.EnrollmentsEditRoute = ColegioEPA.AuthenticatedRoute.extend({
 
     actions: {
          showModal: function(name, model) {
