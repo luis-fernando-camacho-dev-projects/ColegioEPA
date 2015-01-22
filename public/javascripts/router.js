@@ -8,7 +8,6 @@ ColegioEPA.Router.map(function () {
       this.route("edit", {path:"/:student_id"});
     });
 
-    
 });
 
 

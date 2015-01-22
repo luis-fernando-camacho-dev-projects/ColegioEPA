@@ -16,4 +16,7 @@ ColegioEPA.ApplicationAdapter = DS.LSAdapter.extend({
 
 ColegioEPA.ApplicationAdapter = DS.FixtureAdapter.extend();
 
-
+window.ColegioEPA.ApplicationController = Ember.Controller.extend
+({
+  needs: ['calendar']
+});

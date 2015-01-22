@@ -2,9 +2,13 @@
 <html lang="en">
 <head>
     <% include ../partials/head %>
+    <link rel='stylesheet' href='javascripts/lib/emberCalendar/ember-calendar.css'>
+    <link rel='stylesheet' href='stylesheets/calendarStyle.css'>
+    <link rel="stylesheet" href="stylesheets/style.css" type="text/css">
 </head>
 <body>
 <script src="javascripts/application.js"></script>
+<script src="javascripts/views/EmberCalendarView.js"></script>
 <script src="javascripts/routes/StudentRoute.js"></script>
 <script src="javascripts/controllers/StudentController.js"></script>
 <script src="javascripts/stores/StudentAdapter.js"></script>
@@ -15,8 +19,11 @@
 <script src="javascripts/models/Teacher.js"></script>
 <script src="http://momentjs.com/downloads/moment.min.js"></script>
 <script src="http://dbushell.github.io/Pikaday/pikaday.js"></script>
-<link rel="stylesheet" href="http://dbushell.github.io/Pikaday/css/pikaday.css">
 
+
+<script src='javascripts/lib/emberCalendar/ember-calendar.js'></script>
+<script src='javascripts/views/EmberCalendarView.js'></script>
+<link rel="stylesheet" href="http://dbushell.github.io/Pikaday/css/pikaday.css">
 
 <script src="javascripts/lib/bootstrap.js"></script>
 
@@ -25,9 +32,9 @@
 <link rel="stylesheet" href="stylesheets/bootstrap-responsive.css" type="text/css">
 <link rel="stylesheet" href="stylesheets/bootstrap-responsive.min.css" type="text/css">
 <link rel="stylesheet" href="stylesheets/normalize.css" type="text/css">
-<link rel="stylesheet" href="stylesheets/style.css" type="text/css">
 
-<script type="text/x-handlebars" id="application">
+
+<script type="text/x-handlebars" data-template-name='application' id="application">
     <div class="page">
         <div class="header">
             <a href="index.html" id="logo"><img src="images/logo.png" alt="logo"></a>
@@ -80,8 +87,10 @@
                 <div class="content">
 
                          {{outlet}}
+
                 </div>
             </div>
+            {{view Ember.Calendar.CalendarView controllerBinding='controllers.calendar'}}
         </div>
         <div class="footer">
             <div class="about">
