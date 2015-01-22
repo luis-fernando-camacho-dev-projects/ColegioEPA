@@ -85,7 +85,6 @@
         </div>
         <div class="body">
             <div class="guitar">
-            {{#if localStorage.token}}
                 <ul>
                     <li>
                         <a href="/student">Estudiantes</a>
@@ -103,7 +102,6 @@
                         <a href="/enrollment">Inscripciones</a>
                     </li>
                 </ul>
-                {{/if}}
                 <div class="content">
                          {{outlet}}
                          {{outlet 'modal'}}

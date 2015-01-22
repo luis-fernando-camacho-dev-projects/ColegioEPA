@@ -62,12 +62,21 @@ app.get('/user', function(req, res) {
 app.get('/teacher/attendance', function(req, res) {
     res.render('teacher/attendance');
 });
-app.get('/teacher/viewAttendance', function(req, res) {
-    res.render('teacher/viewAttendance');
+app.get('/teacher/schedules', function(req, res) {
+    res.render('teacher/schedules');
+});
+app.get('/teacher/subjects', function(req, res) {
+    res.render('teacher/subjects');
 });
 //--------------------- End Teachers Options ---------------------------------//
 
 //------------------------Student Options -------------------------------------//
+app.get('/student/courses', function(req, res) {
+    res.render('student/courses');
+});
+app.get('/student/schedules', function(req, res) {
+    res.render('student/schedules');
+});
 app.get('/student/attendance', function(req, res) {
     res.render('student/attendance');
 });
