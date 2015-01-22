@@ -1,5 +1,8 @@
 ColegioEPA.SubjectAdapter = DS.RESTAdapter.extend({
-  host: 'http://localhost:3000/subject'
+  host: 'http://localhost:3000/api/subject',
+  headers: {
+      'API_KEY': localStorage.getItem("token")
+  }
 });
 ColegioEPA.SubjectSerializer = DS.RESTSerializer.extend({
     primaryKey: '_id'

@@ -18,7 +18,7 @@ var routes = require('./routes/index');
     schedule = require('./routes/schedule'),
     enrollment = require('./routes/enrollment'),
     attendance = require('./routes/attendance'),
-
+    user = require('./routes/user'),
     app = express();
 /* rest classes End*/
 
@@ -32,6 +32,7 @@ app.get('/', function(req, res) {
 });
 
 //----------------- routes App Start----------------------------//
+//--------Administrator Options ------------------------------//
 app.get('/teacher', function(req, res) {
     res.render('administrator/teacher');
 });
@@ -57,15 +58,37 @@ app.get('/enrollment', function(req,res) {
     res.render('administrator/enrollment')
 });
 
+app.get('/user', function(req, res) {
+    res.render('administrator/user')
+});
+//---------------------End Administrators Options---------------------------//
+
+//---------------------Teachers Options ---------------------------------//
 app.get('/teacher/attendance', function(req, res) {
     res.render('teacher/attendance');
 });
-app.get('/teacher/viewAttendance', function(req, res) {
-    res.render('teacher/viewAttendance');
+app.get('/teacher/schedules', function(req, res) {
+    res.render('teacher/schedules');
 });
+app.get('/teacher/subjects', function(req, res) {
+    res.render('teacher/subjects');
+});
+//--------------------- End Teachers Options ---------------------------------//
 
+//------------------------Student Options -------------------------------------//
+app.get('/student/courses', function(req, res) {
+    res.render('student/courses');
+});
+app.get('/student/schedules', function(req, res) {
+    res.render('student/schedules');
+});
 app.get('/student/attendance', function(req, res) {
     res.render('student/attendance');
+});
+//------------------------ END Student Options -------------------------------------//
+
+app.get('/login', function(req, res) {
+    res.render('login');
 });
 
 // ----------------- routes App End----------------------------//
@@ -83,9 +106,10 @@ var allowCrossDomain = function(req, res, next) {
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
+
     // intercept OPTIONS method
     if ('OPTIONS' == req.method) {
-      res.send(200);
+        res.send(200);
     }
     else {
       next();
@@ -120,6 +144,12 @@ app.use(function(req,res,next) {
     next();
 });
 
+// Auth Middleware - This will check if the token is valid
+// Only the requests that start with /api/* will be checked for the token.
+// Any URL's that do not follow the below pattern should be avoided unless you
+// are sure that authentication is not needed
+app.all('/api/*', [require('./middlewares/validateRequest')]);
+
 /** define uris start */
 app.use('/', routes);
 app.use('/student', student);
@@ -129,9 +159,17 @@ app.use('/schedule', schedule);
 app.use('/course', course);
 app.use('/enrollment', enrollment);
 app.use('/attendance', attendance);
+
+app.use('/api/student', student);
+app.use('/api/teacher', teacher);
+app.use('/api/subject', subject);
+app.use('/api/course', course);
+app.use('/api/enrollment', enrollment);
+app.use('/api/attendance', attendance);
+// modificar esto //
+app.use('/user', user);
+
 /** define uris end */
-
-
 
 
 //static html content should be inserted here
