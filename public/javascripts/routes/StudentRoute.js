@@ -1,4 +1,3 @@
-
 ColegioEPA.Router.map(function () {
 
     this.route("index", { path: "/" });
@@ -7,10 +6,7 @@ ColegioEPA.Router.map(function () {
       this.route("new", {path:"/new"});
       this.route("edit", {path:"/:student_id"});
     });
-
-    
 });
-
 
     ColegioEPA.StudentsIndexRoute = Ember.Route.extend({
         setupController: function(controller) {
