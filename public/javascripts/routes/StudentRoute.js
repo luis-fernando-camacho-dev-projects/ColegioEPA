@@ -6,27 +6,6 @@ ColegioEPA.Router.map(function () {
     });
 });
 
-<<<<<<< HEAD
-    ColegioEPA.StudentsIndexRoute = Ember.Route.extend({
-        setupController: function(controller) {
-            var students = this.get('store').find('student'); // App.Location.find();
-            controller.set('content', students);
-        },
-        renderTemplate: function() {
-          this.render('students.index',{into:'application'});
-        }
-    });
-
-    ColegioEPA.StudentsNewRoute = Ember.Route.extend({
-      setupController: function(controller, model) {
-        var newStudent = this.store.createRecord('student', {});
-        this.controllerFor('students.edit').setProperties({isNew: true, content:newStudent});
-      },
-      renderTemplate: function() {
-        this.render('students.edit', {into:'application'})
-      }
-    });
-=======
 ColegioEPA.StudentsIndexRoute = ColegioEPA.AuthenticatedRoute.extend({
     setupController: function(controller) {
         var students = this.get('store').find('student'); // App.Location.find();
