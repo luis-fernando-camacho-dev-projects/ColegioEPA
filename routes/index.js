@@ -51,6 +51,8 @@ function _genToken(user) {
 
     var userResponse = user;
     userResponse.token = token;
+    userResponse.typeUser = 'testType';
+    userResponse._idUser ='IdUser';
 
     return userResponse;
 };
