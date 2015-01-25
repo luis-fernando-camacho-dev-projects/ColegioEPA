@@ -7,10 +7,12 @@
     <script src="javascripts/lib/handlebars-v1.3.0.js"></script>
     <script src="javascripts/lib/ember/ember.js"></script>
     <script src="javascripts/lib/ember-data/ember-data.js"></script>
+    <script src='javascripts/lib/emberCalendar/ember-calendar.js'></script>
 </head>
 <body>
     <script src="javascripts/Application.js"></script>
     <!--  start load all controllers-->
+    <script src="javascripts/controllers/ScheduleController.js"></script>
     <script src="javascripts/controllers/AttendanceController.js"></script>
     <script src="javascripts/controllers/CourseController.js"></script>
     <script src="javascripts/controllers/EnrollmentController.js"></script>
@@ -19,9 +21,14 @@
     <script src="javascripts/controllers/StudentController.js"></script>
     <script src="javascripts/controllers/SubjectMatterController.js"></script>
     <script src="javascripts/controllers/TeacherController.js"></script>
+
     <script src="javascripts/controllers/UserController.js"></script>
     <!--  end load all controllers-->
 
+
+    <!-- views start -->
+    <script src='javascripts/views/EmberCalendarView.js'></script>
+    <!-- -->
     <!--  start load all stores-->
     <script src="javascripts/stores/AttendanceAdapter.js"></script>
     <script src="javascripts/stores/CourseAdapter.js"></script>
@@ -44,6 +51,7 @@
 
     <!-- start route-->
     <script src="javascripts/routes/AuthenticatedRoute.js"></script>
+    <script src="javascripts/routes/ScheduleRoute.js"></script>
     <!-- end route-->
     <script src="javascripts/helpers/DatePicker.js"></script>
     <script src="javascripts/helpers/ModalCourse.js"></script>
@@ -51,6 +59,8 @@
     <script src="http://momentjs.com/downloads/moment.min.js"></script>
     <script src="http://dbushell.github.io/Pikaday/pikaday.js"></script>
     <script src="javascripts/lib/bootstrap.js"></script>
+
+
 
     <link rel="stylesheet" href="stylesheets/bootstrap.css" type="text/css">
     <link rel="stylesheet" href="stylesheets/bootstrap.min.css" type="text/css">
@@ -60,6 +70,8 @@
     <link rel="stylesheet" href="stylesheets/style.css" type="text/css">
     <link rel="stylesheet" href="http://dbushell.github.io/Pikaday/css/pikaday.css">
     <link rel="stylesheet" href="stylesheets/styleTemplate.css" type="text/css">
+    <link rel='stylesheet' href='javascripts/lib/emberCalendar/ember-calendar.css'>
+    <link rel='stylesheet' href='stylesheets/calendarStyle.css'>
 
 <script type="text/x-handlebars" id="application">
     <div class="page">

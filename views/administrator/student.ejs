@@ -1,8 +1,15 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <% include ../partials/head %>
+    <meta charset="UTF-8">
+<title>Music School Website Template</title>
+<link rel="stylesheet" href="stylesheets/styleTemplate.css" type="text/css">
+<link rel="stylesheet" href="javascripts/lib/emberCalendar/ember-calendar.css" type="text/css">
+<script src="//code.jquery.com/jquery-2.0.3.min.js"></script>
+<script src="javascripts/lib/handlebars-v1.3.0.js"></script>
+<script src="javascripts/lib/ember/ember.js"></script>
+<script src="javascripts/lib/ember-data/ember-data.js"></script>
+<script src="javascripts/lib/emberCalendar/ember-calendar.js"></script>
     <link rel='stylesheet' href='javascripts/lib/emberCalendar/ember-calendar.css'>
     <link rel='stylesheet' href='stylesheets/calendarStyle.css'>
     <link rel="stylesheet" href="stylesheets/style.css" type="text/css">
@@ -10,6 +17,7 @@
 <body>
 <script src="javascripts/application.js"></script>
 <script src="javascripts/views/EmberCalendarView.js"></script>
+<script src="javascripts/routes/AuthenticatedRoute.js"></script>
 <script src="javascripts/routes/StudentRoute.js"></script>
 <script src="javascripts/controllers/StudentController.js"></script>
 <script src="javascripts/stores/StudentAdapter.js"></script>
@@ -137,67 +145,5 @@
         </div>
     </div>
 </script>
-=======
-<% include ../partialsViewAdministrator/header %>
-<script src="javascripts/routes/StudentRoute.js"></script>
->>>>>>> db2b169ae470e02bfaf8f2c26eeed98727335125
-<script type="text/x-handlebars" id="index">
-<p> This is the homePage studers </p>
-</script>
-
-<script type="text/x-handlebars" data-template-name="students/index">
-      {{#if exitStudent}}
-          Busqueda de Estudiante : {{input type='text' value=filter placeholder='Nombre, Ci or correo electronico'}}
-          <p>Nr of students = {{content.length}}</p>
-      <table class="table table-hover">
-          <tr>
-              <th>Selected</th>
-              <th {{action 'sortBy' 'nombre'}}><a>nombre</a></th>
-              <th {{action 'sortBy' 'email'}}><a>email</a></th>
-              <th {{action 'sortBy' 'ci'}}><a>ci</a></th>
-              <th>Editar</th>
-              <th>Eliminar</th>
-            </tr>
-              {{#each student in filteredContent itemController="studentsEdit"}}
-                <tr {{bindAttr class="selected:warning"}}>
-                <td>{{view Ember.Checkbox checkedBinding="selected"}}</td>
-                <td>{{student.nombre}}</td>
-                <td>{{student.email}}</td>
-                <td>{{student.ci}}</td>
-                <td>{{#linkTo "students.edit" student}}<img src="images/edit-icon.png"/>{{/linkTo}}</td>
-                <td><a href="#" {{action removeItem student}}><img src="images/delete-icon.png" border="0"/></a></td>
-                </tr>
-              {{/each}}
-      </table>
-      {{else}}
-       NO students
-      {{/if}}
-      <p>{{#linkTo "students.new"}}<img src="images/add-icon.png"/> New Student{{/linkTo}}</p>
-</script>
-
-<script source="" type="text/x-handlebars" data-template-name="_studentForm" >
-      <form class="form-horizontal">
-        <label for="nombre">nombre</label>
-          {{view Ember.TextField valueBinding="nombre"}}
-        <label  for="email">email</label>
-          {{view Ember.TextField valueBinding="email"}}
-        <label for="ci">ci</label>
-          {{view Ember.TextField valueBinding="ci"}}
-        <label  for="birthDate">birthDate</label>
-          {{custom-date-picker valueBinding="birthDate"}}
-    </form>
-  </script>
- <script type="text/x-handlebars" data-template-name="students/edit" >
-
-    {{#if controller.isNew}}
-      <h1>Nuevo Studiante</h1>
-    {{else}}
-      <h1>Editar Studiante</h1>
-    {{/if}}
-      {{partial "studentForm"}}
-      <p>
-        <button {{action updateItem this}}>Update record</button>
-      </p>
-  </script>
 </body>
 </html>
