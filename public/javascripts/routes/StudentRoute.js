@@ -25,7 +25,6 @@ ColegioEPA.StudentsNewRoute = ColegioEPA.AuthenticatedRoute.extend({
     this.render('students.edit', {into:'application'})
     }
 });
->>>>>>> db2b169ae470e02bfaf8f2c26eeed98727335125
 
 ColegioEPA.StudentsEditRoute = ColegioEPA.AuthenticatedRoute.extend({
     setupController: function(controller, model) {

@@ -8,10 +8,11 @@
     needs: ['calendar']
 });
 */
+/*
 ColegioEPA.ApplicationView = Ember.View.extend
 ({
-    templateName: 'application'
-});
+    templateName: 'potato-view'
+});*/
 
 ///////////////////////////////////////////////////////////////////////////////
 // Views
@@ -40,4 +41,9 @@ ColegioEPA.EventView = Ember.Calendar.EventView.extend
     {
       return this.get('event.type') === 3;
     }.property('event.type')
+});
+
+//--------------------------------- test --------------//
+ColegioEPA.PotatoView = Ember.View.extend({
+    templateName: 'potato-view'
 });
