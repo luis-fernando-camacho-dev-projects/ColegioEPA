@@ -37,8 +37,8 @@ ColegioEPA.EnrollmentsEditController = Ember.ObjectController.extend({
         this._super();
     },
     loadCourse: function(courses) {
+        ColegioEPA.CourseValues.clear();
         courses.forEach(function(item) {
-            ColegioEPA.CourseValues.clear();
             ColegioEPA.CourseValues.pushObject(item);
         })
     },

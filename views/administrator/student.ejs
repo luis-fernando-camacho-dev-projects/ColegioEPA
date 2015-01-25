@@ -5,7 +5,6 @@
 </script>
 
 <script type="text/x-handlebars" data-template-name="students/index">
-    {{#if localStorage.token}}
       {{#if exitStudent}}
           Busqueda de Estudiante : {{input type='text' value=filter placeholder='Nombre, Ci or correo electronico'}}
           <p>Nr of students = {{content.length}}</p>
@@ -33,7 +32,6 @@
        NO students
       {{/if}}
       <p>{{#linkTo "students.new"}}<img src="images/add-icon.png"/> New Student{{/linkTo}}</p>
-    {{/if}}
 </script>
 
 <script source="" type="text/x-handlebars" data-template-name="_studentForm" >

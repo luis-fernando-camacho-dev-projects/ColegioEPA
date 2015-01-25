@@ -29,19 +29,35 @@ router.post('/users', function(req, res) {
     console.log('inside users');
     var user = req.body.user;
     var db = req.db;
-    console.log('Adding location: ' + JSON.stringify(user));
-    console.log('Adding location: ' + JSON.stringify(req.body.user));
-    db.collection('userList', function(err, collection) {
-        collection.insert(user, {safe:true}, function(err, result) {
+    console.log('user information: ' + JSON.stringify(user));
+    var collectionName = user.role === 'student' ? 'studentList' : 'teacherList';
+    var role = { nombre: user.token, ci : user.login , email : 'vacio', birthDate:'', courses: []};
+    var retrieveRole = null;
+    db.collection(collectionName, function(err, collection) {
+        collection.insert(role, {safe:true} , function(err, result) {
             if (err) {
                 res.send({'error':'An error has occurred ' + err});
-            } else {
-                var record = result[0];
-                res.json({user:record});
             }
+            console.log('result:'+ JSON.stringify(result));
         });
-    });
+        retrieveRole = collection.findOne({ci : role.ci}, {fields:{_id:1}}, function(err, doc) {
+            console.log('doc'+doc);
+            if (user.role == 'student') {
+                user.student = doc._id;
+            } else if (user.role === 'teacher') {
+                user.teacher = doc._id;
+            }
+            db.collection('userList', function(err, collection) {
+                collection.insert(user, {safe:true}, function(err, result) {
+                    if (err) {
+                        res.send({'error':'An error has occurred ' + err});
+                    }
+                    res.json({user:user});
+                });
+            });
+        });
 
+    });
 });
 
 router.put('/users/:id' , function(req, res) {
