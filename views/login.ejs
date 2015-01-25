@@ -1,0 +1,31 @@
+<% include partialsViewAdministrator/header %>
+<script src="javascripts/routes/LoginRoute.js"></script>
+<script type="text/x-handlebars" id="index">
+    <p> Home Page to Login </p>
+<li>{{#linkTo login}}Login{{/linkTo}}</li>
+</script>
+
+<script type="text/x-handlebars" data-template-name="login/index">
+    {{#if loggedIn}}
+      <p>You are already logged in!</p>
+    {{else}}
+      <form class="form-horizontal" {{action login on="submit"}}>
+        <h2 style='text-align: center'>Iniciar Session en Colegio EPA</h2>
+        <div style="padding-left:250px">
+        <label for="Username" class="btnEmber"> Nombre del Usuario</label>
+        {{input value=username  class="btnEmber" type="text" placeholder="Username"}}
+        <br/><br/>
+        <label for="Password" class="btnEmber"> Password del Usuario</label>
+        {{input value=password class="btnEmber" type="password" placeholder="Password"}}
+
+        {{input class="btn btnEmber" type="submit" value="Iniciar session"}}
+        {{input class="btn btnEmber" type="submit" value="Cancelar" action="cancel"}}
+        </div>
+      </form>
+      {{#if errorMessage}}
+        <div class="alert alert-error">{{errorMessage}}</div>
+      {{/if}}
+    {{/if}}
+</script>
+</body>
+</html>

@@ -10,7 +10,7 @@ ColegioEPA.ScheduleController = Ember.ArrayController.extend({
 });
 
 window.ColegioEPA.ApplicationController = Ember.Controller.extend
-({
+(
   needs: ['calendar']
 });
 

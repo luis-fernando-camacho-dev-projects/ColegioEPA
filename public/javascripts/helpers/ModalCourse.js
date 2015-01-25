@@ -15,7 +15,6 @@ ColegioEPA.SettingsModalController = Ember.ObjectController.extend({
             ColegioEPA.CourseValues.pushObject(this.courseSelected)
         }
         this.get('target').send('removeModal');
-      // save to server
     },
     removeModal: function() {
       console.log('remove from SettingModalController');
@@ -32,8 +31,6 @@ courses: function() {
     },
     courseSelected:null,
     previousCourse:null
-
-
 });
 
 /*

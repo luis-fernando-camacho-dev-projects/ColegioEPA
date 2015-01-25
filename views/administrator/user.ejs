@@ -1,0 +1,69 @@
+<% include ../partialsViewAdministrator/header %>
+<script src="javascripts/routes/UserRoute.js"/>
+<script type="text/x-handlebars" id="index">
+<p> This is the homePage studers </p>
+</script>
+
+<script type="text/x-handlebars" data-template-name="users/index">
+    {{#if exitStudent}}
+        Busqueda de Estudiante : {{input type='text' value=filter placeholder='Nombre, Ci or correo electronico'}}
+        <p>Nr of users = {{content.length}}</p>
+    <table class="table table-hover">
+        <tr>
+            <th>Selected</th>
+            <th {{action 'sortBy' 'login'}}><a>login</a></th>
+            <th {{action 'sortBy' 'password'}}><a>password</a></th>
+            <th {{action 'sortBy' 'email'}}><a>email</a></th>
+            <th {{action 'sortBy' 'token'}}><a>token</a></th>
+            <th {{action 'sortBy' 'role'}}><a>Rol</a></th>
+            <th>Editar</th>
+            <th>Eliminar</th>
+          </tr>
+            {{#each user in filteredContent itemController="usersEdit"}}
+              <tr {{bindAttr class="selected:warning"}}>
+              <td>{{view Ember.Checkbox checkedBinding="selected"}}</td>
+              <td>{{user.login}}</td>
+              <td>{{user.password}}</td>
+              <td>{{user.email}}</td>
+              <td>{{user.token}}</td>
+              <td>{{user.role}}</td>
+              <td>{{#linkTo "users.edit" user}}<img src="images/edit-icon.png"/>{{/linkTo}}</td>
+              <td><a href="#" {{action removeItem user}}><img src="images/delete-icon.png" border="0"/></a></td>
+              </tr>
+            {{/each}}
+    </table>
+    {{else}}
+     NO users
+    {{/if}}
+    <p>{{#linkTo "users.new"}}<img src="images/add-icon.png"/> Nuevo Usuario{{/linkTo}}</p>
+</script>
+
+<script source="" type="text/x-handlebars" data-template-name="_studentForm" >
+    <form class="form-horizontal">
+        <label for="name">nombre</label>
+            {{view Ember.TextField valueBinding="name"}}
+        <label for="lastName">apellido</label>
+            {{view Ember.TextField valueBinding="lastName"}}
+        <label for="ci">ci </label>
+            {{view Ember.TextField valueBinding="ci"}}
+        <label  for="role">role</label>
+            {{view Ember.Select contentBinding= "ColegioEPA.RolesController" optionValuePath="content.type" optionLabelPath="content.label" valueBinding="ColegioEPA.selectedRole.role" prompt="Selecionar el rol"}}
+    </form>
+  </script>
+
+    <script type="text/x-handlebars" data-template-name="users/edit">
+    <div style="padding-left:45px">
+        {{#if controller.isNew}}
+        <h1>Nuevo Usuario</h1>
+        {{else}}
+            <h1>Editando Usuario</h1>
+        {{/if}}
+            {{partial "studentForm"}}
+            <p>
+                <button {{action updateItem this}}>Update record</button>
+            </p>
+    </div>
+    </script>
+
+</body>
+</html>

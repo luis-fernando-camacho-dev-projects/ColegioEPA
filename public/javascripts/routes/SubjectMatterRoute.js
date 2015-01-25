@@ -8,11 +8,11 @@ ColegioEPA.Router.map(function () {
       this.route("edit", {path:"/:subject_id"});
     });
 
-    
+
 });
 
 
-    ColegioEPA.SubjectsIndexRoute = Ember.Route.extend({
+    ColegioEPA.SubjectsIndexRoute = ColegioEPA.AuthenticatedRoute.extend({
         setupController: function(controller) {
             var subjects = this.get('store').find('subject'); // App.Location.find();
             controller.set('content', subjects);
@@ -22,7 +22,7 @@ ColegioEPA.Router.map(function () {
         }
     });
 
-    ColegioEPA.SubjectsNewRoute = Ember.Route.extend({
+    ColegioEPA.SubjectsNewRoute = ColegioEPA.AuthenticatedRoute.extend({
       setupController: function(controller, model) {
         var newStudent = this.store.createRecord('subject', {});
         this.controllerFor('subjects.edit').setProperties({isNew: true, content:newStudent});
@@ -32,7 +32,7 @@ ColegioEPA.Router.map(function () {
       }
     });
 
-    ColegioEPA.SubjectsEditRoute = Ember.Route.extend({
+    ColegioEPA.SubjectsEditRoute = ColegioEPA.AuthenticatedRoute.extend({
       setupController: function(controller, model) {
           this.controllerFor('subjects.edit').setProperties({isNew: false,content:model});
       },
