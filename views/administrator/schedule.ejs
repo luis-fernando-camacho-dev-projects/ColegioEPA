@@ -8,8 +8,21 @@
 <body>
   <script src="javascripts/application.js"></script>
   <script src="javascripts/routes/ScheduleRoute.js"></script>
-  <script src="javascripts/controllers/ScheduleController.js"></script>
 
+
+  <script src="javascripts/stores/EnrollmentAdapter.js"></script>
+  <script src="javascripts/stores/SubjectMatterAdapter.js"></script>
+  <script src="javascripts/stores/CourseAdapter.js"></script>
+  <script src="javascripts/stores/StudentAdapter.js"></script>
+  <script src="javascripts/stores/TeacherAdapter.js"></script>
+
+  <script src="javascripts/models/Teacher.js"></script>
+  <script src="javascripts/models/Enrollment.js"></script>
+  <script src="javascripts/models/Student.js"></script>
+  <script src="javascripts/models/Course.js"></script>
+  <script src="javascripts/models/SubjectMatter.js"></script>
+
+  <script src="javascripts/controllers/CourseController.js"></script>
 
   <script src="http://momentjs.com/downloads/moment.min.js"></script>
   <script src="http://dbushell.github.io/Pikaday/pikaday.js"></script>
@@ -18,10 +31,9 @@
   <script src='http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.2.1/moment.min.js'></script>
   <script src='http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.0/handlebars.min.js'></script>
 
-
   <script src='javascripts/lib/emberCalendar/ember-calendar.js'></script>
   <script src='javascripts/views/EmberCalendarView.js'></script>
-
+  <script src="javascripts/controllers/ScheduleController.js"></script>
   <link rel="stylesheet" href="http://dbushell.github.io/Pikaday/css/pikaday.css">
 
 
@@ -87,13 +99,20 @@
           </ul>
           <div class="content">
             {{outlet}}
+
+            <table class = "table table-over">
+              <tr>
+                <th>Course</th>
+                <th>Duration</th>
+              </tr>
+
+
+            </table>
           </div>
         </div>
         {{view Ember.Calendar.CalendarView controllerBinding='controllers.calendar'}}
       </div>
-      <div>
 
-      </div>
       <div class="footer">
         <div class="about">
           <h3>About</h3>

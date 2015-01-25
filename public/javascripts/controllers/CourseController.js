@@ -48,7 +48,7 @@ ColegioEPA.CoursesIndexController = Ember.ArrayController.extend({
         var itemsPresent = this.get('content').get('length') > 0;
         console.log(" +++ Computed locationsPresent prop with value " + itemsPresent);
         return itemsPresent;
-    }.property("content.@each"),
+    } .property("content.@each"),
 
     actions: {
         removeItem: function(student) {
@@ -74,4 +74,3 @@ Ember.Handlebars.registerBoundHelper('locsPresent',
       return true;
     }
 );
-

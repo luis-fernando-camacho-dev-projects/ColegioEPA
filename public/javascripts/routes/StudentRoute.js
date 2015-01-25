@@ -8,9 +8,8 @@ ColegioEPA.Router.map(function () {
       this.route("edit", {path:"/:student_id"});
     });
 
-    
-});
 
+});
 
     ColegioEPA.StudentsIndexRoute = Ember.Route.extend({
         setupController: function(controller) {

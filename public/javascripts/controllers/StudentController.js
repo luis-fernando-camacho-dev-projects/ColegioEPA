@@ -55,6 +55,12 @@ ColegioEPA.StudentsIndexController = Ember.ArrayController.extend({
     }
 });
 
+
+window.ColegioEPA.ApplicationController = Ember.Controller.extend
+({
+  needs: ['calendar']
+});
+
 ///////////////////////////////////////////////////////////////////////////////
 // Controller
 ///////////////////////////////////////////////////////////////////////////////
@@ -138,8 +144,8 @@ event =
 events.push(event);
 
 return events;
-}.property()
-, eventViewClass: 'ColegioEPA.EventView'
+}.property(),
+eventViewClass: 'ColegioEPA.EventView'
 });
 
 
