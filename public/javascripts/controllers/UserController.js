@@ -1,14 +1,19 @@
 ColegioEPA.UsersEditController = Ember.ObjectController.extend({
     actions: {
         updateItem: function(location) {
-        location.save();
-        this.get("target").transitionTo("users");
-      }
+            location.set('login',this.get('ci'));
+            location.set('password', this.get('ci'));
+            location.set('email','');
+            location.set('role', ColegioEPA.selectedRole.role);
+            location.set('token', this.get('name')+';'+this.get('lastName'));
+            location.save();
+            this.get("target").transitionTo("users");
+        }
     },
-      isNew: function() {
+    isNew: function() {
         console.log("calculating isNew");
         return this.get('content').get('id');
-      }.property()
+    }.property()
 });
 
 ColegioEPA.UsersIndexController = Ember.ArrayController.extend({
@@ -26,7 +31,6 @@ ColegioEPA.UsersIndexController = Ember.ArrayController.extend({
     editCounter: function () {
         return this.filterProperty('selected', true).get('length');
     }.property('@each.selected'),
-
     itemsSelected: function() {
         return this.get("editCounter")>0;
     }.property('editCounter'),
@@ -48,4 +52,22 @@ ColegioEPA.UsersIndexController = Ember.ArrayController.extend({
         }
     }
 });
+
+ColegioEPA.Role = Ember.Object.extend({
+    type: null,
+    label: null
+});
+
+ColegioEPA.selectedRole = Ember.Object.create({
+    role: null
+});
+
+ColegioEPA.RolesController = Ember.ArrayController.create({
+    content: [
+        ColegioEPA.Role.create({type:'student', label:'studiante'}),
+        ColegioEPA.Role.create({type:'teacher', label:'profesor'}),
+    ]
+});
+
+
 

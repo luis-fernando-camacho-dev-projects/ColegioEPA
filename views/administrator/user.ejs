@@ -40,19 +40,19 @@
 
 <script source="" type="text/x-handlebars" data-template-name="_studentForm" >
     <form class="form-horizontal">
-        <label for="nombre">login</label>
-          {{view Ember.TextField valueBinding="login"}}
-        <label  for="password">password</label>
-          {{view Ember.TextField valueBinding="password"}}
-        <label for="email">email</label>
-          {{view Ember.TextField valueBinding="email"}}
+        <label for="name">nombre</label>
+            {{view Ember.TextField valueBinding="name"}}
+        <label for="lastName">apellido</label>
+            {{view Ember.TextField valueBinding="lastName"}}
+        <label for="ci">ci </label>
+            {{view Ember.TextField valueBinding="ci"}}
         <label  for="role">role</label>
-          {{view Ember.TextField valueBinding="role"}}
-        <label  for="token">token</label>
-          {{view Ember.TextField valueBinding="token"}}
+            {{view Ember.Select contentBinding= "ColegioEPA.RolesController" optionValuePath="content.type" optionLabelPath="content.label" valueBinding="ColegioEPA.selectedRole.role" prompt="Selecionar el rol"}}
     </form>
   </script>
+
     <script type="text/x-handlebars" data-template-name="users/edit">
+    <div style="padding-left:45px">
         {{#if controller.isNew}}
         <h1>Nuevo Usuario</h1>
         {{else}}
@@ -62,6 +62,7 @@
             <p>
                 <button {{action updateItem this}}>Update record</button>
             </p>
+    </div>
     </script>
 
 </body>
