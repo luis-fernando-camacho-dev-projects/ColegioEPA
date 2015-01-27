@@ -7,10 +7,12 @@
     <script src="/../javascripts/lib/handlebars-v1.3.0.js"></script>
     <script src="/../javascripts/lib/ember/ember.js"></script>
     <script src="/../javascripts/lib/ember-data/ember-data.js"></script>
+    <script src="/../javascripts/lib/emberCalendar/ember-calendar.js"></script>
 </head>
 <body>
     <script src="/../javascripts/Application.js"></script>
     <!--  start load all controllers-->
+    <script src="/../javascripts/controllers/ScheduleController.js"></script>
     <script src="/../javascripts/controllers/AttendanceController.js"></script>
     <script src="/../javascripts/controllers/CourseController.js"></script>
     <script src="/../javascripts/controllers/EnrollmentController.js"></script>
@@ -20,6 +22,7 @@
     <script src="/../javascripts/controllers/SubjectMatterController.js"></script>
     <script src="/../javascripts/controllers/TeacherController.js"></script>
     <script src="/../javascripts/controllers/UserController.js"></script>
+
     <!--  end load all controllers-->
 
     <!--  start load all stores-->
@@ -52,6 +55,7 @@
     <script src="http://dbushell.github.io/Pikaday/pikaday.js"></script>
     <script src="/../javascripts/lib/bootstrap.js"></script>
 
+
     <link rel="stylesheet" href="/../stylesheets/bootstrap.css" type="text/css">
     <link rel="stylesheet" href="/../stylesheets/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="/../stylesheets/bootstrap-responsive.css" type="text/css">
@@ -59,12 +63,63 @@
     <link rel="stylesheet" href="/../stylesheets/normalize.css" type="text/css">
     <link rel="stylesheet" href="/../stylesheets/style.css" type="text/css">
     <link rel="stylesheet" href="http://dbushell.github.io/Pikaday/css/pikaday.css">
+    <link rel='stylesheet' href='/../stylesheets/menuStyles.css'>
     <link rel="stylesheet" href="/../stylesheets/styleTemplate.css" type="text/css">
+    <link rel="stylesheet" href="/../javascripts/lib/emberCalendar/ember-calendar.css" type="text/css">
+    <link rel='stylesheet' href='/../javascripts/lib/emberCalendar/ember-calendar.css'>
+    <link rel='stylesheet' href='/../stylesheets/calendarStyle.css'>
 
+<script type="text/javascript">
+
+$(document).ready(function() {
+    $('ul li:has(ul)').hover(function(e) {
+         $(this).find('ul').css({display: "block"});
+     },
+     function(e) {
+         $(this).find('ul').css({display: "none"});
+     });
+    var user = JSON.parse(localStorage.getItem('user'));
+    $('#session').text(user.login);
+    //debugger;
+    $('#logout').on('click', function() {
+        debugger;
+        delete localStorage.token;
+        delete localStorage.user;
+        delete localStorage.role;
+        delete localStorage._objectId;
+    });
+
+});
+
+/*
+var url ='';
+if (localStorage.getItem('role') == 'teacher') {
+    url = 'http://localhost:3000/api/teacher/teachers/' + localStorage.getItem('_objectId');
+} else if (localStorage.getItem('role') == 'student') {
+    url = 'http://localhost:3000/api/student/students/' + localStorage.getItem('_objectId');
+}
+$.ajax({url:url,type:'GET', dataType: 'json',contentType: "application/json; charset=utf-8",headers : {'API_KEY': localStorage.getItem("token")},
+    success:function(result) {
+        if (typeof result.student.nombre !== 'undefined') {
+
+        } else {
+            $('#session').text(result.name);
+        }
+
+    }, error:function(res) {
+        alert("Bad thing happend! " + res.statusText);
+    }
+});
+*/
+
+ </script>
+
+
+
+</script>
 <script type="text/x-handlebars" id="application">
     <div class="page">
         <div class="header">
-            <a href="index.html" id="logo"><img src="/../images/logo.png" alt="logo"></a>
             <ul class="navigation">
                 <li>
                     <a href="index.html">Home</a>
@@ -76,10 +131,14 @@
                     <a href="programs.html">Programs and Fees</a>
                 </li>
                 <li>
-                    <a href="blog.html">Blog</a>
+                    <a href="blog.html">Contact</a>
                 </li>
-                <li>
-                    <a href="contact.html">Contact</a>
+                <li class="menu">
+                    <a href="contact.html" id='session'></a>
+                     <ul style="list-style-type: none;display:none">
+                        <li><a href="student/information" style="margin-top:-7px">Editar</a></li><br/><br/><br/><br/>
+                        <li><a id='logout' href="http://localhost:3000/index.html" style="margin-top:-28px">Salir</a></li><br/>
+                    </ul>
                 </li>
             </ul>
         </div>
@@ -87,13 +146,13 @@
             <div class="guitar">
                 <ul>
                     <li>
-                        <a href="student/courses">Cursos Inscriptos</a>
+                        <a href="/student/courses">Cursos Inscriptos</a>
                     </li>
                     <li>
-                        <a href="student/schedules">Horarios</a>
+                        <a href="/student/schedules">Horarios</a>
                     </li>
                     <li>
-                        <a href="student/subjects">Reportes de Assistencia</a>
+                        <a href="/student/Attendance">Reportes de Assistencia</a>
                     </li>
                 </ul>
                 <div class="content">
@@ -140,7 +199,7 @@
                 <a href="http://freewebsitetemplates.com/go/twitter/" id="twitter">twitter</a> <a href="http://freewebsitetemplates.com/go/facebook/" id="facebook">facebook</a> <a href="http://freewebsitetemplates.com/go/googleplus/" id="googleplus">google+</a>
             </div>
             <p class="footnote">
-                &#169; Copyright 2012. All rights reserved
+                &#169!important; Copyright 2012. All rights reserved
             </p>
         </div>
     </div>

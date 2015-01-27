@@ -1,11 +1,11 @@
 
 <% include ../partialsViewStudent/header %>
-<script src="javascripts/routes/StudentRoute.js"></script>
+<script src="/../javascripts/routes/StudentRoute.js"></script>
 <script type="text/x-handlebars" id="index">
 <p> This is the homePage studers </p>
 </script>
 
-<script type="text/x-handlebars" data-template-name="courses/index">
+<script type="text/x-handlebars" data-template-name="students/index">
     {{#if exitStudent}}
         <p>Nr of courses = {{content.length}}</p>
     <table class="table table-hover">
@@ -33,7 +33,7 @@
               <td>{{course.endTime}}</td>
               <td>{{course.cost}}</td>
               <td> numero de studiantes link</td>
-              <td>{{#linkTo "courses.edit" course}}<img src="http://localhost:3000/images/edit-icon.png"/>{{/linkTo}}</td>
+              <td>{{#linkTo "students.edit" course}}<img src="http://localhost:3000/images/edit-icon.png"/>{{/linkTo}}</td>
               <td><a href="#" {{action removeItem course}}><img src="http://localhost:3000/images/delete-icon.png" border="0"/></a></td>
               </tr>
             {{/each}}
@@ -41,10 +41,10 @@
     {{else}}
      No hay cusos registrados
     {{/if}}
-    <p>{{#linkTo "courses.new"}}<img src="http://localhost:3000/images/add-icon.png"/> New Course{{/linkTo}}</p>
+    <p>{{#linkTo "students.new"}}<img src="http://localhost:3000/images/add-icon.png"/> New Course{{/linkTo}}</p>
 </script>
 
-<script type="text/x-handlebars" data-template-name="_courseForm" >
+<script type="text/x-handlebars" data-template-name="_studentForm" >
       <form class="form-horizontal">
         <label for="name">nombre del curso</label>
             {{view Ember.TextField valueBinding="name"}}
@@ -75,13 +75,13 @@
 </script>
 
 
-<script type="text/x-handlebars" data-template-name="courses/edit">
+<script type="text/x-handlebars" data-template-name="students/edit">
     {{#if controller.isNew}}
       <h1>New course</h1>
     {{else}}
       <h1>Edit course</h1>
     {{/if}}
-      {{partial "courseForm"}}
+      {{partial "studentForm"}}
       <p>
         <button {{action updateItem this}}>Update record</button>
       </p>
