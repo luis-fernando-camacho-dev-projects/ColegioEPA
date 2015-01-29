@@ -1,4 +1,5 @@
 ColegioEPA.StudentsEditController = Ember.ObjectController.extend({
+
     actions: {
         updateItem: function(location) {
         location.save();
@@ -13,6 +14,7 @@ ColegioEPA.StudentsEditController = Ember.ObjectController.extend({
 
 ColegioEPA.StudentsIndexController = Ember.ArrayController.extend({
 
+  
     filter:'',
 
     filteredContent: function(){
@@ -56,9 +58,9 @@ ColegioEPA.StudentsIndexController = Ember.ArrayController.extend({
 });
 
 
-window.ColegioEPA.ApplicationController = Ember.Controller.extend
+window.ColegioEPA.NewcalendarController = Ember.Controller.extend
 ({
-  needs: ['calendar']
+  needs: 'calendar'
 });
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -67,83 +69,88 @@ window.ColegioEPA.ApplicationController = Ember.Controller.extend
 ColegioEPA.CalendarController = Ember.Calendar.CalendarController.extend
 ({
   content: function ()
-{
-  var events = [];
-  var date;
-  var time;
-  var duration;
-  var eventName;
-  var event;
+  {
+    var courses = this.store.all('course');
+    var events = [];
+    var date;
+    var time;
+    var duration;
+    var eventName;
+    var event;
 
-  date = 0;
-  time = 1000 * 60 * 60 * 12;
+    courses.forEach(function(course)){
+
+    }
+
+    date = 0;
+    time = 1000 * 60 * 60 * 12;
+    duration = 1000 * 60 * 60 * 2;
+    eventName = 'Pending Piano Class';
+    eventLocation = 'B1';
+    eventType = 0;
+
+    event =
+  {
+    name: eventName + events.length
+    , start: moment().startOf('day').add('days', date - moment().day()).add('milliseconds', time)
+    , end: moment().startOf('day').add('days', date - moment().day()).add('milliseconds', time + duration)
+    , location: eventLocation
+    , type: eventType
+
+
+  };
+
+  events.push(event);
+
+  date = 1;
+  time = 1000 * 60 * 60 * 10 ;
   duration = 1000 * 60 * 60 * 2;
-  eventName = 'Pending Piano Class';
-  eventLocation = 'B1';
-  eventType = 0;
+  eventName = 'Going Guitar Class';
+  eventType = 1;
 
   event =
-{
-  name: eventName + events.length
-  , start: moment().startOf('day').add('days', date - moment().day()).add('milliseconds', time)
-  , end: moment().startOf('day').add('days', date - moment().day()).add('milliseconds', time + duration)
-  , location: eventLocation
-  , type: eventType
+  {
+    name: eventName + events.length
+    , start: moment().startOf('day').add('days', date - moment().day()).add('milliseconds', time)
+    , end: moment().startOf('day').add('days', date - moment().day()).add('milliseconds', time + duration)
+    , type: eventType
+  };
 
+  events.push(event);
 
-};
+  date = 2;
+  time = 1000 * 60 * 60 * 11 ;
+  duration = 1000 * 60 * 60 * 2;
+  eventName = 'Done Sing Class';
+  eventType = 2;
 
-events.push(event);
+  event =
+  {
+    name: eventName + events.length
+    , start: moment().startOf('day').add('days', date - moment().day()).add('milliseconds', time)
+    , end: moment().startOf('day').add('days', date - moment().day()).add('milliseconds', time + duration)
+    , type: eventType
+  };
 
-date = 1;
-time = 1000 * 60 * 60 * 10 ;
-duration = 1000 * 60 * 60 * 2;
-eventName = 'Going Guitar Class';
-eventType = 1;
+  events.push(event);
 
-event =
-{
-  name: eventName + events.length
-  , start: moment().startOf('day').add('days', date - moment().day()).add('milliseconds', time)
-  , end: moment().startOf('day').add('days', date - moment().day()).add('milliseconds', time + duration)
-  , type: eventType
-};
+  date = 4;
+  time = 1000 * 60 * 60 * 13 ;
+  duration = 1000 * 60 * 60 * 2;
+  eventName = 'suspended Sing Class';
+  eventType = 3;
 
-events.push(event);
+  event =
+  {
+    name: eventName + events.length
+    , start: moment().startOf('day').add('days', date - moment().day()).add('milliseconds', time)
+    , end: moment().startOf('day').add('days', date - moment().day()).add('milliseconds', time + duration)
+    , type: eventType
+  };
 
-date = 2;
-time = 1000 * 60 * 60 * 11 ;
-duration = 1000 * 60 * 60 * 2;
-eventName = 'Done Sing Class';
-eventType = 2;
+  events.push(event);
 
-event =
-{
-  name: eventName + events.length
-  , start: moment().startOf('day').add('days', date - moment().day()).add('milliseconds', time)
-  , end: moment().startOf('day').add('days', date - moment().day()).add('milliseconds', time + duration)
-  , type: eventType
-};
-
-events.push(event);
-
-date = 4;
-time = 1000 * 60 * 60 * 13 ;
-duration = 1000 * 60 * 60 * 2;
-eventName = 'suspended Sing Class';
-eventType = 3;
-
-event =
-{
-  name: eventName + events.length
-  , start: moment().startOf('day').add('days', date - moment().day()).add('milliseconds', time)
-  , end: moment().startOf('day').add('days', date - moment().day()).add('milliseconds', time + duration)
-  , type: eventType
-};
-
-events.push(event);
-
-return events;
+  return events;
 }.property(),
 eventViewClass: 'ColegioEPA.EventView'
 });

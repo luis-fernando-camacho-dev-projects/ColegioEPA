@@ -1,4 +1,9 @@
 /* Website template by freewebsitetemplates.com */
+/*
+ff8b00=> 148CBE
+EC7500=> 0F82AF
+FFA200=> 28A6DB
+*/
 /*------------------------- Layout styles ------------------------*/
 body {
 	margin:0;
@@ -17,7 +22,7 @@ a img {
 	margin:0 auto;
 }
 p a:hover {
-	color:#ff8b00!important;
+	color:#148CBE!important;
 }
 /*------------------------- Header ------------------------*/
 .header {
@@ -88,7 +93,7 @@ p a:hover {
 	width:235px;
 }
 .body .home .content .featured div p:first-child a:hover {
-	color: #FF8B00;
+	color: #148CBE;
 }
 .body .home .content .featured div p {
 	clear:both;
@@ -178,7 +183,7 @@ p a:hover {
 	width:130px;
 }
 .body .home .sidebar ul li:first-child span {
-	border-bottom:2px solid #ff8b00;
+	border-bottom:2px solid #148CBE;
 	color:#6b7073;
 	display:inline;
 	font-size:14px;
@@ -200,7 +205,7 @@ p a:hover {
 	margin:0 0 5px;
 }
 .body .home .sidebar ul li span {
-	border-bottom:2px solid #ff8b00;
+	border-bottom:2px solid #148CBE;
 	color:#6b7073;
 	display:inline;
 	font-size:14px;
@@ -285,7 +290,7 @@ p a:hover {
 	margin-top:13px;
 }
 .body .about div div h1 {
-	color:#ec7500;
+	color:#0F82AF;
 	font-family:Georgia, "Times New Roman", Times, serif;
 	font-size:30px;
 	font-weight:400;
@@ -329,7 +334,7 @@ p a:hover {
 }
 .body .about div.sidebar ul:first-child li.selected span a {
 	background-color:#fff;
-	color:#ec7500;
+	color:#0F82AF;
 }
 .body .about div.sidebar ul:first-child li span a {
 	color:#6a7578;
@@ -351,7 +356,7 @@ p a:hover {
 	width:auto;
 }
 .body .about div.sidebar div h3 {
-	color:#ff8b00;
+	color:#148CBE;
 	font-size:16px;
 	font-weight:400;
 	letter-spacing:.025em;
@@ -447,7 +452,7 @@ p a:hover {
 	width:auto;
 }
 .body .blog .section:first-child div:first-child h2 {
-	color:#ff8b00;
+	color:#148CBE;
 	font-size:16px;
 	font-weight:400;
 	letter-spacing:.025em;
@@ -490,10 +495,10 @@ p a:hover {
 	color:#444;
 }
 .body .blog .section:first-child div h3 a:hover {
-	color: #FF8B00;
+	color: #148CBE;
 }
 .body .blog .section:first-child div p a.more:hover {
-	color:#FF8B00!important;
+	color:#148CBE!important;
 }
 .body .blog .section:first-child div p a.more {
 	color:#6B7073;
@@ -553,7 +558,7 @@ p a:hover {
 	width:276px;
 }
 .body .blog .section div:first-child div ul li span {
-	border-bottom:2px solid #FF8B00;
+	border-bottom:2px solid #148CBE;
 	color:#6B7073;
 	display:inline;
 	font-size:14px;
@@ -579,7 +584,7 @@ p a:hover {
 	color:#444;
 }
 .body .blog .section div:first-child div ul li h3 a:hover {
-	color: #FF8B00;
+	color: #148CBE;
 }
 .body .blog .section div:first-child div ul li p {
 	color:#6B7073;
@@ -593,7 +598,7 @@ p a:hover {
 	color:#6B7073;
 }
 .body .blog .section div:first-child div ul li p a:hover {
-	color: #FF8B00;
+	color: #148CBE;
 }
 .body .blog .section div div ul li p a.more {
 	color:#6B7073;
@@ -691,7 +696,7 @@ p a:hover {
 	padding:0;
 }
 .body .blog-single div div:first-child div.nav a:first-child {
-	color:#FF8B00;
+	color:#148CBE;
 	margin:0;
 }
 .body .blog-single div div:first-child div.nav a {
@@ -764,7 +769,7 @@ p a:hover {
 	padding:0 20px;
 }
 .body .contact div:first-child div:first-child h1 {
-	color:#ec7500;
+	color:#0F82AF;
 	font-family:Georgia, "Times New Roman", Times, serif;
 	font-size:48px;
 	font-weight:400;
@@ -820,7 +825,7 @@ p a:hover {
 	text-decoration:none;
 }
 .body .contact div:first-child div ul li > a:hover {
-	color:#ff8b00;
+	color:#148CBE;
 	text-decoration:none;
 }
 .body .contact div:first-child div ul li p {
@@ -835,7 +840,7 @@ p a:hover {
 	color:#6b7073;
 }
 .body .contact div:first-child div ul li p a:hover {
-	color: #FF8B00;
+	color: #148CBE;
 }
 .body .contact div:first-child div ul.last {
 	float:right;
@@ -885,7 +890,7 @@ p a:hover {
 	line-height:24px;
 }
 .body .contact div:first-child ul.section li a:hover {
-	color: #FF8B00;
+	color: #148CBE;
 }
 .body .contact div {
 	background-color:#FFF;
@@ -968,7 +973,7 @@ p a:hover {
 	color:#444;
 }
 .body .home .content .featured p a:hover, .body .about div div p a:hover, .body .about div.sidebar ul:first-child li:hover span a, .body .about div.sidebar div ul li h2 a:hover, .body .programs ul li.selected a, .body .programs ul li a:hover, .body .programs ul li:hover a, .body .violin ul li.selected a, .body .violin ul li a:hover, .body .violin ul li:hover a, .body .saxophone ul li.selected a, .body .saxophone ul li a:hover, .body .saxophone ul li:hover a, .body .guitar ul li.selected a, .body .guitar ul li a:hover, .body .guitar ul li:hover a, .body .drums ul li.selected a, .body .drums ul li a:hover, .body .drums ul li:hover a, .body .voice-lesson ul li.selected a, .body .voice-lesson ul li a:hover, .body .voice-lesson ul li:hover a, .body .contact div:first-child div:first-child p a:hover {
-	color:#ec7500;
+	color:#0F82AF;
 }
 .body .saxophone ul li:first-child:hover, .body .programs ul li:first-child:hover, .body .programs ul li:first-child.selected, .body .violin ul li:first-child:hover, .body .guitar ul li:first-child:hover, .body .drums ul li:first-child:hover, .body .voice-lesson ul li:first-child:hover {
 	border-radius:10px 10px 0 0;
@@ -990,11 +995,11 @@ p a:hover {
 	color:#6b7073;
 }
 .body .home .sidebar ul li a.more:hover {
-	color:#ff8b00;
+	color:#148CBE;
 	text-decoration:underline;
 }
 .body .home .sidebar a:hover {
-	color:#ff8b00;
+	color:#148CBE;
 	text-decoration:none;
 }
 .body .about div div:first-child, .body .programs ul li:first-child, .body .violin ul li:first-child, .body .saxophone ul li:first-child, .body .guitar ul li:first-child, .body .drums ul li:first-child, .body .voice-lesson ul li:first-child, .body .blog .section div:first-child div ul:first-child {
@@ -1008,7 +1013,7 @@ p a:hover {
 	border:0;
 }
 .body .about div.sidebar div ul li span, .body .blog-single div div:first-child ul li span {
-	border-bottom:2px solid #FF8B00;
+	border-bottom:2px solid #148CBE;
 	color:#6B7073;
 	display:inline;
 	font-size:14px;
@@ -1065,7 +1070,7 @@ p a:hover {
 	width:788px;
 }
 .body .programs .content div:first-child h2, .body .violin .content div:first-child h2, .body .guitar .content div:first-child h2, .body .drums .content div:first-child h2 {
-	color:#EC7500;
+	color:#0F82AF;
 	font-family:Georgia, "Times New Roman", Times, serif;
 	font-size:30px;
 	font-weight:400;
@@ -1075,7 +1080,7 @@ p a:hover {
 	width:auto;
 }
 .body .programs .content div:first-child h2 a, .body .violin .content div:first-child h2 a, .body .saxophone .content div:first-child h2 a, .body .guitar .content div:first-child h2 a, .body .drums .content div:first-child h2 a, .body .voice-lesson .content div:first-child h2 a {
-	color:#EC7500;
+	color:#0F82AF;
 	display:inline;
 	float:none;
 	margin:0;
@@ -1102,7 +1107,7 @@ p a:hover {
 	margin:0;
 }
 .body .programs .content div:first-child div p a:hover, .body .violin .content div:first-child div p a:hover, .body .saxophone .content div:first-child div p a:hover, .body .guitar .content div:first-child div p a:hover, .body .drums .content div:first-child div p a:hover, .body .voice-lesson .content div:first-child div p a:hover {
-	color:#EC7500;
+	color:#0F82AF;
 }
 .body .programs .content div:first-child a, .body .violin .content div:first-child a, .body .saxophone .content div:first-child a, .body .guitar .content div:first-child a, .body .drums .content div:first-child a, .body .voice-lesson .content div:first-child a {
 	display:block;
@@ -1149,7 +1154,7 @@ p a:hover {
 	color:#6B7073;
 }
 .body .programs .content div.section div p a:hover, .body .violin .content div.section div p a:hover, .body .saxophone .content div.section div p a:hover, .body .guitar .content div.section div p a:hover, .body .drums .content div.section div p a:hover, .body .voice-lesson .content div.section div p a:hover, .body .blog-single div:first-child div p a:hover {
-	color: #FF8B00;
+	color: #148CBE;
 }
 .body .programs .content div, .body .violin .content div, .body .saxophone .content div, .body .guitar .content div, .body .drums .content div, .body .voice-lesson .content div {
 	float:left;
@@ -1214,7 +1219,7 @@ p a:hover {
 	color:#444;
 }
 .body .violin .content div:first-child div h3 a:hover, .body .saxophone .content div:first-child div h3 a:hover, .body .voice-lesson .content div:first-child div h3 a:hover {
-	color: #FF8B00;
+	color: #148CBE;
 }
 .body .violin .content div:first-child div p, .body .saxophone .content div:first-child div p, .body .voice-lesson .content div:first-child div p {
 	color:#6B7073;
@@ -1225,7 +1230,7 @@ p a:hover {
 	text-align:justify;
 }
 .body .saxophone .content div:first-child h2, .body .voice-lesson .content div:first-child h2 {
-	color:#EC7500;
+	color:#0F82AF;
 	font-family:Georgia, "Times New Roman", Times, serif;
 	font-size:30px;
 	font-weight:400;
@@ -1254,7 +1259,7 @@ p a:hover {
 	margin:0 0 25px;
 }
 .body .blog .section:first-child div span, .body .blog .section:first-child div div span, .body .blog-single div:first-child div span {
-	border-bottom:2px solid #FF8B00;
+	border-bottom:2px solid #148CBE;
 	color:#6B7073;
 	display:inline;
 	font-size:14px;
@@ -1287,22 +1292,22 @@ p a:hover {
 	letter-spacing:0.05em;
 }
 .body .blog .section:first-child div div > a:hover, .body .blog .section:first-child div > a:hover {
-	color:#ff8b00;
+	color:#148CBE;
 }
 .body .blog .section:first-child div p a, .body .blog .section:first-child div div p a {
 	color:#6B7073;
 }
 .body .blog .section:first-child div p a:hover, .body .blog .section:first-child div div p a:hover {
-	color: #FF8B00;
+	color: #148CBE;
 }
 .body .blog .section:first-child div div h3 a:hover, .body .blog .section:first-child div div p a:hover, .body .blog .section div div ul li p a.more:hover, .body .blog-single div:first-child div h3 a:hover, .body .blog-single div:first-child div p a:hover, .body .blog-single div div:first-child ul li h3 a:hover {
-	color:#FF8B00;
+	color:#148CBE;
 }
 .body .blog .section:first-child div div p a, .body .blog-single div:first-child div p a {
 	color:#6B7073;
 }
 .body .blog .section div:first-child h2, .body .blog .section div h2, .body .blog-single div h2 {
-	color:#FF8B00;
+	color:#148CBE;
 	font-size:16px;
 	font-weight:400;
 	letter-spacing:.025em;
@@ -1331,7 +1336,7 @@ p a:hover {
 	color:#6B7073;
 }
 .body .blog .section div ul li p a:hover, .body .blog-single div ul li p a:hover {
-	color: #FF8B00;
+	color: #148CBE;
 }
 .body .contact div form div:first-child label, .body .contact div form div label {
 	color:#6B7073;
@@ -1383,7 +1388,7 @@ p a:hover {
 	line-height:24px;
 }
 .footer .about div a.more:hover {
-	color:#ff8b00;
+	color:#148CBE;
 }
 .footer .about div p a {
 	border:0;
@@ -1499,7 +1504,7 @@ p a:hover {
 	margin:36px 0 0;
 }
 .footer .about h3, .footer .contact h3 {
-	color:#ff8b00;
+	color:#148CBE;
 	font-size:16px;
 	font-weight:400;
 	letter-spacing:.025em;
@@ -1508,5 +1513,5 @@ p a:hover {
 	text-transform:uppercase;
 }
 .footer .about div p a:hover, .footer .contact ul li p a:hover {
-	color:#ec7500;
+	color:#0F82AF;
 }

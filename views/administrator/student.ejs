@@ -1,7 +1,7 @@
 <% include ../partialsViewAdministrator/header %>
 <script src="javascripts/routes/StudentRoute.js"></script>
 <script type="text/x-handlebars" id="index">
-<p> This is the homePage studers </p>
+<p> This is the homePage students </p>
 </script>
 
 <script type="text/x-handlebars" data-template-name="students/index">
@@ -27,11 +27,20 @@
                 <td><a href="#" {{action removeItem student}}><img src="images/delete-icon.png" border="0"/></a></td>
                 </tr>
               {{/each}}
+
       </table>
       {{else}}
        NO students
       {{/if}}
       <p>{{#linkTo "students.new"}}<img src="images/add-icon.png"/> New Student{{/linkTo}}</p>
+
+</script>
+
+<script type="text/x-handlebars" data-template-name="Newcalendar">
+<div style="padding-left:155px">
+  {{outlet}}
+  {{view Ember.Calendar.CalendarView controllerBinding='controllers.calendar'}}
+</div>
 </script>
 
 <script source="" type="text/x-handlebars" data-template-name="_studentForm" >
@@ -57,6 +66,7 @@
       <p>
         <button {{action updateItem this}}>Update record</button>
       </p>
+
   </script>
 </body>
 </html>
