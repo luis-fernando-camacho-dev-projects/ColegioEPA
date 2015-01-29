@@ -9,6 +9,10 @@ ColegioEPA.IndexRoute = Ember.Route.extend({
         var controller = this.controllerFor('schedule');
         //this.render();
         /* This doesn't work with "unassociated" or "application" */
-        this.render('event', {outlet: 'potatoOutlet', controller: controller});
+        //this.render('event', {outlet: 'potatoOutlet', controller: controller});
+    },
+    setupController: function () {
+        this.controllerFor('calendar').update();
     }
+
 });

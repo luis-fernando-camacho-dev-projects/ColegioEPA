@@ -7,6 +7,23 @@ var Server = mongo.Server,
     Db = mongo.Db,
     BSON = mongo.BSONPure;
 
+
+/*
+ * GET student
+ */
+router.get('/students/:id', function(req, res) {
+    var db = req.db;
+    var studentId = req.params.id;
+    console.log('student:'+studentId);
+    db.collection('studentList',function(err, collection) {
+        collection.findOne({'_id' : new BSON.ObjectID(studentId)}, function(err, student) {
+            console.log('studetn value:'+student);
+            res.json({student: student});
+        });
+    });
+});
+
+
 /*
  * GET studentlist.
  */

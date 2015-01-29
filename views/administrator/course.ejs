@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> 084b55e03a05a33191ee234c9b592cd72e11fd8a
 <% include ../partialsViewAdministrator/header %>
 <script src="javascripts/routes/CourseRoute.js"></script>
 <script type="text/x-handlebars" id="index">
@@ -53,12 +56,12 @@
         {{#if controller.isNew}}
             <label for="teacher">Profesor</label>
             {{view Ember.Select contentBinding="teachers" optionLabelPath="content.name" selectionBinding="teacherValue" valueBinding="teacher" }}
-            <label for="subject">Profesor</label>
+            <label for="subject">Contenido de materia</label>
             {{view Ember.Select contentBinding="subjects" optionLabelPath="content.name" selectionBinding="subjectValue" valueBinding="subject" }}
         {{else}}
             <label for="teacher">Profesor</label>
             {{view Ember.Select contentBinding="teachers" optionLabelPath="content.name" selectionBinding="teacher" valueBinding="teacher" }}
-            <label for="subject">Profesor</label>
+            <label for="subject">Contenido de la materia</label>
             {{view Ember.Select contentBinding="subjects" optionLabelPath="content.name" selectionBinding="subject" valueBinding="subject" }}
         {{/if}}
         <label for="startDate">Fecha de Inicio </label>

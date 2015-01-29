@@ -6,6 +6,23 @@ var Server = mongo.Server,
     Db = mongo.Db,
     BSON = mongo.BSONPure;
 
+
+/*
+ * GET studentlist.
+ */
+router.get('/teachers/:id', function(req, res) {
+    var db = req.db;
+    console.log('message'+req.params.id);
+    var teacherId = req.body.teacherId;
+    console.log('teacherId:'+teacherId);
+    db.collection('teacherList',function(err, collection) {
+        collection.findOne({'_id' : new BSON.ObjectID(teacherId)}, function(err, teacher) {
+            console.log('teacher value:'+teacher);
+            res.json({teacher: teacher});
+        });
+    });
+});
+
 /*
  * GET studentlist.
  */
@@ -20,6 +37,8 @@ router.get('/teachers', function(req, res) {
     });
    });
 });
+
+
 router.get('/teachers/:id', function(req, res) {
     var db = req.db;
     var teacherId = BSON.ObjectID.createFromHexString(req.params.id);
