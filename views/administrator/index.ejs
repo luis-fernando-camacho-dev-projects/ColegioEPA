@@ -18,9 +18,7 @@
 <script src="javascripts/lib/bootstrap.js"></script>
 
 <link rel="stylesheet" href="stylesheets/bootstrap.css" type="text/css">
-<link rel="stylesheet" href="stylesheets/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="stylesheets/bootstrap-responsive.css" type="text/css">
-<link rel="stylesheet" href="stylesheets/bootstrap-responsive.min.css" type="text/css">
 <link rel="stylesheet" href="stylesheets/normalize.css" type="text/css">
 <link rel="stylesheet" href="stylesheets/style.css" type="text/css">
 
@@ -75,7 +73,7 @@
                     </li>
                 </ul>
                 <div class="content">
-                    
+
                          {{outlet}}
                 </div>
             </div>
@@ -143,7 +141,7 @@
             {{#each student in controller itemController="studentsEdit"}}
               <tr {{bindAttr class="selected:warning"}}>
               <td>{{view Ember.Checkbox checkedBinding="selected"}}</td>
-              <td>{{student.nombre}}</td>
+              <td>{{student.name}}</td>
               <td>{{student.email}}</td>
               <td>{{student.ci}}</td>
               <td>{{#linkTo "students.edit" student}}<img src="images/edit-icon.png"/>{{/linkTo}}</td>
@@ -160,7 +158,7 @@
 <script type="text/x-handlebars" data-template-name="_studentForm" >
       <form class="form-horizontal">
         <label for="nombre">nombre</label>
-          {{view Ember.TextField valueBinding="nombre"}}
+          {{view Ember.TextField valueBinding="name"}}
         <label  for="email">email</label>
           {{view Ember.TextField valueBinding="email"}}
         <label for="ci">ci</label>
@@ -170,7 +168,7 @@
     </form>
   </script>
  <script type="text/x-handlebars" data-template-name="students/edit" >
-    
+
     {{#if controller.isNew}}
       <h1>New student</h1>
     {{else}}

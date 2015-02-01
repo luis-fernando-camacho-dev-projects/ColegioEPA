@@ -75,7 +75,6 @@ router.post('/teachers', function(req, res) {
 
 router.put('/teachers/:id' , function(req, res) {
     var db = req.db;
-    var student =req.db;
     var studentId = req.params.id;
     db.collection('teacherList').update({_id: req.collection.id(req.params.id)},{$set:req.body}, {safe:true, multi:false}, function(e, result){
         if (e) return next(e)

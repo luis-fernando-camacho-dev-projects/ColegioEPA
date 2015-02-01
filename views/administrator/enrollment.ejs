@@ -23,7 +23,7 @@
 
             {{#each enrollment in controller itemController="enrollmentsEdit"}}
               <td><a {{bindAttr href="{{enrollment.id}}"}}>{{enrollment.id}}</a></td>
-              <td>{{enrollment.student.nombre}}</td>
+              <td>{{enrollment.student.name}}</td>
               <td>{{enrollment.payDate}}</td>
               <td>15</td>
               <td>{{enrollment.nit}}</td>
@@ -45,10 +45,10 @@
       <form class="form-horizontal">
         {{#if controller.isNew}}
             <label for="student">Estudiante</label>
-            {{view Ember.Select contentBinding="students" optionLabelPath="content.nombre" selectionBinding="studentValue" valueBinding="student" }}
+            {{view Ember.Select contentBinding="students" optionLabelPath="content.name" selectionBinding="studentValue" valueBinding="student" }}
         {{else}}
             <label for="student">Estudiante</label>
-            {{view Ember.Select contentBinding="students" optionLabelPath="content.nombre" selectionBinding="student" valueBinding="student" }}
+            {{view Ember.Select contentBinding="students" optionLabelPath="content.name" selectionBinding="student" valueBinding="student" }}
         {{/if}}
         <label for="payDate">Fecha de Pago </label>
             {{custom-date-picker valueBinding="payDate"}}

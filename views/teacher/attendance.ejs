@@ -6,6 +6,7 @@
 
 <script type="text/x-handlebars" data-template-name="attendances/index">
     {{#if exitStudent}}
+        Busqueda de assitencia : {{input type='text' value=filter placeholder='Nombre del curso,profesor , fecha inicio or fecha fin'}}
         <p>Nr asistencias registradas = {{content.length}}</p>
     <table class="table table-hover">
         <tr>
@@ -18,7 +19,7 @@
             <th>Editar</th>
             <th>Eliminar</th>
           </tr>
-            {{#each attendance in controller itemController="attendancesEdit"}}
+            {{#each attendance in filteredContent  itemController="attendancesEdit"}}
               <td>{{attendance.course.name}}</td>
               <td>{{attendance.teacher.name}}</td>
               <td>{{attendance.typeAttendance}}</td>
@@ -36,16 +37,12 @@
     <p>{{#linkTo "attendances.new"}}<img src="/../images/add-icon.png"/> registrar nueva asistenci{{/linkTo}}</p>
 </script>
 
-<script type="text/x-handlebars" data-template-name="_courseForm" >
+<script type="text/x-handlebars" data-template-name="_attendanceForm" >
       <form class="form-horizontal">
         {{#if controller.isNew}}
-            <label for="teacher">Profesor</label>
-            {{view Ember.Select contentBinding="teachers" optionLabelPath="content.name" selectionBinding="teacherValue" valueBinding="teacher" }}
             <label for="course">Curso</label>
             {{view Ember.Select contentBinding="courses" optionLabelPath="content.name" selectionBinding="courseValue" valueBinding="course" }}
         {{else}}
-            <label for="teacher">Profesor</label>
-            {{view Ember.Select contentBinding="teachers" optionLabelPath="content.name" selectionBinding="teacher" valueBinding="teacher" }}
             <label for="course">Curso</label>
             {{view Ember.Select contentBinding="courses" optionLabelPath="content.name" selectionBinding="course" valueBinding="course" }}
         {{/if}}
@@ -74,14 +71,16 @@
 
 <script type="text/x-handlebars" data-template-name="attendances/edit">
     {{#if controller.isNew}}
-      <h1>New course</h1>
+      <h1>Registrar Nueva Asistencia</h1>
     {{else}}
       <h1>Editar Assitencia</h1>
     {{/if}}
-      {{partial "courseForm"}}
-      <p>
-        <button {{action updateItem this}}>Update record</button>
-      </p>
+    {{partial "attendanceForm"}}
+    {{#if controller.isNew}}
+        <input type="button" class="btn" {{action updateItem this}}>GUARDAR ASISTENCIA</button>
+    {{else}}
+        <input type="button" class="btn" {{action updateItem this}}>ACTUALIZAR ASISTENCIA</button>
+    {{/if}}
 </script>
 </body>
 </html>

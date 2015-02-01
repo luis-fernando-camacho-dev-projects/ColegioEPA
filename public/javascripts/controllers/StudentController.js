@@ -13,15 +13,13 @@ ColegioEPA.StudentsEditController = Ember.ObjectController.extend({
 });
 
 ColegioEPA.StudentsIndexController = Ember.ArrayController.extend({
-
     filter:'',
-
     filteredContent: function(){
         var filter = this.get('filter'), rx = new RegExp(filter, 'gi'), students = this.get('arrangedContent');
         if (isNaN(parseInt(filter)))
         {
             return students.filter(function(student) {
-                return student.get('nombre').match(rx) || student.get('email').match(rx) ;
+                return student.get('name').match(rx) || student.get('email').match(rx) ;
             });
         } else {
             return students.filter(function(student) {

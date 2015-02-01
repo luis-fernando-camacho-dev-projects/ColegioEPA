@@ -3,7 +3,7 @@ ColegioEPA.AttendancesEditController = Ember.ObjectController.extend({
     actions: {
         updateItem: function(attendance) {
             if (this.get('isNew')) {
-                attendance.set('teacher', this.teacherValue);
+                attendance.set('teacher', this.get('teacher'));
                 attendance.set('course', this.courseValue);
             }
             attendance.save();
@@ -14,26 +14,26 @@ ColegioEPA.AttendancesEditController = Ember.ObjectController.extend({
         console.log("calculating isNew");
         return this.get('content').get('id');
     }.property(),
-    teachers: function() {
-        return this.store.findAll('teacher');
-    }.property(),
     courses: function() {
-        return this.store.findAll('course');
+        var courses =this.store.all('course', {teacher: utilsEPA.getObjectOwner()});
+        return courses;
+    }.property(),
+    teacher: function() {
+        return this.store.all('teacher').findBy('id',utilsEPA.getObjectOwner());
     }.property(),
     typeAttendances: function(){
-        return ['takeClass','carryOverClass'];
+        return ['registar clase','postergar clase'];
     }.property(),
 
     locationTypeChanged: function() {
-        var templateName = this.typeAttendanceClass == 'takeClass' ? 'test1' : 'test2';
+        var templateName = this.typeAttendanceClass == 'registar clase' ? 'test1' : 'test2';
         this.send('changeTemplate', templateName, this.get('content'));
     }.observes('typeAttendanceClass'),
 
 
     init:function() {
         this._super();
-        var teachers = this.store.all('teacher'), courses = this.store.all('course');
-        this.teacherValue = teachers.get('length') > 0 ? teachers.get('firstObject'): null ;
+        var courses = this.store.find('course');
         this.courseValue = courses.get('length') > 0 ? courses.get('firstObject'): null ;
     },
     courseValue:null,
@@ -42,6 +42,14 @@ ColegioEPA.AttendancesEditController = Ember.ObjectController.extend({
 });
 
 ColegioEPA.AttendancesIndexController = Ember.ArrayController.extend({
+    filter:'',
+    filteredContent: function(){
+        var filter = this.get('filter'), rx = new RegExp(filter, 'gi'), attendances = this.get('arrangedContent');
+            return attendances.filter(function(attendance) {
+                return attendance.get('markedDate').match(rx) || attendance.get('course').get('name').match(rx) ;
+            });
+
+    }.property('arrangedContent', 'filter'),
     editCounter: function () {
         return this.filterProperty('selected', true).get('length');
     }.property('@each.selected'),
@@ -56,11 +64,11 @@ ColegioEPA.AttendancesIndexController = Ember.ArrayController.extend({
     }.property("content.@each"),
 
     actions: {
-        removeItem: function(student) {
-            student.on("didDelete", this, function() {
+        removeItem: function(attendance) {
+            attendance.on("didDelete", this, function() {
                 console.log("record deleted");
             });
-            student.destroyRecord();
+            attendance.destroyRecord();
         },
         viewCourse: function(course) {
             console.log('test');
@@ -80,11 +88,4 @@ ColegioEPA.AttendancesIndexController = Ember.ArrayController.extend({
   //}.property("content.isLoaded")
 });
 
-Ember.Handlebars.registerBoundHelper('locsPresent',
-    function(myBinding, options) {
-      console.log(myBinding);
-      console.log(options);
-      return true;
-    }
-);
 
