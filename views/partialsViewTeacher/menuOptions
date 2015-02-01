@@ -30,13 +30,13 @@
             <div class="guitar">
                 <ul>
                     <li>
-                        <a href="/student/courses">Cursos Inscriptos</a>
+                        <a href="/teacher/subjects">Materias Dictadas</a>
                     </li>
                     <li>
-                        <a href="/student/schedules">Horarios</a>
+                        <a href="/teacher/schedules">Horarios</a>
                     </li>
                     <li>
-                        <a href="/student/Attendance">Reportes de Assistencia</a>
+                        <a href="/teacher/attendance">Assistencia</a>
                     </li>
                 </ul>
                 {{#if existCalendar}}

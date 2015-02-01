@@ -1,148 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Music School Website Template</title>
-    <script src="//code.jquery.com/jquery-2.0.3.min.js"></script>
-    <script src="/../javascripts/lib/handlebars-v1.3.0.js"></script>
-    <script src="/../javascripts/lib/ember/ember.js"></script>
-    <script src="/../javascripts/lib/ember-data/ember-data.js"></script>
+  <meta charset="UTF-8">
+  <title>Escuela Popular de Artes</title>
+  <script src="//code.jquery.com/jquery-2.0.3.min.js"></script>
+  <script src="/../javascripts/lib/handlebars-v1.3.0.js"></script>
+  <script src="/../javascripts/lib/ember/ember.js"></script>
+  <script src="/../javascripts/lib/ember-data/ember-data.js"></script>
+  <script src="/../javascripts/lib/emberCalendar/ember-calendar.js"></script>
 </head>
 <body>
-    <script src="/../javascripts/Application.js"></script>
-    <!--  start load all controllers-->
-    <script src="/../javascripts/controllers/AttendanceController.js"></script>
-    <script src="/../javascripts/controllers/CourseController.js"></script>
-    <script src="/../javascripts/controllers/EnrollmentController.js"></script>
-    <script src="/../javascripts/controllers/LoginController.js"></script>
-    <script src="/../javascripts/controllers/RegisterStudentController.js"></script>
-    <script src="/../javascripts/controllers/StudentController.js"></script>
-    <script src="/../javascripts/controllers/SubjectMatterController.js"></script>
-    <script src="/../javascripts/controllers/TeacherController.js"></script>
-    <script src="/../javascripts/controllers/UserController.js"></script>
-    <!--  end load all controllers-->
+<script src="/../javascripts/Application.js"></script>
+<!--  start load all controllers-->
+<script src="/../javascripts/controllers/AttendanceController.js"></script>
+<script src="/../javascripts/controllers/CourseController.js"></script>
+<script src="/../javascripts/controllers/EnrollmentController.js"></script>
+<script src="/../javascripts/controllers/LoginController.js"></script>
+<script src="/../javascripts/controllers/RegisterStudentController.js"></script>
+<script src="/../javascripts/controllers/StudentController.js"></script>
+<script src="/../javascripts/controllers/SubjectMatterController.js"></script>
+<script src="/../javascripts/controllers/TeacherController.js"></script>
+<script src="/../javascripts/controllers/UserController.js"></script>
 
-    <!--  start load all stores-->
-    <script src="/../javascripts/stores/AttendanceAdapter.js"></script>
-    <script src="/../javascripts/stores/CourseAdapter.js"></script>
-    <script src="/../javascripts/stores/EnrollmentAdapter.js"></script>
-    <script src="/../javascripts/stores/StudentAdapter.js"></script>
-    <script src="/../javascripts/stores/SubjectMatterAdapter.js"></script>
-    <script src="/../javascripts/stores/TeacherAdapter.js"></script>
-    <script src="/../javascripts/stores/UserAdapter.js"></script>
-    <!--  end load all stores-->
+<!--  end load all controllers-->
 
-    <!--  start load all models-->
-    <script src="/../javascripts/models/Attendance.js"></script>
-    <script src="/../javascripts/models/Course.js"></script>
-    <script src="/../javascripts/models/Enrollment.js"></script>
-    <script src="/../javascripts/models/Student.js"></script>
-    <script src="/../javascripts/models/SubjectMatter.js"></script>
-    <script src="/../javascripts/models/Teacher.js"></script>
-    <script src="/../javascripts/models/User.js"></script>
-    <!--  end load all models-->
+<!--  start load all stores-->
+<script src="/../javascripts/stores/AttendanceAdapter.js"></script>
+<script src="/../javascripts/stores/CourseAdapter.js"></script>
+<script src="/../javascripts/stores/EnrollmentAdapter.js"></script>
+<script src="/../javascripts/stores/StudentAdapter.js"></script>
+<script src="/../javascripts/stores/SubjectMatterAdapter.js"></script>
+<script src="/../javascripts/stores/TeacherAdapter.js"></script>
+<script src="/../javascripts/stores/UserAdapter.js"></script>
+<!--  end load all stores-->
 
-    <!-- start route-->
-    <script src="/../javascripts/routes/AuthenticatedRoute.js"></script>
-    <!-- end route-->
-    <script src="/../javascripts/helpers/DatePicker.js"></script>
-    <script src="/../javascripts/helpers/ModalCourse.js"></script>
+<!--  start load all models-->
+<script src="/../javascripts/models/Attendance.js"></script>
+<script src="/../javascripts/models/Course.js"></script>
+<script src="/../javascripts/models/Enrollment.js"></script>
+<script src="/../javascripts/models/Student.js"></script>
+<script src="/../javascripts/models/SubjectMatter.js"></script>
+<script src="/../javascripts/models/Teacher.js"></script>
+<script src="/../javascripts/models/User.js"></script>
+<!--  end load all models-->
 
-    <script src="http://momentjs.com/downloads/moment.min.js"></script>
-    <script src="http://dbushell.github.io/Pikaday/pikaday.js"></script>
-    <script src="/../javascripts/lib/bootstrap.js"></script>
+<!-- start route-->
+<script src="/../javascripts/routes/AuthenticatedRoute.js"></script>
+<!-- end route-->
+<script src="/../javascripts/helpers/DatePicker.js"></script>
+<script src="/../javascripts/helpers/ModalCourse.js"></script>
 
-    <link rel="stylesheet" href="/../stylesheets/bootstrap.css" type="text/css">
-    <link rel="stylesheet" href="/../stylesheets/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="/../stylesheets/bootstrap-responsive.css" type="text/css">
-    <link rel="stylesheet" href="/../stylesheets/bootstrap-responsive.min.css" type="text/css">
-    <link rel="stylesheet" href="/../stylesheets/normalize.css" type="text/css">
-    <link rel="stylesheet" href="/../stylesheets/style.css" type="text/css">
-    <link rel="stylesheet" href="http://dbushell.github.io/Pikaday/css/pikaday.css">
-    <link rel="stylesheet" href="/../stylesheets/styleTemplate.css" type="text/css">
+<script src="http://momentjs.com/downloads/moment.min.js"></script>
+<script src="http://dbushell.github.io/Pikaday/pikaday.js"></script>
+<script src="/../javascripts/lib/bootstrap.js"></script>
 
-<script type="text/x-handlebars" id="application">
-    <div class="page">
-        <div class="header">
-            <a href="index.html" id="logo"><img src="/../images/logo.png" alt="logo"></a>
-            <ul class="navigation">
-                <li>
-                    <a href="index.html">Home</a>
-                </li>
-                <li>
-                    <a href="about.html">About</a>
-                </li>
-                <li class="selected">
-                    <a href="programs.html">Programs and Fees</a>
-                </li>
-                <li>
-                    <a href="blog.html">Blog</a>
-                </li>
-                <li>
-                    <a href="contact.html">Contact</a>
-                </li>
-            </ul>
-        </div>
-        <div class="body">
-            <div class="guitar">
-                <ul>
-                    <li>
-                        <a href="/teacher/subjects">Materias Dictadas</a>
-                    </li>
-                    <li>
-                        <a href="/teacher/schedules">Horarios</a>
-                    </li>
-                    <li>
-                        <a href="/teacher/attendance">Assistencia</a>
-                    </li>
-                </ul>
-                <div class="content">
-                         {{outlet}}
-                </div>
-            </div>
-        </div>
-        <div class="footer">
-            <div class="about">
-                <h3>About</h3>
-                <div>
-                    <a href="about.html"><img src="/../images/instructors.jpg" alt=""></a>
-                    <p>
-                        This is just a place holder. You can replace all this text with your own text. Youre free to use this website template.
-                    </p>
-                    <a href="blog.html" class="more">(more)</a>
-                </div>
-            </div>
-            <div class="contact">
-                <h3>Contact</h3>
-                <ul>
-                    <li>
-                        <span>Location :</span>
-                        <p>
-                            126-U This is just a place holder, so you can see
-                            what the site would look like.
-                        </p>
-                    </li>
-                    <li>
-                        <span>Email :</span>
-                        <p>
-                            <a href="http://www.freewebsitetemplates.com/misc/contact">contact@freewebsitetemplates.com</a>
-                        </p>
-                    </li>
-                    <li>
-                        <span>Phone :</span>
-                        <p>
-                            (000) 987 65 43 2100
-                        </p>
-                    </li>
-                </ul>
-            </div>
-            <div class="connect">
-                <a href="http://freewebsitetemplates.com/go/twitter/" id="twitter">twitter</a> <a href="http://freewebsitetemplates.com/go/facebook/" id="facebook">facebook</a> <a href="http://freewebsitetemplates.com/go/googleplus/" id="googleplus">google+</a>
-            </div>
-            <p class="footnote">
-                &#169; Copyright 2012. All rights reserved
-            </p>
-        </div>
-    </div>
-</script>
 
+<link rel="stylesheet" href="/../stylesheets/bootstrap.css" type="text/css">
+<link rel="stylesheet" href="/../stylesheets/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="/../stylesheets/bootstrap-responsive.css" type="text/css">
+<link rel="stylesheet" href="/../stylesheets/bootstrap-responsive.min.css" type="text/css">
+<link rel="stylesheet" href="/../stylesheets/normalize.css" type="text/css">
+<link rel="stylesheet" href="/../stylesheets/style.css" type="text/css">
+<link rel="stylesheet" href="http://dbushell.github.io/Pikaday/css/pikaday.css">
+<link rel='stylesheet' href='/../stylesheets/menuStyles.css'>
+<link rel="stylesheet" href="/../stylesheets/styleTemplate.css" type="text/css">
+<link rel="stylesheet" href="/../javascripts/lib/emberCalendar/ember-calendar.css" type="text/css">
+<link rel='stylesheet' href='/../javascripts/lib/emberCalendar/ember-calendar.css'>
+<link rel='stylesheet' href='/../stylesheets/calendarStyle.css'>
+
+<% include /menuOptions %>
