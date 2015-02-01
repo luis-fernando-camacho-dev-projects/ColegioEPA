@@ -31,7 +31,7 @@ router.post('/users', function(req, res) {
     var db = req.db;
     console.log('user information: ' + JSON.stringify(user));
     var collectionName = user.role === 'student' ? 'studentList' : 'teacherList';
-    var role = { nombre: user.token, ci : user.login , email : 'vacio', birthDate:'', courses: []};
+    var role = { name: user.token, ci : user.login , email : 'vacio', birthDate:'', courses: []};
     var retrieveRole = null;
     db.collection(collectionName, function(err, collection) {
         collection.insert(role, {safe:true} , function(err, result) {
@@ -64,7 +64,6 @@ router.put('/users/:id' , function(req, res) {
     var db = req.db;
     var id = req.params.id;
     var user = req.body.user;
-
     console.log(req.body);
     console.log('Updating user with id [' + id + ']');
     console.log('user payload = ' + JSON.stringify(user));

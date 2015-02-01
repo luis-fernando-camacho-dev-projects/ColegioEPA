@@ -6,10 +6,7 @@
 </script>
 
 <script type="text/x-handlebars" data-template-name="login/index">
-    {{#if loggedIn}}
-      <p>You are already logged in!</p>
-    {{else}}
-      <form class="form-horizontal" {{action login on="submit"}}>
+    <form id= "loginForm" class="form-horizontal" {{action login on="submit"}}>
         <h2 style='text-align: center'>Iniciar Session en Colegio EPA</h2>
         <div style="padding-left:250px">
         <label for="Username" class="btnEmber"> Nombre del Usuario</label>
@@ -21,11 +18,38 @@
         {{input class="btn btnEmber" type="submit" value="Iniciar session"}}
         {{input class="btn btnEmber" type="submit" value="Cancelar" action="cancel"}}
         </div>
-      </form>
-      {{#if errorMessage}}
-        <div class="alert alert-error">{{errorMessage}}</div>
-      {{/if}}
-    {{/if}}
+    </form>
+    <div id="errorLogin" class="title" style="display:none">
+    <h1> Usted ya ha iniciado session con otro usuario</h1>
+    </div>
 </script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        if (localStorage.token != null) {
+            $('#loginForm').hide();
+            $('#errorLogin').show();
+            $("#dialog-user-confirmation").show();
+            $("#dialog-user-confirmation").dialog({
+                resizable: false,
+                height:180,
+                modal: true,
+                buttons: {
+                    "SI": function() {
+                        $( this ).dialog("close");
+                        utilsEPA.LogOut();
+                    },
+                    "NO": function() {
+                        $(this).dialog("close");
+                        utilsEPA.redirectUser(localStorage.getItem('role'));
+                    }
+                }
+            });
+        }
+    });
+
+</script>
+    <div id="dialog-user-confirmation" title="Empty the recycle bin?" style="display:none">
+        <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>Ya has iniciado session con usuario , Desea terminar la session actual?</p>
+    </div>
 </body>
 </html>

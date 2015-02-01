@@ -7,10 +7,18 @@
     <script src="/../javascripts/lib/handlebars-v1.3.0.js"></script>
     <script src="/../javascripts/lib/ember/ember.js"></script>
     <script src="/../javascripts/lib/ember-data/ember-data.js"></script>
+    <script src="/../javascripts/lib/emberCalendar/ember-calendar.js"></script>
+    <script src="/../javascripts/lib/jquery/ui/jquery-ui.min.js"></script>
+    <script src="http://momentjs.com/downloads/moment.min.js"></script>
+    <script src="http://dbushell.github.io/Pikaday/pikaday.js"></script>
+    <script src="http://dbushell.github.io/Pikaday/pikaday.js"></script>
+    <script src="/../javascripts/lib/bootstrap.js"></script>
+    <script src="/../javascripts/lib/jqBootstrapValidation.js"></script>
 </head>
 <body>
     <script src="/../javascripts/Application.js"></script>
     <!--  start load all controllers-->
+    <script src="/../javascripts/controllers/ScheduleController.js"></script>
     <script src="/../javascripts/controllers/AttendanceController.js"></script>
     <script src="/../javascripts/controllers/CourseController.js"></script>
     <script src="/../javascripts/controllers/EnrollmentController.js"></script>
@@ -20,6 +28,7 @@
     <script src="/../javascripts/controllers/SubjectMatterController.js"></script>
     <script src="/../javascripts/controllers/TeacherController.js"></script>
     <script src="/../javascripts/controllers/UserController.js"></script>
+
     <!--  end load all controllers-->
 
     <!--  start load all stores-->
@@ -44,22 +53,23 @@
 
     <!-- start route-->
     <script src="/../javascripts/routes/AuthenticatedRoute.js"></script>
+    <script src="/../javascripts/Utils/utilsEPA.js"></script>
     <!-- end route-->
+
     <script src="/../javascripts/helpers/DatePicker.js"></script>
     <script src="/../javascripts/helpers/ModalCourse.js"></script>
 
-    <script src="http://momentjs.com/downloads/moment.min.js"></script>
-    <script src="http://dbushell.github.io/Pikaday/pikaday.js"></script>
-    <script src="/../javascripts/lib/bootstrap.js"></script>
-
     <link rel="stylesheet" href="/../stylesheets/bootstrap.css" type="text/css">
-    <link rel="stylesheet" href="/../stylesheets/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="/../stylesheets/bootstrap-responsive.css" type="text/css">
-    <link rel="stylesheet" href="/../stylesheets/bootstrap-responsive.min.css" type="text/css">
     <link rel="stylesheet" href="/../stylesheets/normalize.css" type="text/css">
     <link rel="stylesheet" href="/../stylesheets/style.css" type="text/css">
     <link rel="stylesheet" href="http://dbushell.github.io/Pikaday/css/pikaday.css">
+    <link rel='stylesheet' href='/../stylesheets/menuStyles.css'>
     <link rel="stylesheet" href="/../stylesheets/styleTemplate.css" type="text/css">
+    <link rel="stylesheet" href="/../javascripts/lib/emberCalendar/ember-calendar.css" type="text/css">
+    <link rel='stylesheet' href='/../javascripts/lib/emberCalendar/ember-calendar.css'>
+    <link rel='stylesheet' href='/../stylesheets/calendarStyle.css'>
+    <link rel='stylesheet' href='/../stylesheets/jquery/jquery-ui.min.css'>
 
 <script type="text/x-handlebars" id="application">
     <div class="page">

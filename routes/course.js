@@ -11,10 +11,11 @@ var Server = mongo.Server,
  * GET studentlist.
  */
 router.get('/courses', function(req, res) {
+    console.log(req.query);
     var db = req.db;
     var value = {};
     db.collection('courseList', function(err, collection) {
-         collection.find().toArray(function(err, courses) {
+         collection.find(req.query).toArray(function(err, courses) {
                  value['courses'] = courses;
                  console.log(value);
                 db.collection('teacherList', function(err, collection) {
@@ -26,11 +27,12 @@ router.get('/courses', function(req, res) {
                                 res.json(value);
                             });
                         });
-                    });
                 });
+            });
         });
     });
 });
+
 
 /*
  * POST to addstudent.

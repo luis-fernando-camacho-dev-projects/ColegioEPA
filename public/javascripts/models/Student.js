@@ -1,5 +1,5 @@
 ColegioEPA.Student = DS.Model.extend({
-  nombre: DS.attr('string'),
+  name: DS.attr('string'),
   email: DS.attr('string'),
   ci : DS.attr('number'),
   birthDate : DS.attr('string'),

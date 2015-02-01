@@ -39,9 +39,9 @@ ColegioEPA.StudentsIndexController = Ember.ArrayController.extend({
             arr = this.filterProperty('selected', true);
             if (arr.length==0) {
                 output = "nothing selected";
-            } else { 
+            } else {
                 output = "";
-                for (i=0 ; i<arr.length ; i++) { 
+                for (i=0 ; i<arr.length ; i++) {
                   arr[i].destroyRecord()
                 }
             }
@@ -50,52 +50,10 @@ ColegioEPA.StudentsIndexController = Ember.ArrayController.extend({
   //}.property("content.isLoaded")
 });
 
-Ember.Handlebars.registerBoundHelper('locsPresent', 
+Ember.Handlebars.registerBoundHelper('locsPresent',
     function(myBinding, options) {
       console.log(myBinding);
       console.log(options);
       return true;
     }
 );
-
-
-/*
-ColegioEPA.NewController = Ember.Controller.extend({
-    model: 'Student',
-    actions: { 
-        saveStudent:function(event) {
-            var studentRecord =  {
-                nombre: this.nombre,
-                email:this.email,
-                ci :this.ci,
-                birthDate:this.birthDate
-            };
-            this.store.createRecord('student',studentRecord).save();
-            
-        }
-    }
-});
-
-
-ColegioEPA.StudentAllController = Ember.ArrayController.extend({
-    filter : '',
-    filteredContent: function() {
-    var filter = this.get('filter');
-    var rx = new RegExp(filter, 'gi');
-    var countries = this.get('arrangedContent');
-
-    return countries.filter(function (country) {
-      return country.get('nombre').match(rx);
-    });
-
-  }.property('arrangedContent', 'filter'),
-
-  actions: {
-    sortBy: function(property) {
-      this.set('sortProperties', [property]);
-      this.set('sortAscending', !this.get('sortAscending'));
-    }
-
-}
-});
-*/

@@ -19,7 +19,7 @@ var routes = require('./routes/index');
     enrollment = require('./routes/enrollment'),
     attendance = require('./routes/attendance'),
     user = require('./routes/user'),
-
+    utils = require('./routes/utils'),
     app = express();
 /* rest classes End*/
 
@@ -118,6 +118,7 @@ var allowCrossDomain = function(req, res, next) {
         res.send(200);
     }
     else {
+        console.log('req',req.method);
       next();
     }
 };
@@ -156,15 +157,8 @@ app.use(function(req,res,next) {
 // are sure that authentication is not needed
 app.all('/api/*', [require('./middlewares/validateRequest')]);
 
-/** define uris start */
+// start uris//
 app.use('/', routes);
-app.use('/student', student);
-app.use('/teacher', teacher);
-app.use('/subject', subject);
-app.use('/schedule', schedule);
-app.use('/course', course);
-app.use('/enrollment', enrollment);
-app.use('/attendance', attendance);
 
 app.use('/api/student', student);
 app.use('/api/teacher', teacher);
@@ -172,6 +166,11 @@ app.use('/api/subject', subject);
 app.use('/api/course', course);
 app.use('/api/enrollment', enrollment);
 app.use('/api/attendance', attendance);
+
+// utils
+app.use('/utils', utils);
+// end uris //
+
 // modificar esto //
 app.use('/user', user);
 

@@ -11,7 +11,7 @@
       <table class="table table-hover">
           <tr>
               <th>Selected</th>
-              <th {{action 'sortBy' 'nombre'}}><a>nombre</a></th>
+              <th {{action 'sortBy' 'name'}}><a>nombre</a></th>
               <th {{action 'sortBy' 'email'}}><a>email</a></th>
               <th {{action 'sortBy' 'ci'}}><a>ci</a></th>
               <th>Editar</th>
@@ -20,7 +20,7 @@
               {{#each student in filteredContent itemController="studentsEdit"}}
                 <tr {{bindAttr class="selected:warning"}}>
                 <td>{{view Ember.Checkbox checkedBinding="selected"}}</td>
-                <td>{{student.nombre}}</td>
+                <td>{{student.name}}</td>
                 <td>{{student.email}}</td>
                 <td>{{student.ci}}</td>
                 <td>{{#linkTo "students.edit" student}}<img src="images/edit-icon.png"/>{{/linkTo}}</td>
@@ -38,7 +38,7 @@
 <script source="" type="text/x-handlebars" data-template-name="_studentForm" >
       <form class="form-horizontal">
         <label for="nombre">nombre</label>
-          {{view Ember.TextField valueBinding="nombre"}}
+          {{view Ember.TextField valueBinding="name"}}
         <label  for="email">email</label>
           {{view Ember.TextField valueBinding="email"}}
         <label for="ci">ci</label>
@@ -56,7 +56,7 @@
     {{/if}}
       {{partial "studentForm"}}
       <p>
-        <button {{action updateItem this}}>Update record</button>
+        <input type="submit" class="btn" {{action updateItem this}} value ="test"/>
       </p>
 
   </script>
