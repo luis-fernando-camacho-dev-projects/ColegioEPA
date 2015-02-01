@@ -19,6 +19,7 @@ var routes = require('./routes/index');
     enrollment = require('./routes/enrollment'),
     attendance = require('./routes/attendance'),
     user = require('./routes/user'),
+
     app = express();
 /* rest classes End*/
 
@@ -55,12 +56,17 @@ app.get('/course', function(req, res) {
 });
 
 app.get('/enrollment', function(req,res) {
-    res.render('administrator/enrollment')
+    res.render('administrator/enrollment');
 });
 
 app.get('/user', function(req, res) {
-    res.render('administrator/user')
+    res.render('administrator/user');
 });
+
+app.get('/teacherSchedule', function(req, res) {
+  res.render('administrator/teacherSchedule');
+});
+
 //---------------------End Administrators Options---------------------------//
 
 //---------------------Teachers Options ---------------------------------//

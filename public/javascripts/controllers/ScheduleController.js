@@ -6,15 +6,16 @@ ColegioEPA.ScheduleController = Ember.ObjectController.extend({
 });
 
 ColegioEPA.ScheduleController = Ember.ArrayController.extend({
+
   itemController: 'Schedule'
 });
 
 window.ColegioEPA.ApplicationController = Ember.Controller.extend
 ({
+  existCalendar: true,
   needs: ['calendar']
 });
 
-ColegioEPA.couresValues =[];
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -35,34 +36,31 @@ ColegioEPA.CalendarController = Ember.Calendar.CalendarController.extend
     headers : {'API_KEY': localStorage.getItem("token")},
     success:function(result){
         result.courses.forEach(function(course) {
+
             date = events.length;
-            time = 1000 * 60 * 60 * 10;
-            duration = 1000 * 60 * 60 * 2;
             eventName = course.name;
-            eventLocation = 'B1';
-            eventType = 1;
-            event =
-                {
-                  name: eventName + events.length
-                  , start: moment().startOf('day').add('days', date - moment().day()).add('milliseconds', time)
-                  , end: moment().startOf('day').add('days', date - moment().day()).add('milliseconds', time + duration)
-                  , location: eventLocation
-                  , type: eventType
 
-                };
-            events.push(event);
-            event=
-                {
-                  name: eventName + events.length
-                  , start: moment().startOf('day').add('days', date - moment().day()).add('milliseconds', time)
-                  , end: moment().startOf('day').add('days', date - moment().day()).add('milliseconds', time + duration)
-                  , location: eventLocation
-                  , type: eventType
+            startdate = moment(course.startDate, "DD-MM-YYYY");
+            enddate = moment(course.endDate, "DD-MM-YYYY");
+            currentDate = startdate;
+            startTimeString = course.startTime;
+            endTimeString = course.endTime;
 
-                };
+            eventType = 0;
+            numberOfDays=enddate.diff(startdate, 'days');
 
-            events.push(event);
-
+            for(var i = 0; i<numberOfDays; i++)
+            {
+              currentDate.add(1, 'days').calendar();
+              event =
+              {
+                name: eventName
+                , start: moment(currentDate.format("DD-MM-YYYY")+' '+startTimeString, "DD-MM-YYYY HH:mm")
+                , end: moment(currentDate.format("DD-MM-YYYY")+' '+endTimeString, "DD-MM-YYYY HH:mm")
+                , type: eventType
+              };
+              events.push(event);
+            }
         });
          self.clear().pushObjects(events).notifyPropertyChange('content');
     },

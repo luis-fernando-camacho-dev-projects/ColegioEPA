@@ -1,0 +1,44 @@
+<script type="text/x-handlebars" id="application">
+    <div class="page">
+        <div class="header">
+            <ul class="navigation">
+                <li>
+                    <a href="index.html">Home</a>
+                </li>
+                <li>
+                    <a href="about.html">About</a>
+                </li>
+                <li class="selected">
+                    <a href="programs.html">Programs and Fees</a>
+                </li>
+                <li>
+                    <a href="blog.html">Contact</a>
+                </li>
+                <li class="menu">
+                    <a href="contact.html" id='session'></a>
+                     <ul style="list-style-type: none;display:none">
+                        <li><a href="student/information" style="margin-top:-7px">Editar</a></li><br/><br/><br/><br/>
+                        <li><a id='logout' href="http://localhost:3000/index.html" style="margin-top:-28px">Salir</a></li><br/>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="body">
+            <div class="guitar">
+                <ul>
+                    <li>
+                        <a href="/student/courses">Cursos Inscriptos</a>
+                    </li>
+                    <li>
+                        <a href="/student/schedules">Horarios</a>
+                    </li>
+                    <li>
+                        <a href="/student/Attendance">Reportes de Assistencia</a>
+                    </li>
+                </ul>
+                <div class="content">
+                         {{outlet}}
+                </div>
+            </div>
+        </div>
+<% include ../footers/footer %>

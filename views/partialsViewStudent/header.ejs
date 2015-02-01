@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Music School Website Template</title>
+    <title>Escuela Popular de Artes</title>
     <script src="//code.jquery.com/jquery-2.0.3.min.js"></script>
     <script src="/../javascripts/lib/handlebars-v1.3.0.js"></script>
     <script src="/../javascripts/lib/ember/ember.js"></script>
@@ -12,7 +12,6 @@
 <body>
     <script src="/../javascripts/Application.js"></script>
     <!--  start load all controllers-->
-    <script src="/../javascripts/controllers/ScheduleController.js"></script>
     <script src="/../javascripts/controllers/AttendanceController.js"></script>
     <script src="/../javascripts/controllers/CourseController.js"></script>
     <script src="/../javascripts/controllers/EnrollmentController.js"></script>
@@ -112,96 +111,8 @@ $.ajax({url:url,type:'GET', dataType: 'json',contentType: "application/json; cha
 });
 */
 
- </script>
-
-
 
 </script>
-<script type="text/x-handlebars" id="application">
-    <div class="page">
-        <div class="header">
-            <ul class="navigation">
-                <li>
-                    <a href="index.html">Home</a>
-                </li>
-                <li>
-                    <a href="about.html">About</a>
-                </li>
-                <li class="selected">
-                    <a href="programs.html">Programs and Fees</a>
-                </li>
-                <li>
-                    <a href="blog.html">Contact</a>
-                </li>
-                <li class="menu">
-                    <a href="contact.html" id='session'></a>
-                     <ul style="list-style-type: none;display:none">
-                        <li><a href="student/information" style="margin-top:-7px">Editar</a></li><br/><br/><br/><br/>
-                        <li><a id='logout' href="http://localhost:3000/index.html" style="margin-top:-28px">Salir</a></li><br/>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-        <div class="body">
-            <div class="guitar">
-                <ul>
-                    <li>
-                        <a href="/student/courses">Cursos Inscriptos</a>
-                    </li>
-                    <li>
-                        <a href="/student/schedules">Horarios</a>
-                    </li>
-                    <li>
-                        <a href="/student/Attendance">Reportes de Assistencia</a>
-                    </li>
-                </ul>
-                <div class="content">
-                         {{outlet}}
-                </div>
-            </div>
-        </div>
-        <div class="footer">
-            <div class="about">
-                <h3>About</h3>
-                <div>
-                    <a href="about.html"><img src="/../images/instructors.jpg" alt=""></a>
-                    <p>
-                        This is just a place holder. You can replace all this text with your own text. Youre free to use this website template.
-                    </p>
-                    <a href="blog.html" class="more">(more)</a>
-                </div>
-            </div>
-            <div class="contact">
-                <h3>Contact</h3>
-                <ul>
-                    <li>
-                        <span>Location :</span>
-                        <p>
-                            126-U This is just a place holder, so you can see
-                            what the site would look like.
-                        </p>
-                    </li>
-                    <li>
-                        <span>Email :</span>
-                        <p>
-                            <a href="http://www.freewebsitetemplates.com/misc/contact">contact@freewebsitetemplates.com</a>
-                        </p>
-                    </li>
-                    <li>
-                        <span>Phone :</span>
-                        <p>
-                            (000) 987 65 43 2100
-                        </p>
-                    </li>
-                </ul>
-            </div>
-            <div class="connect">
-                <a href="http://freewebsitetemplates.com/go/twitter/" id="twitter">twitter</a> <a href="http://freewebsitetemplates.com/go/facebook/" id="facebook">facebook</a> <a href="http://freewebsitetemplates.com/go/googleplus/" id="googleplus">google+</a>
-            </div>
-            <p class="footnote">
-                &#169!important; Copyright 2012. All rights reserved
-            </p>
-        </div>
-    </div>
-</script>
 
+
+<% include /menuOptions %>

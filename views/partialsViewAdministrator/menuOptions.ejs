@@ -1,0 +1,61 @@
+<script type="text/x-handlebars" data-template-name='application' id="application">
+    <div class="page">
+        <div class="header">
+            <a href="index.html" id="logo"><img src="images/logo.png" alt="logo"></a>
+            <ul class="navigation">
+                <li>
+                    <a href="index.html">Inicio</a>
+                </li>
+                <li>
+                    <a href="about.html">Nosotros</a>
+                </li>
+                <li class="selected">
+                    <a href="/teacher">Administracion</a>
+                </li>
+                <li>
+                    <a href="blog.html">Noticias</a>
+                </li>
+                <li>
+                    <a href="contact.html">Contacto</a>
+                </li>
+            </ul>
+        </div>
+        <div class="body">
+            <div class="guitar">
+                <ul>
+                    <li>
+                        <a href="/schedule">Horarios de Cursos</a>
+                    </li>
+                    <li>
+                        <a href="/teacherSchedule">Horarios Profesor</a>
+                    </li>
+                    <li>
+                        <a href="/student">Estudiantes</a>
+                    </li>
+                    <li>
+                        <a href="/subject">Contenido De Cursos</a>
+                    </li>
+                    <li>
+                        <a href="/teacher">Profesores</a>
+                    </li>
+                    <li>
+                        <a href="/course">Cursos</a>
+                    </li>
+                    <li class="last">
+                        <a href="/enrollment">Inscripciones</a>
+                    </li>
+                </ul>
+
+                {{#if existCalendar}}
+                <div style="padding-left:155px">
+                    {{view Ember.Calendar.CalendarView controllerBinding='controllers.calendar'}}
+                </div>
+                {{else}}
+                  <div class="content">
+                      {{outlet}}
+                      {{outlet 'modal'}}
+                  </div>
+                {{/if}}
+            </div>
+        </div>
+<% include ../footers/footer %>
