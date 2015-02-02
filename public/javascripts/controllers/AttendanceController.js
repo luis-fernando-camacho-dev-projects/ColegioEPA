@@ -46,7 +46,11 @@ ColegioEPA.AttendancesIndexController = Ember.ArrayController.extend({
     filteredContent: function(){
         var filter = this.get('filter'), rx = new RegExp(filter, 'gi'), attendances = this.get('arrangedContent');
             return attendances.filter(function(attendance) {
-                return attendance.get('markedDate').match(rx) || attendance.get('course').get('name').match(rx) ;
+                if (attendance.get('markedDate') != null) {
+                    return attendance.get('markedDate').match(rx) || attendance.get('course').get('name').match(rx) ;
+                } else {
+                    return attendance.get('classReplaceDate').match(rx) || attendance.get('postponedDate').match(rx) || attendance.get('course').get('name').match(rx) ;
+                }
             });
 
     }.property('arrangedContent', 'filter'),
