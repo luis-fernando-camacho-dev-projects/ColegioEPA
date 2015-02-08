@@ -1,0 +1,49 @@
+<div id="dialog-form" title="Create new user" style="display:none" >
+  <p class="validateTips">All form fields are required.</p>
+  <form id="user-from" >
+
+    <div class="control-group">
+        <label for="login" class="control-label">Login</label>
+        <div class="controls">
+            <input type="text" name="ajax-login"  data-validation-callback-callback="validateLogin"  id="login"  />
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="password">Password</label>
+        <div class="controls">
+            <input type="password" id="password" pattern="^.*(?=.{4,10})(?=.*\d)(?=.*[a-zA-Z]).*$" data-validation-pattern-message="formato de password incorrecto" />
+        </div>
+    </div>
+    <div class="control-group">
+        <label for="name" class="control-label">Name</label>
+        <div class="controls">
+            <input type="text" name="name" id="name" pattern="^[A-Za-z0-9 ]{3,20}$" data-validation-required-message="el nombre es requerido" />
+        </div>
+    </div>
+    <!-- control for student ci -->
+
+    <div class="control-group">
+        <label for="ci" class="control-label">CI</label>
+        <div class="controls">
+            <input type="number" name="ci" id="ci" data-validation-callback-callback="validateCI"/>
+        </div>
+    </div>
+
+    <!-- control for student email -->
+    <div class="control-group">
+        <label for="email"  class="control-label">Email</label>
+        <div class="controls">
+            <input type="email" name="email" id="email" data-validation-email-message="ingrese una direccion de correo electronico valida"/>
+        </div>
+    </div>
+    <!-- control for student birth date -->
+    <div class="control-group">
+        <label for="birthDate" class="control-label">Fecha de Nacimiento </label>
+        <div class="controls">
+            <input type="tex" pattern="(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d" name="birthDate" id="birthDate" data-validation-pattern-message="fecha de nacimiento invalida"/>
+        </div>
+    </div>
+      <input id="save" type="submit" value="GUARDAR" class="btn">
+      <input id="cancel" type="button" value="CANCELAR"  class="btn" style="float:right">
+  </form>
+</div>

@@ -7,11 +7,18 @@
   <link rel="stylesheet" href="javascripts/lib/emberCalendar/ember-calendar.css" type="text/css">
   <link rel='stylesheet' href='stylesheets/calendarStyle.css'>
 
-  <script src="//code.jquery.com/jquery-2.0.3.min.js"></script>
-  <script src="javascripts/lib/handlebars-v1.3.0.js"></script>
-  <script src="javascripts/lib/ember/ember.js"></script>
-  <script src="javascripts/lib/ember-data/ember-data.js"></script>
-  <script src='javascripts/lib/emberCalendar/ember-calendar.js'></script>
+    <script src="//code.jquery.com/jquery-2.0.3.min.js"></script>
+    <script src="javascripts/lib/handlebars-v1.3.0.js"></script>
+    <script src="javascripts/lib/ember/ember.js"></script>
+    <script src="javascripts/lib/ember-data/ember-data.js"></script>
+    <script src='javascripts/lib/emberCalendar/ember-calendar.js'></script>
+    <script src="javascripts/lib/bootstrap.js"></script>
+    <script src="javascripts/lib/jqBootstrapValidation.js"></script>
+    <script src="javascripts/lib/jquery/ui/jquery-ui.min.js"></script>
+    <script src="http://momentjs.com/downloads/moment.min.js"></script>
+    <script src="http://dbushell.github.io/Pikaday/pikaday.js"></script>
+    <script src="http://dbushell.github.io/Pikaday/pikaday.js"></script>
+
 </head>
 <body>
 <script src="javascripts/Application.js"></script>
@@ -61,6 +68,9 @@
 <!-- End utils COLETGIO EPA -->
 <script src="javascripts/helpers/DatePicker.js"></script>
 <script src="javascripts/helpers/ModalCourse.js"></script>
+<script src="javascripts/helpers/DatePicker.js"></script>
+<script src="javascripts/helpers/ModalCourse.js"></script>
+
 
 <script src="http://momentjs.com/downloads/moment.min.js"></script>
 <script src="http://dbushell.github.io/Pikaday/pikaday.js"></script>
@@ -77,5 +87,7 @@
 <link rel="stylesheet" href="stylesheets/styleTemplate.css" type="text/css">
 <link rel='stylesheet' href='javascripts/lib/emberCalendar/ember-calendar.css'>
 <link rel='stylesheet' href='stylesheets/calendarStyle.css'>
-
-<% include /menuOptions %>
+<link rel='stylesheet' href='stylesheets/jquery/jquery-ui.min.css'>
+<link rel='stylesheet' href='stylesheets/menuStyles.css'>
+    <% include /menuOptions %>
+    <% include /../common/UserSession.ejs %>

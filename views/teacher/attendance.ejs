@@ -77,9 +77,9 @@
     {{/if}}
     {{partial "attendanceForm"}}
     {{#if controller.isNew}}
-        <input type="button" class="btn" {{action updateItem this}}>GUARDAR ASISTENCIA</button>
+        <input type="button" class="btn" value="GUARDAR ASISTENCIA" {{action updateItem this}}/>
     {{else}}
-        <input type="button" class="btn" {{action updateItem this}}>ACTUALIZAR ASISTENCIA</button>
+        <input type="button" class="btn" value="EDITAR ASISTENCIA" {{action updateItem this}}/>
     {{/if}}
 </script>
 </body>
