@@ -46,7 +46,7 @@ ColegioEPA.CalendarController = Ember.Calendar.CalendarController.extend
             startTimeString = course.startTime;
             endTimeString = course.endTime;
 
-            eventType = 0;
+            eventType = 2;
             numberOfDays=enddate.diff(startdate, 'days');
 
             for(var i = 0; i<numberOfDays; i++)
