@@ -42,11 +42,7 @@ router.post('/users', function(req, res) {
         });
         retrieveRole = collection.findOne({ci : role.ci}, {fields:{_id:1}}, function(err, doc) {
             console.log('doc'+doc);
-            if (user.role == 'student') {
-                user.student = doc._id;
-            } else if (user.role === 'teacher') {
-                user.teacher = doc._id;
-            }
+                user.objectOwner = doc._id;
             db.collection('userList', function(err, collection) {
                 collection.insert(user, {safe:true}, function(err, result) {
                     if (err) {

@@ -14,9 +14,9 @@
         <br/><br/>
         <label for="Password" class="btnEmber"> Password del Usuario</label>
         {{input value=password class="btnEmber" type="password" placeholder="Password"}}
-
-        {{input class="btn btnEmber" type="submit" value="Iniciar session"}}
-        {{input class="btn btnEmber" type="submit" value="Cancelar" action="cancel"}}
+        <br/>
+        <input type="submit" class="btn" value="Iniciar Session" style="margin-top: 15px"/>
+        <input type="submit" class="btn" value="Cancelar" {action="cancel"} style="margin-top: 15px;" />
         </div>
     </form>
     <div id="errorLogin" class="title" style="display:none">

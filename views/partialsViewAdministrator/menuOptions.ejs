@@ -12,12 +12,6 @@
                 <li>
                   <a href="programs.html">Programas</a>
                 </li>
-                <li class="selected">
-                    <a href="/teacher">Admin</a>
-                </li>
-                <li>
-                    <a href="blog.html">Noticias</a>
-                </li>
                 <li>
                   <a href="contact.html">Contacto</a>
                 </li>
@@ -25,7 +19,7 @@
                     <a href="contact.html" id='session'></a>
                      <ul style="list-style-type: none;display:none">
                         <li><a id="editUser"  style="margin-top:-7px">Editar</a></li><br/><br/><br/><br/>
-                        <li><a id='logout' href="http://localhost:3000/login" style="margin-top:-28px">Salir</a></li><br/>
+                        <li><a id='logout' style="margin-top:-28px">Salir</a></li><br/>
                     </ul>
                 </li>
             </ul>
@@ -55,17 +49,12 @@
                         <a href="/enrollment">Inscripciones</a>
                     </li>
                 </ul>
-
-                {{#if existCalendar}}
-                <div style="padding-left:155px">
-                    {{view Ember.Calendar.CalendarView controllerBinding='controllers.calendar'}}
-                </div>
-                {{else}}
                   <div class="content">
                       {{outlet}}
                       {{outlet 'modal'}}
                   </div>
-                {{/if}}
+
             </div>
         </div>
-<% include ../footers/footer %>
+<% include /../footers/footer %>
+

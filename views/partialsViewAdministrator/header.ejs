@@ -18,6 +18,8 @@
     <script src="http://momentjs.com/downloads/moment.min.js"></script>
     <script src="http://dbushell.github.io/Pikaday/pikaday.js"></script>
     <script src="http://dbushell.github.io/Pikaday/pikaday.js"></script>
+    <script src="/../javascripts/Utils/utilsEPA.js"></script>
+    <script src="/../javascripts/Utils/Session.js"></script>
 
 </head>
 <body>
@@ -31,7 +33,6 @@
 <script src="javascripts/controllers/StudentController.js"></script>
 <script src="javascripts/controllers/SubjectMatterController.js"></script>
 <script src="javascripts/controllers/TeacherController.js"></script>
-
 <script src="javascripts/controllers/UserController.js"></script>
 <!--  end load all controllers-->
 
@@ -62,10 +63,12 @@
 
 <!-- start route-->
 <script src="javascripts/routes/AuthenticatedRoute.js"></script>
+<script src="/../javascripts/Utils/utilsEPA.js"></script>
+<script src="/../javascripts/Utils/Session.js"></script>
 <!-- end route-->
-<!-- utils COLETGIO EPA -->
-<script src="javascripts/Utils/UtilsEPA.js"></script>
-<!-- End utils COLETGIO EPA -->
+<!-- utils COLEGIO EPA -->
+
+<!-- End utils COLEGIO EPA -->
 <script src="javascripts/helpers/DatePicker.js"></script>
 <script src="javascripts/helpers/ModalCourse.js"></script>
 <script src="javascripts/helpers/DatePicker.js"></script>
@@ -78,9 +81,7 @@
 
 
 <link rel="stylesheet" href="stylesheets/bootstrap.css" type="text/css">
-<link rel="stylesheet" href="stylesheets/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="stylesheets/bootstrap-responsive.css" type="text/css">
-<link rel="stylesheet" href="stylesheets/bootstrap-responsive.min.css" type="text/css">
 <link rel="stylesheet" href="stylesheets/normalize.css" type="text/css">
 <link rel="stylesheet" href="stylesheets/style.css" type="text/css">
 <link rel="stylesheet" href="http://dbushell.github.io/Pikaday/css/pikaday.css">
@@ -89,5 +90,5 @@
 <link rel='stylesheet' href='stylesheets/calendarStyle.css'>
 <link rel='stylesheet' href='stylesheets/jquery/jquery-ui.min.css'>
 <link rel='stylesheet' href='stylesheets/menuStyles.css'>
-    <% include /menuOptions %>
+    <% include menuOptions %>
     <% include /../common/UserSession.ejs %>

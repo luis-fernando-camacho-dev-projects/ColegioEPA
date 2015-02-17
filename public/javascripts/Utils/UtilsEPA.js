@@ -85,6 +85,13 @@ utilsEPA = {
             session = { teacher : infoUser};
         }
         return session;
+    },
+    queryStringHash: function (key) {
+        var re=new RegExp('(?:\\?|&)'+key+'=(.*?)(?=&|$)','gi');
+        var value, m;
+        while ((m=re.exec(window.location.hash)) != null) {
+            value=m[1];
+        }
+        return value;
     }
-
 }

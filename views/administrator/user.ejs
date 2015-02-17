@@ -38,16 +38,16 @@
     <p>{{#linkTo "users.new"}}<img src="images/add-icon.png"/> Nuevo Usuario{{/linkTo}}</p>
 </script>
 
-<script source="" type="text/x-handlebars" data-template-name="_studentForm" >
+<script type="text/x-handlebars" data-template-name="_userForm" >
     <form class="form-horizontal">
         <label for="name">nombre</label>
-            {{view Ember.TextField valueBinding="name"}}
+            {{view Ember.TextField valueBinding="name" placeholder="nombre del usuario"}}
         <label for="lastName">apellido</label>
-            {{view Ember.TextField valueBinding="lastName"}}
+            {{view Ember.TextField valueBinding="lastName" placeholder="apellido del usuario"}}
         <label for="ci">ci </label>
-            {{view Ember.TextField valueBinding="ci"}}
+            {{view Ember.TextField valueBinding="ci" placeholder="apellido del "}}
         <label  for="role">role</label>
-            {{view Ember.Select contentBinding= "ColegioEPA.RolesController" optionValuePath="content.type" optionLabelPath="content.label" valueBinding="ColegioEPA.selectedRole.role" prompt="Selecionar el rol"}}
+            {{view Ember.Select selectionBinding="ColegioEPA.selectedRole.role" contentBinding= "ColegioEPA.RolesController" optionValuePath="content.type" optionLabelPath="content.label"  prompt="Selecionar el rol"}}
     </form>
   </script>
 
@@ -58,7 +58,7 @@
         {{else}}
             <h1>Editando Usuario</h1>
         {{/if}}
-            {{partial "studentForm"}}
+            {{partial "userForm"}}
             <p>
                 <button {{action updateItem this}}>Update record</button>
             </p>
