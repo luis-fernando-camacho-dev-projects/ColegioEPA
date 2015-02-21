@@ -30,33 +30,33 @@
 
       </table>
       {{else}}
-       NO students
+       No Existen Estudiantes
       {{/if}}
-      <p>{{#linkTo "students.new"}}<img src="images/add-icon.png"/> New Student{{/linkTo}}</p>
+      <p>{{#linkTo "students.new"}}<img src="images/add-icon.png"/> Nuevo Estudiante{{/linkTo}}</p>
 
 </script>
 <script source="" type="text/x-handlebars" data-template-name="_studentForm" >
       <form class="form-horizontal">
-        <label for="nombre">nombre</label>
+        <label for="Nombre">nombre</label>
           {{view Ember.TextField valueBinding="name"}}
-        <label  for="email">email</label>
+        <label  for="Email">email</label>
           {{view Ember.TextField valueBinding="email"}}
-        <label for="ci">ci</label>
+        <label for="ci">CI</label>
           {{view Ember.TextField valueBinding="ci"}}
-        <label  for="birthDate">birthDate</label>
+        <label  for="birthDate">Fecha Nacimiento</label>
           {{custom-date-picker valueBinding="birthDate"}}
     </form>
   </script>
  <script type="text/x-handlebars" data-template-name="students/edit" >
 
     {{#if controller.isNew}}
-      <h1>Nuevo Studiante</h1>
+      <h1>Nuevo Estudiante</h1>
     {{else}}
-      <h1>Editar Studiante</h1>
+      <h1>Editar Estudiante</h1>
     {{/if}}
       {{partial "studentForm"}}
       <p>
-        <input type="submit" class="btn" {{action updateItem this}} value ="test"/>
+        <input type="submit" class="btn" {{action updateItem this}} value ="Guardar"/>
       </p>
 
   </script>

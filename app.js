@@ -67,6 +67,7 @@ app.get('/teacherSchedule', function(req, res) {
   res.render('administrator/teacherSchedule');
 });
 
+
 //---------------------End Administrators Options---------------------------//
 
 //---------------------Teachers Options ---------------------------------//

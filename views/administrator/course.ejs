@@ -1,7 +1,7 @@
 <% include ../partialsViewAdministrator/header %>
 <script src="javascripts/routes/CourseRoute.js"></script>
 <script type="text/x-handlebars" id="index">
-<p> This is the homePage studers </p>
+<p> Pagina de Cursos </p>
 </script>
 
 <script type="text/x-handlebars" data-template-name="courses/index">
@@ -41,7 +41,7 @@
     {{else}}
      No hay cusos registrados
     {{/if}}
-    <p>{{#linkTo "courses.new"}}<img src="images/add-icon.png"/> New Course{{/linkTo}}</p>
+    <p>{{#linkTo "courses.new"}}<img src="images/add-icon.png"/> Nuevo Curso{{/linkTo}}</p>
 </script>
 
 <script type="text/x-handlebars" data-template-name="_courseForm" >
@@ -83,7 +83,7 @@
     {{/if}}
       {{partial "courseForm"}}
       <p>
-        <button {{action updateItem this}}>Update record</button>
+        <button {{action updateItem this}}>Guardar</button>
       </p>
 </script>
 </body>

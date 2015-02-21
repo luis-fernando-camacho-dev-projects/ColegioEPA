@@ -2,7 +2,7 @@
 <script src="javascripts/routes/TeacherRoute.js"></script>
 <script type="text/x-handlebars" data-template-name="teachers/index">
     {{#if exitStudent}}
-        <p>Nro de profesores= {{content.length}}</p>
+        <p>Nro de Profesores= {{content.length}}</p>
     <table class="table table-hover">
         <tr>
             <th>Selected</th>
@@ -24,25 +24,24 @@
             {{/each}}
     </table>
     {{else}}
-    No existen profesores registrados
+    No Existen Profesores registrados
     {{/if}}
-    <p>{{#linkTo "teachers.new"}}<img src="images/add-icon.png"/> New Teacher{{/linkTo}}</p>
+    <p>{{#linkTo "teachers.new"}}<img src="images/add-icon.png"/> Nuevo Profesor{{/linkTo}}</p>
 </script>
 
 <script source="" type="text/x-handlebars" data-template-name="_teacherForm" >
       <form class="form-horizontal">
-        <label for="name">nombre</label>
+        <label for="Nombre">nombre</label>
           {{view Ember.TextField valueBinding="name"}}
-        <label  for="email">email</label>
+        <label  for="Email">email</label>
           {{view Ember.TextField valueBinding="email"}}
-        <label for="ci">ci</label>
+        <label for="CI">ci</label>
           {{view Ember.TextField valueBinding="ci"}}
-        <label  for="birthDate">birthDate</label>
+        <label  for="Fecha NAcimiento">birthDate</label>
           {{custom-date-picker valueBinding="birthDate"}}
     </form>
   </script>
  <script type="text/x-handlebars" data-template-name="teachers/edit" >
-
     {{#if controller.isNew}}
       <h1>Nuevo Profesor</h1>
     {{else}}
@@ -50,10 +49,8 @@
     {{/if}}
       {{partial "teacherForm"}}
       <p>
-        <input type="button" class="btn" value="Registar clase" {{action updateItem this}}/>
+        <input type="button" class="btn" value="Guardar" {{action updateItem this}}/>
       </p>
   </script>
-
-
 </body>
 </html>
