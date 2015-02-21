@@ -32,8 +32,7 @@
       {{else}}
        No Existen Estudiantes
       {{/if}}
-      <p>{{#linkTo "students.new"}}<img src="images/add-icon.png"/> Nuevo Estudiante{{/linkTo}}</p>
-
+      <p><a href="/user#/new?selectedRole=student"><img src="images/add-icon.png"/> Nuevo Estudiante </a></p>
 </script>
 <script source="" type="text/x-handlebars" data-template-name="_studentForm" >
       <form class="form-horizontal">
@@ -41,9 +40,9 @@
           {{view Ember.TextField valueBinding="name"}}
         <label  for="Email">email</label>
           {{view Ember.TextField valueBinding="email"}}
-        <label for="ci">CI</label>
+        <label for="CI">CI</label>
           {{view Ember.TextField valueBinding="ci"}}
-        <label  for="birthDate">Fecha Nacimiento</label>
+        <label  for="Fecha de Nacimiento">Fecha Nacimiento</label>
           {{custom-date-picker valueBinding="birthDate"}}
     </form>
   </script>
@@ -58,7 +57,6 @@
       <p>
         <input type="submit" class="btn" {{action updateItem this}} value ="Guardar"/>
       </p>
-
   </script>
 </body>
 </html>

@@ -4,10 +4,15 @@ ColegioEPA.UsersEditController = Ember.ObjectController.extend({
             location.set('login',this.get('ci'));
             location.set('password', this.get('ci'));
             location.set('email','');
-            location.set('role', ColegioEPA.selectedRole.role);
+            location.set('role', ColegioEPA.selectedRole.role.type);
             location.set('token', this.get('name')+';'+this.get('lastName'));
             location.save();
-            this.get("target").transitionTo("users");
+            if (ColegioEPA.selectedRole.role.type == 'student') {
+                window.location.href = window.location.host + "/student"
+            } else {
+                window.location.href = window.location.host + "/teacher"
+            }
+            //this.get("target").transitionTo("users");
         }
     },
     isNew: function() {
@@ -59,15 +64,24 @@ ColegioEPA.Role = Ember.Object.extend({
 });
 
 ColegioEPA.selectedRole = Ember.Object.create({
-    role: null
+    role: null,
+
 });
 
 ColegioEPA.RolesController = Ember.ArrayController.create({
     content: [
-        ColegioEPA.Role.create({type:'student', label:'studiante'}),
+        ColegioEPA.Role.create({type:'student', label:'estudiante'}),
         ColegioEPA.Role.create({type:'teacher', label:'profesor'}),
+        ColegioEPA.Role.create({type:'administrator', label:'Administrador'}),
     ]
 });
-
+ColegioEPA.selectedRole.set('role', ColegioEPA.RolesController.objectAt(2));
+if (window.location.hash.search('=') > 0) {
+    if (utilsEPA.queryStringHash('selectedRole') == "student") {
+        ColegioEPA.selectedRole.set('role', ColegioEPA.RolesController.objectAt(0));
+    } else {
+        ColegioEPA.selectedRole.set('role', ColegioEPA.RolesController.objectAt(1));
+    }
+}
 
 

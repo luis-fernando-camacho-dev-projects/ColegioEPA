@@ -1,6 +1,7 @@
-<script type="text/x-handlebars" id="application">
+<script type="text/x-handlebars" data-template-name='application' id="application">
     <div class="page">
         <div class="header">
+            <a href="index.html" id="logo"><img src="images/logo.png" alt="logo"></a>
             <ul class="navigation">
                 <li>
                     <a href="index.html">Inicio</a>
@@ -11,37 +12,16 @@
                 <li>
                   <a href="programs.html">Programas</a>
                 </li>
-                <li class="selected">
-                    <a href="/student/courses">Estudiante</a>
-                </li>
                 <li>
                     <a href="blog.html">Noticias</a>
                 </li>
                 <li>
-                    <a href="contact.html">Contacto</a>
-                </li>
-                 <li class="menu">
-                    <a href="/teacher" id='session'></a>
-                     <ul style="list-style-type: none;display:none">
-                        <li><a id="editUser" style="margin-top:-7px">Editar</a></li><br/><br/><br/><br/>
-                        <li><a id='logout' style="margin-top:-28px">Salir</a></li><br/>
-                    </ul>
+                  <a href="contact.html">Contacto</a>
                 </li>
             </ul>
         </div>
         <div class="body">
             <div class="guitar">
-                <ul>
-                    <li>
-                        <a href="/student/courses">Cursos Inscriptos</a>
-                    </li>
-                    <li>
-                        <a href="/student/schedules">Horarios</a>
-                    </li>
-                    <li>
-                        <a href="/student/Attendance">Reportes de Assistencia</a>
-                    </li>
-                </ul>
                 {{#if existCalendar}}
                 <div style="padding-left:155px">
                     {{view Ember.Calendar.CalendarView controllerBinding='controllers.calendar'}}
@@ -55,3 +35,4 @@
             </div>
         </div>
 <% include ../footers/footer %>
+

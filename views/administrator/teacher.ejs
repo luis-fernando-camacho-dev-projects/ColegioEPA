@@ -26,7 +26,7 @@
     {{else}}
     No Existen Profesores registrados
     {{/if}}
-    <p>{{#linkTo "teachers.new"}}<img src="images/add-icon.png"/> Nuevo Profesor{{/linkTo}}</p>
+    <p><a href="/user#/new?selectedRole=teacher"><img src="images/add-icon.png"/> Nuevo Profesor</a></p>
 </script>
 
 <script source="" type="text/x-handlebars" data-template-name="_teacherForm" >
@@ -37,7 +37,7 @@
           {{view Ember.TextField valueBinding="email"}}
         <label for="CI">ci</label>
           {{view Ember.TextField valueBinding="ci"}}
-        <label  for="Fecha NAcimiento">birthDate</label>
+        <label  for="Fecha de Nacimiento">birthDate</label>
           {{custom-date-picker valueBinding="birthDate"}}
     </form>
   </script>

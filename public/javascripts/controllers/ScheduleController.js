@@ -29,7 +29,7 @@ ColegioEPA.CalendarController = Ember.Calendar.CalendarController.extend
     var self = this;
     var events = [];
   var getCourses = $.ajax({
-    url:'http://localhost:3000/api/course/courses',
+    url: window.location.host + '/api/course/courses',
     type:'GET',
     dataType: 'json',
     contentType: "application/json; charset=utf-8",

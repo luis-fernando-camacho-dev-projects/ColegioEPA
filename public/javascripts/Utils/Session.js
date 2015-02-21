@@ -8,7 +8,7 @@ $(document).ready(function() {
     $('#session').text(utilsEPA.getLogin());
 
     $('#logout').on('click', function() {
-        utilsEPA.logout();
+        utilsEPA.LogOut();
     });
 
     //fill form to edit user
