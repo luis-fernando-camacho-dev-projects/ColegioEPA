@@ -2,7 +2,7 @@
 <% include ../partialsViewStudent/header %>
 <script src="/../javascripts/routes/AttendanceRoute.js"></script>
 <script type="text/x-handlebars" id="index">
-<p> Contorl de Asistencia del Estudiante </p>
+<p> Control de Asistencia del Estudiante </p>
 </script>
 
 <script type="text/x-handlebars" data-template-name="attendances/index">
@@ -10,11 +10,11 @@
         <p>Nr de Cursos = {{content.length}}</p>
     <table class="table table-hover">
         <tr>
-            <th>nombre del curso</th>
-            <th>profesor</th>
-            <th>fecha de asistencia</th>
-            <th>hora inicio</th>
-            <th>hora fin</th>
+            <th>Nombre del curso</th>
+            <th>Profesor</th>
+            <th>Fecha de asistencia</th>
+            <th>Hora inicio</th>
+            <th>Hora fin</th>
             {{#each attendance in filteredContent  itemController="attendancesEdit"}}
               <td>{{attendance.course.name}}</td>
               <td>{{attendance.teacher.name}}</td>

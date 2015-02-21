@@ -5,14 +5,19 @@ $(document).ready(function() {
      function(e) {
          $(this).find('ul').css({display: "none"});
      });
-    $('#session').text(utilsEPA.getLogin());
+    try
+    {
+        $('#session').text(utilsEPA.getLogin());
+        $('#logout').on('click', function() {
+            utilsEPA.LogOut();
+        });
+    }catch(e){
 
-    $('#logout').on('click', function() {
-        utilsEPA.LogOut();
-    });
+    }
+
+
 
     //fill form to edit user
-
     $('#editUser').click(function() {
         $( "#dialog-form" ).dialog( {
             open:function() {

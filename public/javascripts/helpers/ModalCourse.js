@@ -11,7 +11,7 @@ ColegioEPA.SettingsModalController = Ember.ObjectController.extend({
             ColegioEPA.CourseValues.replaceContent(indexCourse, 1, [this.courseSelected]);
             this.controllerFor('enrollments.edit').replaceContent(indexCourse, 1, [this.courseSelected]);
         } else {
-            this.controllerFor('enrollments.edit').courseBackup.pushObject(this.courseSelected);
+            this.controllerFor('enrollments.edit').courseBackup.pushObject(this.courseSelected == null ? this.get('courses').get('firstObject') : this.courseSelected);
             ColegioEPA.CourseValues.pushObject(this.courseSelected)
         }
         this.get('target').send('removeModal');

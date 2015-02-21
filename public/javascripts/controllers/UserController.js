@@ -12,7 +12,7 @@ ColegioEPA.UsersEditController = Ember.ObjectController.extend({
             } else {
                 window.location.href = window.location.host + "/teacher"
             }
-            //this.get("target").transitionTo("users");
+            this.get("target").transitionTo("users");
         }
     },
     isNew: function() {
