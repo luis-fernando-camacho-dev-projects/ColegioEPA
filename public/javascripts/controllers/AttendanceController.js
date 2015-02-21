@@ -4,7 +4,7 @@ ColegioEPA.AttendancesEditController = Ember.ObjectController.extend({
         updateItem: function(attendance) {
             if (this.get('isNew')) {
                 attendance.set('teacher', this.get('teacher'));
-                attendance.set('course', this.courseValue);
+                attendance.set('course', this.courseValue == null? this.get('courses').get('firstObject'): this.courseValue);
             }
             attendance.save();
             this.get("target").transitionTo("attendances");
@@ -15,7 +15,7 @@ ColegioEPA.AttendancesEditController = Ember.ObjectController.extend({
         return this.get('content').get('id');
     }.property(),
     courses: function() {
-        var courses =this.store.all('course', {teacher: utilsEPA.getObjectOwner()});
+        var courses =this.store.find('course',{teacher: utilsEPA.getObjectOwner()})
         return courses;
     }.property(),
     teacher: function() {
@@ -32,9 +32,10 @@ ColegioEPA.AttendancesEditController = Ember.ObjectController.extend({
 
 
     init:function() {
-        this._super();
-        var courses = this.store.find('course');
+        debugger;
+        var courses = this.store.find('course',{teacher: utilsEPA.getObjectOwner()});
         this.courseValue = courses.get('length') > 0 ? courses.get('firstObject'): null ;
+        this._super();
     },
     courseValue:null,
     teacherValue: null,
