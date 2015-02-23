@@ -20,6 +20,7 @@ var routes = require('./routes/index');
     attendance = require('./routes/attendance'),
     user = require('./routes/user'),
     utils = require('./routes/utils'),
+    enrollmentStudent = require('./routes/attendanceStudent'),
     app = express();
 /* rest classes End*/
 
@@ -168,10 +169,11 @@ app.use('/api/course', course);
 app.use('/api/enrollment', enrollment);
 app.use('/api/attendance', attendance);
 
+
+app.use('/enrollment', enrollmentStudent);
 // utils
 app.use('/utils', utils);
 // end uris //
-
 // modificar esto //
 app.use('/user', user);
 

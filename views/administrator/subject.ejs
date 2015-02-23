@@ -9,7 +9,6 @@
         <p>Nr of subjects = {{content.length}}</p>
     <table class="table table-hover">
         <tr>
-            <th>Selected</th>
             <th>nombre</th>
             <th>Contenido</th>
             <th>Horarios</th>
@@ -18,8 +17,6 @@
             <th>Eliminar</th>
           </tr>
             {{#each subject in controller itemController="subjectsEdit"}}
-              <tr {{bindAttr class="selected:warning"}}>
-              <td>{{view Ember.Checkbox checkedBinding="selected"}}</td>
               <td>{{subject.name}}</td>
               <td>{{subject.contentSubject}}</td>
               <td>{{subject.schedule}}</td>
@@ -45,7 +42,7 @@
           {{view Ember.TextArea valueBinding="schedule"}}
         <label for="days">Dias</label>
           {{view Ember.TextArea valueBinding="days"}}
-        <label  for="matterLevelDetail">matterLevelDetail</label>
+        <label  for="matterLevelDetail">Detalles de la materia</label>
           {{view Ember.TextArea valueBinding="matterLevelDetail"}}
     </form>
   </script>

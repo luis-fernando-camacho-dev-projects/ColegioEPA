@@ -12,6 +12,7 @@ ColegioEPA.EnrollmentsEditController = Ember.ObjectController.extend({
             });
 
             enrollment.save();
+            ColegioEPA.CourseValues.clear();
             this.get("target").transitionTo("enrollments");
         },
         deleteCourse:function(course) {

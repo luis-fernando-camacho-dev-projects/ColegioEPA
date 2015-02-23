@@ -9,11 +9,11 @@ utilsEPA = {
     },
     redirectUser: function(role) {
         if (role === 'student') {
-            window.location.href = "http://localhost:3000/student/attendance";
+            window.location.href = this.getHost() + "/student/attendance";
         } else if (role === 'administrator') {
-            window.location.href = "http://localhost:3000/teacher";
+            window.location.href = this.getHost() + "/teacher";
         } else if (role === 'teacher') {
-            window.location.href = "http://localhost:3000/teacher/attendance";
+            window.location.href = this.getHost() + "/teacher/attendance";
         } else {
             location.reload(true);
         }
@@ -38,9 +38,9 @@ utilsEPA = {
         var user = this.getUser(), url;
 
         if (this.getRole() === 'student') {
-            url="http://localhost:3000/api/student/students/"+this.getObjectOwner();
+            url=this.getHost() + "/api/student/students/"+this.getObjectOwner();
         } else {
-            url="http://localhost:3000/api/teacher/teachers/"+this.getObjectOwner();
+            url= this.getHost() + "/api/teacher/teachers/"+this.getObjectOwner();
         }
         $.ajax({url:url,type:'GET', dataType: 'json',contentType: "application/json; charset=utf-8",headers : {'API_KEY': localStorage.getItem("token")},
             success:function(result) {
@@ -71,9 +71,9 @@ utilsEPA = {
     getUrlByUser: function() {
         var url;
         if (this.getRole() === 'student') {
-            url = 'http://localhost:3000/api/student/students/';
+            url = this.getHost() + '/api/student/students/';
         } else {
-            url = 'http://localhost:3000/api/teacher/teachers/';
+            url = this.getHost() + '/api/teacher/teachers/';
         }
         return url+this.getObjectOwner();
     },
@@ -93,5 +93,26 @@ utilsEPA = {
             value=m[1];
         }
         return value;
+    },
+    getHost: function() {
+        return window.location.protocol +"//"+ window.location.host;
+    },
+    getCourseNameById: function(idCourse, courseCollection) {
+        var result = $.grep(courseCollection, function(course) {
+            return course._id == idCourse;
+        });
+        return result[0];
+    },
+    getEvents: function(attendanceCollection, courseCollection) {
+        var events = [];
+            attendanceCollection.forEach(function(attendance) {
+                var event = {
+                    title: utilsEPA.getCourseNameById(attendance.course, courseCollection).name,
+                    start: new moment(attendance.markedDate,"DD-MM-YYYY").format('YYYY-MM-DD'),
+                    constraint:'test'
+                    };
+                    events.push(event);
+            });
+        return events;
     }
 }
