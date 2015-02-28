@@ -1,7 +1,46 @@
 <% include ../partialsViewTeacher/header %>
-<script type="text/x-handlebars" id="index">
-<p> Materias que dictan los profesores </p>
-</script>
+<script src="/../javascripts/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" href="/../stylesheets/jquery.dataTables.css" type="text/css">
 
+<script type="text/x-handlebars" id="index">
+<h1 style="text-align: center"> Materias Dictadas </h1>
+<table id="table" class="display" style="width:700px;text-align: center;">
+<thead>
+    <th> Nombre del Curso</th>
+    <th> fecha de inicio </th>
+    <th> fecha de fin</th>
+    <th> hora de inicio </th>
+    <th> hora de fin</th>
+</thead>
+</table>
+</script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $.ajax({url: utilsEPA.getHost() + '/api/course/courses/teacher/' + utilsEPA.getObjectOwner(), type:"GET", dataType: 'json',contentType: "application/x-www-form -urlencoded; charset=UTF-8",crossDomain: true, headers : {'API_KEY': localStorage.getItem("token")},
+       success: function(courses) {
+            $('#table').dataTable({
+                "searching": true,
+                "paging": true,
+                "language": {
+                    "paginate": {
+                        "previous": "Anterior",
+                        "next": "Siguiente"
+                    },
+                    "search": "Buscar Materia :"
+                },
+                "data":courses,
+                "columns" : [
+                    {"data":"name"},
+                    {"data":"startDate"},
+                    {"data":"endDate"},
+                    {"data":"startTime"},
+                    {"data":"endTime"},
+                ]
+            });
+            $('#table_length').css("display","none");
+            $('#table_filter').css("padding","0px 0px 0px 0px");
+       }});
+});
+</script>
 </body>
 </html>
