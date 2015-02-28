@@ -42,15 +42,20 @@ router.get('/enrollementCourses/:studentId', function(req, res) {
     console.log('studentId:'+studentId);
     db.collection('enrollmentList').findOne({student:studentId}, function(err, enrollmentInstance ) {
         console.log(JSON.stringify(enrollmentInstance));
-        var courses =[];
-        enrollmentInstance.courses.forEach(function(courseId){
-            courses.push(BSON.ObjectID.createFromHexString(courseId));
-        });
-        var queryCourse = {_id:{'$in':courses}};
-        console.log(queryCourse);
-        db.collection('courseList').find(queryCourse).toArray(function(err, courses) {
-            res.send(courses);
-        });
+        if (enrollmentInstance != null) {
+            var courses =[];
+            enrollmentInstance.courses.forEach(function(courseId){
+                courses.push(BSON.ObjectID.createFromHexString(courseId));
+            });
+            var queryCourse = {_id:{'$in':courses}};
+            console.log(queryCourse);
+            db.collection('courseList').find(queryCourse).toArray(function(err, courses) {
+                res.send(courses);
+            });
+        } else{
+            res.send([]);
+        }
+
     });
 });
 

@@ -45,6 +45,7 @@ ColegioEPA.StudentsIndexController = Ember.ArrayController.extend({
             student.on("didDelete", this, function() {
                 console.log("record deleted");
             });
+            this.store.deleteRecord(student);
             student.destroyRecord();
         },
         sortBy: function(property) {

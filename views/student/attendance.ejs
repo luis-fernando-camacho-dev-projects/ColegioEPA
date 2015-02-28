@@ -9,20 +9,20 @@
 
 <script type="text/x-handlebars" data-template-name="attendances/index">
 <div id="test"/>
->>>>>>> Stashed changes
+
 </script>
 <script type="text/javascript">
 
 $(document).ready(function() {
 
-    $.ajax({url: utilsEPA.getHost() + '/api/enrollment/enrollementCourses/' + utilsEPA.getId(), type:"GET", dataType: 'json',contentType: "application/x-www-form -urlencoded; charset=UTF-8",crossDomain: true, headers : {'API_KEY': localStorage.getItem("token")},
+    $.ajax({url: utilsEPA.getHost() + '/api/enrollment/enrollementCourses/' + utilsEPA.getObjectOwner(), type:"GET", dataType: 'json',contentType: "application/x-www-form -urlencoded; charset=UTF-8",crossDomain: true, headers : {'API_KEY': localStorage.getItem("token")},
         success: function(courses) {
             var enrollmentCourses = [], query;
             courses.forEach(function(course) {
                 enrollmentCourses.push(course._id);
             });
             query = '?course = '+ JSON.stringify(enrollmentCourses);
-            $.ajax({url: utilsEPA.getHost() + '/api/attendance/attendanceStudent/' + utilsEPA.getId()+query, type:"GET", dataType: 'json',contentType: "application/x-www-form -urlencoded; charset=UTF-8",crossDomain: true, headers : {'API_KEY': localStorage.getItem("token")}, courses : courses,
+            $.ajax({url: utilsEPA.getHost() + '/api/attendance/attendanceStudent/' + utilsEPA.getObjectOwner()+query, type:"GET", dataType: 'json',contentType: "application/x-www-form -urlencoded; charset=UTF-8",crossDomain: true, headers : {'API_KEY': localStorage.getItem("token")}, courses : courses,
                 success: function(attendances) {
                     var events = utilsEPA.getEvents(attendances,courses);
                     $('#content').removeClass("content");

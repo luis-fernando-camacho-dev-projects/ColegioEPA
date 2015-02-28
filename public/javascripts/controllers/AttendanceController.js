@@ -32,7 +32,6 @@ ColegioEPA.AttendancesEditController = Ember.ObjectController.extend({
 
 
     init:function() {
-        debugger;
         var courses = this.store.find('course',{teacher: utilsEPA.getObjectOwner()});
         this.courseValue = courses.get('length') > 0 ? courses.get('firstObject'): null ;
         this._super();
@@ -73,7 +72,9 @@ ColegioEPA.AttendancesIndexController = Ember.ArrayController.extend({
             attendance.on("didDelete", this, function() {
                 console.log("record deleted");
             });
+            this.store.deleteRecord(attendance);
             attendance.destroyRecord();
+
         },
         viewCourse: function(course) {
             console.log('test');

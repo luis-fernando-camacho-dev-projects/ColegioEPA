@@ -44,6 +44,7 @@ ColegioEPA.TeachersIndexController = Ember.ArrayController.extend({
             teacher.on("didDelete", this, function() {
                 console.log("record deleted");
             });
+            this.store.deleteRecord(teacher);
             teacher.destroyRecord();
         },
 

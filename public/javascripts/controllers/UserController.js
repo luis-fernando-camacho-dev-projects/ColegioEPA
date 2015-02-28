@@ -45,11 +45,12 @@ ColegioEPA.UsersIndexController = Ember.ArrayController.extend({
     }.property("content.@each"),
 
     actions: {
-        removeItem: function(student) {
-            student.on("didDelete", this, function() {
+        removeItem: function(user) {
+            user.on("didDelete", this, function() {
                 console.log("record deleted");
             });
-            student.destroyRecord();
+            this.store.deleteRecord(attendance);
+            user.destroyRecord();
         },
         sortBy: function(property) {
             this.set('sortProperties', [property]);
