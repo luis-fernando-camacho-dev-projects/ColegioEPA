@@ -6,7 +6,7 @@
 
 <script type="text/x-handlebars" data-template-name="subjects/index">
     {{#if exitStudent}}
-        <p>Nr of subjects = {{content.length}}</p>
+        <p>Nr de Materias = {{content.length}}</p>
     <table class="table table-hover">
         <tr>
             <th>Selected</th>
@@ -45,7 +45,7 @@
           {{view Ember.TextArea valueBinding="schedule"}}
         <label for="days">Dias</label>
           {{view Ember.TextArea valueBinding="days"}}
-        <label  for="matterLevelDetail">matterLevelDetail</label>
+        <label  for="matterLevelDetail">Nivel de Materia</label>
           {{view Ember.TextArea valueBinding="matterLevelDetail"}}
     </form>
   </script>
