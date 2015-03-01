@@ -12,6 +12,20 @@ ColegioEPA.TeachersEditController = Ember.ObjectController.extend({
 });
 
 ColegioEPA.TeachersIndexController = Ember.ArrayController.extend({
+      filter:'',
+      filteredContent: function(){
+        var filter = this.get('filter'), rx = new RegExp(filter, 'gi'), students = this.get('arrangedContent');
+        if (isNaN(parseInt(filter)))
+        {
+            return students.filter(function(student) {
+                return student.get('name').match(rx) || student.get('email').match(rx) ;
+            });
+        } else {
+            return students.filter(function(student) {
+                return student.get('ci').toString().match(rx);
+            });
+        }
+    }.property('arrangedContent', 'filter'),
       editCounter: function () {
         return this.filterProperty('selected', true).get('length');
       }.property('@each.selected'),
@@ -30,6 +44,7 @@ ColegioEPA.TeachersIndexController = Ember.ArrayController.extend({
             teacher.on("didDelete", this, function() {
                 console.log("record deleted");
             });
+            this.store.deleteRecord(teacher);
             teacher.destroyRecord();
         },
 

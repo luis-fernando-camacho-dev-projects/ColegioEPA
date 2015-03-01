@@ -29,6 +29,7 @@ router.get('/attendances', function(req, res) {
         });
     });
 });
+/** get Attendance By Id */
 router.get('/attendances/:id', function(req, res) {
     var db = req.db;
     var teacherId = BSON.ObjectID.createFromHexString(req.params.id);
@@ -39,6 +40,30 @@ router.get('/attendances/:id', function(req, res) {
             console.log(err);
             console.log(teacher);
             res.send(teacher);
+        });
+    });
+});
+
+/** get course attendance by studentId and courseId */
+router.get('/attendanceStudent/:studentId', function(req, res) {
+    var db = req.db;
+    console.log("request query",JSON.stringify(req.query));
+    var studentId = req.params.studentId;
+    console.log('studentId:{0}',studentId);
+    db.collection('enrollmentList',function(err, collection) {
+        collection.findOne({student: studentId}, function(err, enrollments) {
+                console.log(JSON.stringify(enrollments));
+            db.collection('attendanceList', function(err, collectionAttendance) {
+                var queryCourse = {};
+                if (req.query.course != null)
+                {
+                    queryCourse = {course:{'$in':JSON.parse(req.query.course)}};
+                    console.log(queryCourse);
+                }
+                collectionAttendance.find(queryCourse).toArray(function(err, attendances) {
+                            res.send(attendances);
+                });
+            });
         });
     });
 });

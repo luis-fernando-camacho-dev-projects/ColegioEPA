@@ -51,11 +51,12 @@ ColegioEPA.CoursesIndexController = Ember.ArrayController.extend({
     } .property("content.@each"),
 
     actions: {
-        removeItem: function(student) {
-            student.on("didDelete", this, function() {
+        removeItem: function(course) {
+            course.on("didDelete", this, function() {
                 console.log("record deleted");
             });
-            student.destroyRecord();
+            this.store.deleteRecord(course);
+            course.destroyRecord();
         },
         viewCourse: function(course) {
             console.log('test');

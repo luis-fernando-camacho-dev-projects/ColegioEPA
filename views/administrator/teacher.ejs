@@ -2,19 +2,19 @@
 <script src="javascripts/routes/TeacherRoute.js"></script>
 <script type="text/x-handlebars" data-template-name="teachers/index">
     {{#if exitStudent}}
-        <p>Nro de Profesores= {{content.length}}</p>
+        Busqueda de Profesores : {{input type='text' value=filter placeholder='Nombre, Ci or correo electronico'}}
+        <p>Nro de profesores= {{content.length}}</p>
     <table class="table table-hover">
         <tr>
-            <th>Selected</th>
             <th>nombre</th>
+            <th>apellido</th>
             <th>email</th>
             <th>ci</th>
-            <th>birthDate</th>
+            <th>fecha de nacimiento</th>
           </tr>
             {{#each teacher in controller itemController="teachersEdit"}}
-              <tr {{bindAttr class="selected:warning"}}>
-              <td>{{view Ember.Checkbox checkedBinding="selected"}}</td>
               <td>{{teacher.name}}</td>
+              <td> gomez </td>
               <td>{{teacher.email}}</td>
               <td>{{teacher.ci}}</td>
               <td>{{teacher.birthDate}}</td>
@@ -37,7 +37,7 @@
           {{view Ember.TextField valueBinding="email"}}
         <label for="CI">ci</label>
           {{view Ember.TextField valueBinding="ci"}}
-        <label  for="Fecha de Nacimiento">birthDate</label>
+        <label  for="birthDate">fecha de nacimiento</label>
           {{custom-date-picker valueBinding="birthDate"}}
     </form>
   </script>

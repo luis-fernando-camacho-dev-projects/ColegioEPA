@@ -1,75 +1,58 @@
 
 <% include ../partialsViewStudent/header %>
 <script src="/../javascripts/routes/AttendanceRoute.js"></script>
+<script src="/../javascripts/lib/fullcalendar.js"></script>
+<link rel="stylesheet" href="/../stylesheets/fullcalendar.print.css" type="text/css">
+<link rel="stylesheet" href="/../stylesheets/fullcalendar.css" type="text/css">
 <script type="text/x-handlebars" id="index">
-<p> Control de Asistencia del Estudiante </p>
 </script>
 
 <script type="text/x-handlebars" data-template-name="attendances/index">
-    {{#if exitStudent}}
-        <p>Nr de Cursos = {{content.length}}</p>
-    <table class="table table-hover">
-        <tr>
-            <th>Nombre del curso</th>
-            <th>Profesor</th>
-            <th>Fecha de asistencia</th>
-            <th>Hora inicio</th>
-            <th>Hora fin</th>
-            {{#each attendance in filteredContent  itemController="attendancesEdit"}}
-              <td>{{attendance.course.name}}</td>
-              <td>{{attendance.teacher.name}}</td>
-              <td>{{attendance.typeAttendance}}</td>
-              <td>{{attendance.markedDate}}</td>
-              <td>{{attendance.classReplaceDate}}</td>
-              <td>{{attendance.postponedDate}}</td>
-              </tr>
-            {{/each}}
-    </table>
-    {{else}}
-     No hay asistencias registradas
-    {{/if}}
-</script>
-<script type="text/x-handlebars" data-template-name="_attendanceForm" >
-      <form class="form-horizontal">
-        {{#if controller.isNew}}
-            <label for="course">Curso</label>
-            {{view Ember.Select contentBinding="courses" optionLabelPath="content.name" selectionBinding="courseValue" valueBinding="course" }}
-        {{else}}
-            <label for="course">Curso</label>
-            {{view Ember.Select contentBinding="courses" optionLabelPath="content.name" selectionBinding="course" valueBinding="course" }}
-        {{/if}}
+<div id="test"/>
 
-        <label >tipo de asistencia</label><br/>
-        {{view Ember.Select contentBinding="typeAttendances" optionLabelPath="content" selectionBinding="typeAttendanceClass" valueBinding="typeAttendance" }}
-        {{outlet attendanceForm}}
-    </form>
 </script>
+<script type="text/javascript">
 
-<script type="text/x-handlebars" data-template-name ="test1">
-    <label for="markedDate">Fecha de Registro de Asistencia </label>
-    {{custom-date-picker elementId='element1' valueBinding="content.markedDate"}}
+$(document).ready(function() {
+
+    $.ajax({url: utilsEPA.getHost() + '/api/enrollment/enrollementCourses/' + utilsEPA.getObjectOwner(), type:"GET", dataType: 'json',contentType: "application/x-www-form -urlencoded; charset=UTF-8",crossDomain: true, headers : {'API_KEY': localStorage.getItem("token")},
+        success: function(courses) {
+            var enrollmentCourses = [], query;
+            courses.forEach(function(course) {
+                enrollmentCourses.push(course._id);
+            });
+            query = '?course = '+ JSON.stringify(enrollmentCourses);
+            $.ajax({url: utilsEPA.getHost() + '/api/attendance/attendanceStudent/' + utilsEPA.getObjectOwner()+query, type:"GET", dataType: 'json',contentType: "application/x-www-form -urlencoded; charset=UTF-8",crossDomain: true, headers : {'API_KEY': localStorage.getItem("token")}, courses : courses,
+                success: function(attendances) {
+                    var events = utilsEPA.getEvents(attendances,courses);
+                    $('#content').removeClass("content");
+                    $('#content').addClass("calendarStyle");
+                    $('#content').fullCalendar({
+                        header: {
+                            left: 'prev,next today',
+                            center: 'title',
+                            right: 'month,agendaWeek,agendaDay'
+                        },
+                        defaultDate: '2015-02-1',
+                        businessHours: true, // display business hours
+                        editable: true,
+                        eventLimit: true, // allow "more" link when too many events
+                        events : events
+                    });
+                }
+
+        });
+    }});
+});
+
 </script>
+<style type="text/css">
+    .calendarStyle {
+        float:left;
+        margin-left: 160px;
+        margin-top: -200px;
+    }
 
-<script type="text/x-handlebars" data-template-name="test2">
-    <label for="classReplaceDate">Fecha de Clase A posponer </label>
-    {{custom-date-picker elementId='element1' valueBinding="content.classReplaceDate"}}
-    <label for="postponedDate">Fecha de Clase A reemplazar </label>
-    {{custom-date-picker elementId='element2' valueBinding="content.postponedDate"}}
-</script>
-
-
-<script type="text/x-handlebars" data-template-name="attendances/edit">
-    {{#if controller.isNew}}
-      <h1>Registrar Nueva Asistencia</h1>
-    {{else}}
-      <h1>Editar Assitencia</h1>
-    {{/if}}
-    {{partial "attendanceForm"}}
-    {{#if controller.isNew}}
-        <input type="button" class="btn" value="GUARDAR ASISTENCIA" {{action updateItem this}}/>
-    {{else}}
-        <input type="button" class="btn" value="EDITAR ASISTENCIA" {{action updateItem this}}/>
-    {{/if}}
-</script>
+</style>
 </body>
 </html>

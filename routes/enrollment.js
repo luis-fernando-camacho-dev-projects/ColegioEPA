@@ -35,6 +35,31 @@ router.get('/enrollments', function(req, res) {
         });
     });
 });
+/** get enrollments courses by Student Id */
+router.get('/enrollementCourses/:studentId', function(req, res) {
+    var db = req.db;
+    var studentId = req.params.studentId;
+    console.log('studentId:'+studentId);
+    db.collection('enrollmentList').findOne({student:studentId}, function(err, enrollmentInstance ) {
+        console.log(JSON.stringify(enrollmentInstance));
+        if (enrollmentInstance != null) {
+            var courses =[];
+            enrollmentInstance.courses.forEach(function(courseId){
+                courses.push(BSON.ObjectID.createFromHexString(courseId));
+            });
+            var queryCourse = {_id:{'$in':courses}};
+            console.log(queryCourse);
+            db.collection('courseList').find(queryCourse).toArray(function(err, courses) {
+                res.send(courses);
+            });
+        } else{
+            res.send([]);
+        }
+
+    });
+});
+
+
 
 /*
  * POST to addstudent.

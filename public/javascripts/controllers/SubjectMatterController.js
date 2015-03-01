@@ -31,15 +31,16 @@ ColegioEPA.SubjectsIndexController = Ember.ArrayController.extend({
                 console.log("record deleted");
             });
             subject.destroyRecord();
+            this.store.deleteRecord(subject);
         },
 
         removeSelectedLocations: function() {
             arr = this.filterProperty('selected', true);
             if (arr.length==0) {
                 output = "nothing selected";
-            } else { 
+            } else {
                 output = "";
-                for (i=0 ; i<arr.length ; i++) { 
+                for (i=0 ; i<arr.length ; i++) {
                   arr[i].destroyRecord()
                 }
             }

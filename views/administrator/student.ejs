@@ -10,7 +10,6 @@
           <p>Nr of students = {{content.length}}</p>
       <table class="table table-hover">
           <tr>
-              <th>Selected</th>
               <th {{action 'sortBy' 'name'}}><a>nombre</a></th>
               <th {{action 'sortBy' 'email'}}><a>email</a></th>
               <th {{action 'sortBy' 'ci'}}><a>ci</a></th>
@@ -18,8 +17,6 @@
               <th>Eliminar</th>
             </tr>
               {{#each student in filteredContent itemController="studentsEdit"}}
-                <tr {{bindAttr class="selected:warning"}}>
-                <td>{{view Ember.Checkbox checkedBinding="selected"}}</td>
                 <td>{{student.name}}</td>
                 <td>{{student.email}}</td>
                 <td>{{student.ci}}</td>

@@ -12,6 +12,7 @@ ColegioEPA.EnrollmentsEditController = Ember.ObjectController.extend({
             });
 
             enrollment.save();
+            ColegioEPA.CourseValues.clear();
             this.get("target").transitionTo("enrollments");
         },
         deleteCourse:function(course) {
@@ -84,11 +85,12 @@ ColegioEPA.EnrollmentsIndexController = Ember.ArrayController.extend({
     }.property("content.@each"),
 
     actions: {
-        removeItem: function(student) {
-            student.on("didDelete", this, function() {
+        removeItem: function(enrollment) {
+            enrollment.on("didDelete", this, function() {
                 console.log("record deleted");
             });
-            student.destroyRecord();
+            enrollment.destroyRecord();
+            this.store.deleteRecord(enrollment);
         },
         viewCourse: function(course) {
             console.log('test');

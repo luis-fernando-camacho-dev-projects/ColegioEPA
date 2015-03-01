@@ -33,6 +33,13 @@ router.get('/courses', function(req, res) {
     });
 });
 
+router.get('/courses/teacher/:teacherId', function(req, res) {
+    var db = req.db;
+    var value = {};
+    db.collection('courseList').find({teacher:req.params.teacherId}).toArray(function(err, courses) {
+        res.json(courses);
+    });
+});
 
 /*
  * POST to addstudent.
