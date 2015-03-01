@@ -8,3 +8,4 @@ Manual de Usuario
 ========================
 Para poder iniciar la session de administrador siga los siguientes pasos:
 •   Ir al pagina: http://localhost:3000/login
+![alt tag](https://github.com/ferchojava335/ColegioEPA/tree/master/imagesUserManual/image1.png)
