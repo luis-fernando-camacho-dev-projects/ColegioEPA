@@ -1,12 +1,12 @@
 ColegioEPA.UsersEditController = Ember.ObjectController.extend({
     actions: {
-        updateItem: function(location) {
-            location.set('login',this.get('ci'));
-            location.set('password', this.get('ci'));
-            location.set('email','');
-            location.set('role', ColegioEPA.selectedRole.role.type);
-            location.set('token', this.get('name')+';'+this.get('lastName'));
-            location.save();
+        updateItem: function(user) {
+            user.set('login',this.get('ci'));
+            user.set('password', this.get('ci'));
+            user.set('email','');
+            user.set('role', ColegioEPA.selectedRole.role.type);
+            user.set('token', this.get('name')+'-'+this.get('lastName') + ';'+ this.get('phone')+'-'+this.get('cellPhone')+';'+this.get('address'));
+            user.save();
             if (ColegioEPA.selectedRole.role.type == 'student') {
                 window.location.href = window.location.host + "/student"
             } else {

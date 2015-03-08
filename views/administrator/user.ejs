@@ -1,5 +1,6 @@
 <% include ../partialsViewAdministrator/header %>
 <script src="javascripts/routes/UserRoute.js"/>
+<script type="text/javascript" src="javascript/lib/jquery.form-validator.min.js"></script>>
 <script type="text/x-handlebars" id="index">
 <p> Pagina de Usuarios </p>
 </script>
@@ -39,15 +40,25 @@
 </script>
 
 <script type="text/x-handlebars" data-template-name="_userForm" >
-    <form class="form-horizontal">
+    <form id ="UserForm" class="form-horizontal">
         <label for="name">Nombre</label>
             {{view Ember.TextField valueBinding="name" placeholder="nombre del usuario"}}
         <label for="lastName">Apellido</label>
             {{view Ember.TextField valueBinding="lastName" placeholder="apellido del usuario"}}
         <label for="ci">CI </label>
             {{view Ember.TextField valueBinding="ci" placeholder="ci del usuario "}}
+        <label for="phone">telefono fijo </label>
+            {{input type="tel" data-validation="number" data-validation-allowing="range[4000000;9000000]" valueBinding="phone" placeholder="telefono fijo del usuario "}}
+        <label for="cellPhone">cellPhone </label>
+            {{input type="tel" valueBinding="cellPhone" data-validation="number" data-validation-allowing="range[1;9000000]" placeholder="celular del usuario "}}
+        <label for="address">Dirreccion</label>
+            {{view Ember.TextField valueBinding="address" placeholder="direccion del usuario"}}
         <label  for="role">Rol</label>
             {{view Ember.Select selectionBinding="ColegioEPA.selectedRole.role" contentBinding= "ColegioEPA.RolesController" optionValuePath="content.type" optionLabelPath="content.label"  prompt="Selecionar el rol"}}
+            <div>
+            <input type="button" class="btn" {{action updateItem this}} value="Guardar">
+            <input type="button" class="btn" onclick="utilsEPA.cleanUpTextFields('UserForm')" value="Limpiar Campos"/>
+            </div>
     </form>
   </script>
 
@@ -59,9 +70,6 @@
             <h1>Editando Usuario</h1>
         {{/if}}
             {{partial "userForm"}}
-            <p>
-                <button {{action updateItem this}}>GUARDAR USUARIO</button>
-            </p>
     </div>
     </script>
 

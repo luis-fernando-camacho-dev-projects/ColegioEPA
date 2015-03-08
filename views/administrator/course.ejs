@@ -42,7 +42,7 @@
 </script>
 
 <script type="text/x-handlebars" data-template-name="_courseForm" >
-      <form class="form-horizontal">
+      <form id="CourseForm" class="form-horizontal">
         <label for="name">nombre del curso</label>
             {{view Ember.TextField valueBinding="name"}}
 
@@ -67,7 +67,11 @@
             {{input type="time" valueBinding="endTime"}}
         <label for="cost">costo Bs</label>
             {{view Ember.TextField valueBinding="cost" type="money" }}
-
+        <br/>
+        <div>
+            <input type="button" class="btn" {{action updateItem this}} value="Guardar">
+            <input type="button" class="btn" onclick="utilsEPA.cleanUpTextFields('CourseForm')" value="Limpiar Campos"/>
+        </div>
     </form>
 </script>
 
@@ -79,9 +83,6 @@
       <h1>Editar Curso</h1>
     {{/if}}
       {{partial "courseForm"}}
-      <p>
-        <button {{action updateItem this}}>GUARDAR CURSO</button>
-      </p>
 </script>
 </body>
 </html>

@@ -5,7 +5,7 @@ utilsEPA = {
         delete localStorage.user;
         delete localStorage.role;
         delete localStorage._objectId;
-        location.reload(true);
+        window.location.href = this.getHost()+ "/login";
     },
     redirectUser: function(role) {
         if (role === 'student') {
@@ -114,5 +114,8 @@ utilsEPA = {
                     events.push(event);
             });
         return events;
+    },
+    cleanUpTextFields: function(formId) {
+        $(":input", "#"+formId).not(':button, :submit, :reset, :hidden, :radio, :checkbox').val('');
     }
 }

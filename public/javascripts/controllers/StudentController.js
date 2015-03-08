@@ -1,10 +1,10 @@
 ColegioEPA.StudentsEditController = Ember.ObjectController.extend({
 
     actions: {
-        updateItem: function(location) {
-        location.save();
-        this.get("target").transitionTo("students");
-      }
+        updateItem: function(student) {
+            student.save();
+            this.get("target").transitionTo("students");
+        }
     },
       isNew: function() {
         console.log("calculating isNew");

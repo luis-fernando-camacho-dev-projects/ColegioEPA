@@ -33,7 +33,7 @@
 </script>
 
 <script source="" type="text/x-handlebars" data-template-name="_subjectForm" >
-      <form class="form-horizontal">
+      <form id="SubjectForm" class="form-horizontal" style="margin-left: 50px">
         <label for="name">nombre</label>
           {{view Ember.TextField valueBinding="name"}}
         <label  for="contentSubject">contenido</label>
@@ -44,6 +44,11 @@
           {{view Ember.TextArea valueBinding="days"}}
         <label  for="matterLevelDetail">Detalles de la materia</label>
           {{view Ember.TextArea valueBinding="matterLevelDetail"}}
+        <br/>
+        <div>
+            <input type="button" class="btn" {{action updateItem this}} value="Guardar">
+            <input type="button" class="btn" onclick="utilsEPA.cleanUpTextFields('SubjectForm')" value="Limpiar Campos"/>
+        </div>
     </form>
   </script>
  <script type="text/x-handlebars" data-template-name="subjects/edit" >
@@ -53,10 +58,7 @@
     {{else}}
       <h1>Editar Materia</h1>
     {{/if}}
-      {{partial "subjectForm"}}
-      <p>
-        <button {{action updateItem this}}>GUARDAR MATERIA</button>
-      </p>
+    {{partial "subjectForm"}}
   </script>
 </body>
 </html>

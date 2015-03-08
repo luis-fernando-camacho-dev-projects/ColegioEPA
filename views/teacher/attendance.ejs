@@ -38,7 +38,7 @@
 </script>
 
 <script type="text/x-handlebars" data-template-name="_attendanceForm" >
-      <form class="form-horizontal">
+      <form id="AttendanceForm" class="form-horizontal">
         {{#if controller.isNew}}
             <label for="course">Curso</label>
             {{view Ember.Select contentBinding="courses" optionLabelPath="content.name" selectionBinding="courseValue" valueBinding="course" }}
@@ -78,8 +78,10 @@
     {{partial "attendanceForm"}}
     {{#if controller.isNew}}
         <input type="button" class="btn" value="GUARDAR ASISTENCIA" {{action updateItem this}}/>
+        <input type="button" class="btn" onclick="utilsEPA.cleanUpTextFields('AttendanceForm')" value="Limpiar Campos"/>
     {{else}}
         <input type="button" class="btn" value="EDITAR ASISTENCIA" {{action updateItem this}}/>
+        <input type="button" class="btn" onclick="utilsEPA.cleanUpTextFields('AttendanceForm')" value="Limpiar Campos"/>
     {{/if}}
 </script>
 </body>

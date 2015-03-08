@@ -30,15 +30,28 @@
 </script>
 
 <script source="" type="text/x-handlebars" data-template-name="_teacherForm" >
-      <form class="form-horizontal">
+      <form id="TeacherForm" class="form-horizontal">
         <label for="Nombre">nombre</label>
-          {{view Ember.TextField valueBinding="name"}}
+          {{view Ember.TextField valueBinding="name" placeholder="Nombre del profesor"}}
+        <label for="Apellido">Apellido </label>
+          {{view Ember.TextField valueBinding="lastName" placeholder="Apellido del profesor"}}
         <label  for="Email">email</label>
-          {{view Ember.TextField valueBinding="email"}}
+          {{view Ember.TextField valueBinding="email" placeholder="Email del Profesor"}}
         <label for="CI">ci</label>
-          {{view Ember.TextField valueBinding="ci"}}
+          {{view Ember.TextField valueBinding="ci" placeholder="ci del profesor"}}
+        <label for="phone">Telefono Fijo</label>
+          {{view Ember.TextField valueBinding="phone" placeholder="ci del profesor"}}
+        <label for="cellPhone">Celular</label>
+          {{view Ember.TextField valueBinding="cellPhone" placeholder="ci del profesor"}}
+        <label for="Address">Direccion</label>
+          {{view Ember.TextField valueBinding="address" placeholder="direcion del profesor"}}
         <label  for="birthDate">fecha de nacimiento</label>
-          {{custom-date-picker valueBinding="birthDate"}}
+          {{custom-date-picker valueBinding="birthDate" placeholder="fecha de nacimiento"}}
+        <br/>
+        <div>
+            <input type="button" class="btn" {{action updateItem this}} value="Guardar">
+            <input type="button" class="btn" onclick="utilsEPA.cleanUpTextFields('TeacherForm')" value="Limpiar Campos"/>
+        </div>
     </form>
   </script>
  <script type="text/x-handlebars" data-template-name="teachers/edit" >
@@ -47,10 +60,7 @@
     {{else}}
       <h1>Editar Profesor</h1>
     {{/if}}
-      {{partial "teacherForm"}}
-      <p>
-        <input type="button" class="btn" value="Guardar" {{action updateItem this}}/>
-      </p>
+    {{partial "teacherForm"}}
   </script>
 </body>
 </html>

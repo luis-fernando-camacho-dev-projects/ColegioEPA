@@ -27,11 +27,22 @@ router.get('/users', function(req, res) {
  */
 router.post('/users', function(req, res) {
     console.log('inside users');
-    var user = req.body.user;
-    var db = req.db;
+    var user = req.body.user, db = req.db;
     console.log('user information: ' + JSON.stringify(user));
+    var additionalValues = user.token.split(';');
+    var names = additionalValues[0].split('-'), phonesUser = additionalValues[1].split('-'), address = additionalValues[2];
     var collectionName = user.role === 'student' ? 'studentList' : 'teacherList';
-    var role = { name: user.token, ci : user.login , email : 'vacio', birthDate:'', courses: []};
+    var role = {
+        name : names[0],
+        lastName : names[1],
+        email : 'vacio',
+        ci : user.login ,
+        birthDate : '',
+        phone : phonesUser[0],
+        cellPhone : phonesUser[1],
+        address : address,
+        courses: []
+        };
     var retrieveRole = null;
     db.collection(collectionName, function(err, collection) {
         collection.insert(role, {safe:true} , function(err, result) {

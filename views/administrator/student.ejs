@@ -13,18 +13,19 @@
               <th {{action 'sortBy' 'name'}}><a>nombre</a></th>
               <th {{action 'sortBy' 'email'}}><a>email</a></th>
               <th {{action 'sortBy' 'ci'}}><a>ci</a></th>
+              <th><a>Telefono-Celular</a></th>
               <th>Editar</th>
               <th>Eliminar</th>
             </tr>
               {{#each student in filteredContent itemController="studentsEdit"}}
-                <td>{{student.name}}</td>
+                <td>{{student.fullName}}</td>
                 <td>{{student.email}}</td>
                 <td>{{student.ci}}</td>
+                <td>{{student.phones}}</td>
                 <td>{{#linkTo "students.edit" student}}<img src="images/edit-icon.png"/>{{/linkTo}}</td>
                 <td><a href="#" {{action removeItem student}}><img src="images/delete-icon.png" border="0"/></a></td>
                 </tr>
               {{/each}}
-
       </table>
       {{else}}
        No Existen Estudiantes
@@ -32,7 +33,7 @@
       <p><a href="/user#/new?selectedRole=student"><img src="images/add-icon.png"/> Nuevo Estudiante </a></p>
 </script>
 <script source="" type="text/x-handlebars" data-template-name="_studentForm" >
-      <form class="form-horizontal">
+      <form id="StudentForm" class="form-horizontal">
         <label for="Nombre">nombre</label>
           {{view Ember.TextField valueBinding="name"}}
         <label  for="Email">email</label>
@@ -41,6 +42,10 @@
           {{view Ember.TextField valueBinding="ci"}}
         <label  for="Fecha de Nacimiento">Fecha Nacimiento</label>
           {{custom-date-picker valueBinding="birthDate"}}
+          <div>
+            <input type="button" class="btn" {{action updateItem this}} value="Guardar">
+            <input type="button" class="btn" onclick="utilsEPA.cleanUpTextFields('StudentForm')" value="Limpiar Campos"/>
+          </div>
     </form>
   </script>
  <script type="text/x-handlebars" data-template-name="students/edit" >
@@ -50,10 +55,7 @@
     {{else}}
       <h1>Editar Estudiante</h1>
     {{/if}}
-      {{partial "studentForm"}}
-      <p>
-        <input type="submit" class="btn" {{action updateItem this}} value ="Guardar"/>
-      </p>
+    {{partial "studentForm"}}
   </script>
 </body>
 </html>

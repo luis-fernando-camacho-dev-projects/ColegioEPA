@@ -5,19 +5,19 @@
     <div class="control-group">
         <label for="login" class="control-label">Login</label>
         <div class="controls">
-            <input type="text" name="ajax-login"  data-validation-callback-callback="validateLogin"  id="login"  />
+            <input placeHolder="Login del Usuario" type="text" name="ajax-login"  data-validation-callback-callback="validateLogin"  id="login"  />
         </div>
     </div>
     <div class="control-group">
         <label class="control-label" for="password">Password</label>
         <div class="controls">
-            <input type="password" id="password" pattern="^.*(?=.{4,10})(?=.*\d)(?=.*[a-zA-Z]).*$" data-validation-pattern-message="formato de password incorrecto" />
+            <input placeHolder="password del Usuario" type="password" id="password" pattern="^.*(?=.{4,10})(?=.*\d)(?=.*[a-zA-Z]).*$" data-validation-pattern-message="formato de password incorrecto" />
         </div>
     </div>
     <div class="control-group">
         <label for="name" class="control-label">Name</label>
         <div class="controls">
-            <input type="text" name="name" id="name" pattern="^[A-Za-z0-9 ]{3,20}$" data-validation-required-message="el nombre es requerido" />
+            <input placeHolder="nombre del Usuario" type="text" name="name" id="name" pattern="^[A-Za-z0-9 ]{3,20}$" data-validation-required-message="el nombre es requerido" />
         </div>
     </div>
     <!-- control for student ci -->
@@ -25,7 +25,7 @@
     <div class="control-group">
         <label for="ci" class="control-label">CI</label>
         <div class="controls">
-            <input type="number" name="ci" id="ci" data-validation-callback-callback="validateCI"/>
+            <input placeHolder="carnet de identidad" type="number" name="ci" id="ci" data-validation-callback-callback="validateCI"/>
         </div>
     </div>
 
@@ -33,14 +33,14 @@
     <div class="control-group">
         <label for="email"  class="control-label">Email</label>
         <div class="controls">
-            <input type="email" name="email" id="email" data-validation-email-message="ingrese una direccion de correo electronico valida"/>
+            <input placeHolder="correo electronico"  type="email" name="email" id="email" data-validation-email-message="ingrese una direccion de correo electronico valida"/>
         </div>
     </div>
     <!-- control for student birth date -->
     <div class="control-group">
         <label for="birthDate" class="control-label">Fecha de Nacimiento </label>
         <div class="controls">
-            <input type="tex" pattern="(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d" name="birthDate" id="birthDate" data-validation-pattern-message="fecha de nacimiento invalida"/>
+            <input placeHolder="fecha de nacimento" type="tex" pattern="(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d" name="birthDate" id="birthDate" data-validation-pattern-message="fecha de nacimiento invalida"/>
         </div>
     </div>
     <div>
