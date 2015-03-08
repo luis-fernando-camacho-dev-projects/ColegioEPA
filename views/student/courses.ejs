@@ -18,7 +18,6 @@ $(document).ready(function() {
 
     $.ajax({url: utilsEPA.getHost() + '/api/enrollment/enrollementCourses/' + utilsEPA.getObjectOwner(), type:"GET", dataType: 'json',contentType: "application/x-www-form -urlencoded; charset=UTF-8",crossDomain: true, headers : {'API_KEY': localStorage.getItem("token")},
        success: function(courses) {
-        debugger;
             $('#table').dataTable({
                 "searching": true,
                 "paging": true,

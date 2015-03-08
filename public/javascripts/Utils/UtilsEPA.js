@@ -36,7 +36,6 @@ utilsEPA = {
 
     fillUser: function() {
         var user = this.getUser(), url;
-
         if (this.getRole() === 'student') {
             url=this.getHost() + "/api/student/students/"+this.getObjectOwner();
         } else {
@@ -45,7 +44,7 @@ utilsEPA = {
         $.ajax({url:url,type:'GET', dataType: 'json',contentType: "application/json; charset=utf-8",headers : {'API_KEY': localStorage.getItem("token")},
             success:function(result) {
                 var valueREST;
-                if (result.student !== null) {
+                if (typeof(result.student) !== "undefined") {
                     valueREST = result.student;
                 } else {
                     valueREST = result.teacher;
@@ -56,6 +55,10 @@ utilsEPA = {
                 $('#ci').val(valueREST.ci);
                 $('#email').val(user.email);
                 $('#birthDate').val(valueREST.birthDate);
+                $('#cellPhone').val(valueREST.cellPhone);
+                $('#phone').val(valueREST.phone);
+                $('#address').val(valueREST.address);
+                $('#lastName').val(valueREST.lastName);
             }, error:function(res) {
                 alert("Bad thing happend! " + res.statusText);
             }
@@ -81,7 +84,7 @@ utilsEPA = {
         var session;
         if (this.getRole() === 'student') {
             session = { student : infoUser};
-        } else {
+        } else if (this.getRole() == 'teacher') {
             session = { teacher : infoUser};
         }
         return session;

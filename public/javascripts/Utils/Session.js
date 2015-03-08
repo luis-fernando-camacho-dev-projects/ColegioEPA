@@ -24,15 +24,29 @@ $(document).ready(function() {
                 utilsEPA.fillUser();
                 $("input,select,textarea").not("[type=submit]").jqBootstrapValidation({submitSuccess: function($form, event) {
                     var formValues = $form.serializeArray();
-                    var user = { user: {login:formValues[0].value, password:$('#password').val(),
-                                        toke:'aa',
-                                        email:formValues[3].value,
-                                        role:utilsEPA.getRole(),
-                                        objectOwner:utilsEPA.getObjectOwner()
+                    var user = { user:
+                                    {
+                                        login : formValues[0].value,
+                                        password : $('#password').val(),
+                                        email : $('#email').val(),
+                                        role : utilsEPA.getRole(),
+                                        ci : $('#ci').val(),
+                                        objectOwner : utilsEPA.getObjectOwner(),
+                                        birthDate : $('#birthDate').val(),
+                                        token : $('#name').val()+"-"+$('#lastName').val()+";"+$('#phone').val()+"-"+$('#cellPhone').val()+";"+$('#address').val()
                                     }
                                 };
                     utilsEPA.updateSession(user.user);
-                    var dataInfo = { name : $('#name').val(), email : $('#email').val(), ci : $('#ci').val(), birthDate : $('#birthDate').val()};
+                    var dataInfo = JSON.parse(JSON.stringify(user.user));
+                    dataInfo['phone'] = $('#phone').val();
+                    dataInfo['cellPhone'] = $('#cellPhone').val();
+                    dataInfo['address'] = $('#address').val();
+                    dataInfo['lastName'] = $('#lastName').val();
+                    dataInfo['birthDate'] = $('#birthDate').val()+"";
+                    dataInfo['name'] = $('#name').val()+"";
+                    delete dataInfo.login;
+                    delete dataInfo.objectOwner;
+                    delete dataInfo.role;
                     $.ajax({url:'http://localhost:3000/user/users/'+utilsEPA.getId(), type:"PUT", dataType: 'json',contentType: "application/x-www-form-urlencoded; charset=UTF-8",crossDomain: true, data:user,
                                 success:function(result) {
                                     $.ajax({url: utilsEPA.getUrlByUser() , type:"PUT", dataType:'json', contentType:"application/x-www-form-urlencoded; charset=UTF-8",
@@ -48,7 +62,6 @@ $(document).ready(function() {
                     });
                 },
                     submitError: function($form,event, errors) {
-                        debugger;
                         console.log('error trying to send');
                     }
                 });

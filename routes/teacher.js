@@ -13,7 +13,7 @@ var Server = mongo.Server,
 router.get('/teachers/:id', function(req, res) {
     var db = req.db;
     console.log('message'+req.params.id);
-    var teacherId = req.body.teacherId;
+    var teacherId = req.body.teacherId != null ? req.body.teacherId : req.params.id;
     console.log('teacherId:'+teacherId);
     db.collection('teacherList',function(err, collection) {
         collection.findOne({'_id' : new BSON.ObjectID(teacherId)}, function(err, teacher) {
@@ -75,11 +75,18 @@ router.post('/teachers', function(req, res) {
 
 router.put('/teachers/:id' , function(req, res) {
     var db = req.db;
-    var studentId = req.params.id;
+    var id = req.params.id;
+    var teacher = req.body.teacher;
     console.log(JSON.stringify(req.body));
-    db.collection('teacherList').update({_id: req.collection.id(req.params.id)},{$set:req.body.teacher}, {safe:true, multi:false}, function(e, result){
-        if (e) return next(e)
-            res.send((result===1)?{msg:'success'}:{msg:'error'});
+    db.collection('teacherList').update({_id: new BSON.ObjectID(id)},teacher, {safe:true}, function(err, result){
+        if (err) {
+            console.log('Error updating teacher: ' + err);
+            res.send({'error':'An error has occurred'});
+        } else {
+            console.log('' + result + ' document(s) updated');
+            teacher._id = id;
+            res.json({teacher:teacher});
+        }
     });
 
 });
