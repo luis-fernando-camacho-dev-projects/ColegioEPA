@@ -1,19 +1,13 @@
 <script type="text/x-handlebars" data-template-name='application' id="application">
     <div class="page">
-        <div class="header">            
+        <div class="header">
             <ul class="navigation">
             <a href="index.html" id="logo"><img src="images/logo.png" alt="logo"></a>
                 <li>
                     <a href="index.html">Inicio</a>
                 </li>
                 <li>
-                    <a href="about.html">Nosotros</a>
-                </li>
-                <li>
                   <a href="programs.html">Programas</a>
-                </li>
-                <li class="selected">
-                    <a href="/teacher">Admin</a>
                 </li>
                 <li>
                     <a href="blog.html">Noticias</a>
@@ -22,10 +16,10 @@
                   <a href="contact.html">Contacto</a>
                 </li>
                  <li class="menu">
-                    <a href="/teacher" id='session'>user</a>
-                     <ul class="navigation" style="list-style-type: none;display:none">
+                    <a href="/teacher" id='session'></a>
+                     <ul style="list-style-type: none;display:none">
                         <li><a id="editUser"  style="margin-top:-7px">Editar</a></li><br/><br/><br/><br/>
-                        <li><a id='logout' style="margin-top:-28px">Salir</a></li><br/>
+                <li><a id='logout' style="margin-top:-28px">Salir</a></li><br/>
                     </ul>
                 </li>
             </ul>
@@ -55,7 +49,7 @@
                         <a href="/enrollment">Inscripciones</a>
                     </li>
                 </ul>
-                  <div class="content">
+                  <div id="content" class="content">
                       {{outlet}}
                       {{outlet 'modal'}}
                   </div>

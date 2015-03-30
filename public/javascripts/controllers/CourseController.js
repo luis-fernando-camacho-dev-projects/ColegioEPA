@@ -1,10 +1,12 @@
 
 ColegioEPA.CoursesEditController = Ember.ObjectController.extend({
     actions: {
-        updateItem: function(location) {
-            location.set('teacher', this.teacherValue);
-            location.set('subject', this.subjectValue),
-            location.save();
+        updateItem: function(course) {
+            course.set('teacher', this.teacherValue);
+            course.set('subject', this.subjectValue),
+            course.save();
+            course.set('days', utilsEPA.getDaysFromCourse());
+            debugger;
             this.get("target").transitionTo("courses");
         }
     },

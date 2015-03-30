@@ -120,5 +120,27 @@ utilsEPA = {
     },
     cleanUpTextFields: function(formId) {
         $(":input", "#"+formId).not(':button, :submit, :reset, :hidden, :radio, :checkbox').val('');
+    },
+    getDaysFromCourse: function() {
+        var daysWeekColegioEPA=["monday","tuesday","wednesday","thursday","friday","saturday","sunday"];
+        var days="";
+        daysWeekColegioEPA.forEach(function(day) {
+            if ($('#'+day).is(":checked"))
+            {
+                days += day + ";";
+            }
+        });
+        return days.length > 0 ? days.substring(0,days.length-1) : days;
+    },
+    checkCoursesFromString: function(days) {
+        var daysWeekColegioEPA = days.split(";");
+        days.forEach(function(day) {
+            $('#'+day).prop('checked',true);
+        })
+    },
+    getDate: function(date, time) {
+        var arrDateCourse = date.split('-');
+        var arrTimeCourse = time.split(':');
+    return new Date(parseInt(arrDateCourse[2]), parseInt(arrDateCourse[1]) -1 , parseInt(arrDateCourse[0]), parseInt(arrTimeCourse[0]), parseInt(arrTimeCourse[1]),0,0);
     }
 }
