@@ -13,10 +13,11 @@ ColegioEPA.TeacherScheduleController = Ember.ArrayController.extend({
 
 window.ColegioEPA.ApplicationController = Ember.Controller.extend
 ({
-  existCalendar: true,
-  needs: 'calendar'
+  //existCalendar: true
+  //needs: 'calendar'
 });
 
+/*
 ///////////////////////////////////////////////////////////////////////////////
 // Controller
 ///////////////////////////////////////////////////////////////////////////////
@@ -74,3 +75,4 @@ function(myBinding, options) {
   return true;
 }
 );
+*/

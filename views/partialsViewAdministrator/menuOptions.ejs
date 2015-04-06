@@ -1,6 +1,6 @@
 <script type="text/x-handlebars" data-template-name='application' id="application">
     <div class="page">
-        <div class="header">            
+        <div class="header">
             <ul class="navigation">
             <a href="index.html" id="logo"><img src="images/logo.png" alt="logo"></a>
                 <li>
@@ -55,12 +55,16 @@
                         <a href="/enrollment">Inscripciones</a>
                     </li>
                 </ul>
-                  <div class="content">
+                  {{#if existCalendar}}
+                    <div id="content" style="padding-left:165px">
+                    <div id="calendar"></div>
+                    </div>
+                  {{else}}
+                    <div id="content" class="content">
                       {{outlet}}
                       {{outlet 'modal'}}
-                  </div>
-
+                    </div>
+                  {{/if}}
             </div>
         </div>
 <% include /../footers/footer %>
-
