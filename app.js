@@ -21,6 +21,7 @@ var routes = require('./routes/index');
     user = require('./routes/user'),
     utils = require('./routes/utils'),
     enrollmentStudent = require('./routes/attendanceStudent'),
+    validationData = require('./routes/checkData'),
     app = express();
 /* rest classes End*/
 
@@ -168,8 +169,7 @@ app.use('/api/subject', subject);
 app.use('/api/course', course);
 app.use('/api/enrollment', enrollment);
 app.use('/api/attendance', attendance);
-
-
+app.use('/validateData',validationData);
 app.use('/enrollment', enrollmentStudent);
 // utils
 app.use('/utils', utils);

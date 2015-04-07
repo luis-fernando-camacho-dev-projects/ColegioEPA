@@ -2,12 +2,35 @@
 ColegioEPA.CoursesEditController = Ember.ObjectController.extend({
     actions: {
         updateItem: function(course) {
+            var myseft = this;
             course.set('teacher', this.teacherValue);
             course.set('subject', this.subjectValue),
-            course.save();
             course.set('days', utilsEPA.getDaysFromCourse());
             debugger;
-            this.get("target").transitionTo("courses");
+            var spin = $('#validation-data-dialog').dialog(
+            {
+                modal: true,
+                buttons: {
+                    Cancelar: function() {
+                        $(this).dialog( "close" );
+                    }
+                }
+            });
+            var courseJSON = course.toJSON();
+            var getCourses = $.ajax({ url:utilsEPA.getHost() + '/validateData/validateCourse', type:"PUT", crossDomain:true, dataType: "json", contentType:"application/x-www-form-urlencoded; charset=UTF-8", data:courseJSON,
+                success:function(result) {
+                    debugger;
+                    course.save();
+                    myseft.get("target").transitionTo("courses");
+                    spin.close();
+                },
+                error:function(res,message) {
+                    debugger;
+                }
+            });
+
+
+
         }
     },
     isNew: function() {

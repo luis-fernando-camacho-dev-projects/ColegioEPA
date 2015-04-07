@@ -78,6 +78,7 @@ ul.checkbox li {
 
 </style>
 <script type="text/x-handlebars" data-template-name="_courseForm" >
+        <div class="spin" data-spin/>
       <form id="CourseForm" class="form-horizontal" style="margin-left:25px">
         <label for="name">nombre del curso</label>
             {{view Ember.TextField valueBinding="name"}}
@@ -105,7 +106,7 @@ ul.checkbox li {
             {{view Ember.TextField valueBinding="cost" type="money" }}
         <br/>
         <br/>
-        <fieldset class="group">
+        <fieldset class="group" style="margin-left:250px; margin-top: -370px;">
         <h1> Dias del Curso</h1>
         <ul class="checkbox">
             <li><input type="checkbox"  name="monday" id="monday"><label for="monday">Lunes</label></li>
@@ -116,20 +117,20 @@ ul.checkbox li {
             <li><input type="checkbox"  name="saturday" id="saturday"/><label for="saturday">Sabado</label></li>
         </ul>
         </fieldset>
-
         <div>
             <input type="button" class="btn" {{action updateItem this}} value="Guardar">
             <input type="button" class="btn" onclick="utilsEPA.cleanUpTextFields('CourseForm')" value="Limpiar Campos"/>
         </div>
+        <h1 id="messageError" style="display:none">El dato ya existe en la base de datos</h1>
     </form>
 </script>
 
 
 <script type="text/x-handlebars" data-template-name="courses/edit">
     {{#if controller.isNew}}
-      <h1>Nuevo Curso</h1>
+      <h1  style="margin-left: 250px" id="newCourse">Nuevo Curso</h1>
     {{else}}
-      <h1>Editar Curso</h1>
+      <h1 style="margin-left: 250px" id="editCourse">Editar Curso</h1>
     {{/if}}
       {{partial "courseForm"}}
 </script>
