@@ -6,13 +6,16 @@ ColegioEPA.CoursesEditController = Ember.ObjectController.extend({
             course.set('teacher', this.teacherValue);
             course.set('subject', this.subjectValue),
             course.set('days', utilsEPA.getDaysFromCourse());
-            debugger;
-            var spin = $('#validation-data-dialog').dialog(
+            
+            var spin = spin || $('#validation-data-dialog').dialog(
             {
+                closeOnEscape:true,
+                show:"show",
                 modal: true,
                 buttons: {
                     Cancelar: function() {
-                        $(this).dialog( "close" );
+                        $(this).dialog( "close");
+                        //window.location.href = utilsEPA.getHost() + "/course";
                     }
                 }
             });
@@ -22,15 +25,13 @@ ColegioEPA.CoursesEditController = Ember.ObjectController.extend({
                     debugger;
                     course.save();
                     myseft.get("target").transitionTo("courses");
-                    spin.close();
+                    spin.dialog("close");
                 },
                 error:function(res,message) {
-                    debugger;
+                    $('#message').text(res.responseJSON.message);
+                    $('#validationImgLoading').hide();
                 }
             });
-
-
-
         }
     },
     isNew: function() {
