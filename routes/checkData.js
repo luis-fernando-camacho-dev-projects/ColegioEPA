@@ -22,24 +22,27 @@ router.put('/validateCourse', function(req, res) {
                 });
             } else {
                 //refactorizar este codigo por favor es bien feo
-                var startTimeNewCourse = new Date();
+                var regExpressionBackSlash = new RegExp('-', 'g');
+                //var startTimeNewCourse = new Date(courseToValidate.startDate.replace(regExpressionBackSlash),'/');
+                var startTimeNewCourse = new Date(courseToValidate.startDate.replace(regExpressionBackSlash,'/'));
                 var startTimeValues = courseToValidate.startTime.split(":");
                 startTimeNewCourse.setHours(parseInt(startTimeValues[0]));
                 startTimeNewCourse.setMinutes(parseInt(startTimeValues[1]));
 
-                var endTimeNewCourse = new Date();
+                //var endTimeNewCourse = new Date(courseToValidate.endDate.replace(regExpressionBackSlash),'/');
+                var endTimeNewCourse = new Date(courseToValidate.endDate.replace(regExpressionBackSlash,'/'));
                 var endTimeValues = courseToValidate.endTime.split(":");
                 endTimeNewCourse.setHours(parseInt(endTimeValues[0]));
                 endTimeNewCourse.setMinutes(parseInt(endTimeValues[1]));
                 var validCourse = true;
                 var messageError;
                 courses.forEach(function(exitsCourse) {
-                    var existCourseStartTime = new Date();
+                    var existCourseStartTime = new Date(exitsCourse.startDate.replace(regExpressionBackSlash,'/'));
                     var verifacteTime = exitsCourse.startTime.split(":");
                     existCourseStartTime.setHours(parseInt(verifacteTime[0]));
                     existCourseStartTime.setMinutes(parseInt(verifacteTime[1]));
                     console.log('startTime', existCourseStartTime);
-                    var existCourseEndTime = new Date();
+                    var existCourseEndTime = new Date(exitsCourse.endDate.replace(regExpressionBackSlash,'/'));
                     var verifacteTime = exitsCourse.endTime.split(":");
                     existCourseEndTime.setHours(parseInt(verifacteTime[0]));
                     existCourseEndTime.setMinutes(parseInt(verifacteTime[1]));
