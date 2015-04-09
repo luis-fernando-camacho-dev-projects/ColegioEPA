@@ -6,14 +6,39 @@ ColegioEPA.UsersEditController = Ember.ObjectController.extend({
             user.set('email','');
             user.set('role', ColegioEPA.selectedRole.role.type);
             user.set('token', this.get('name')+'-'+this.get('lastName') + ';'+ this.get('phone')+'-'+this.get('cellPhone')+';'+this.get('address'));
-            user.save();
-            if (ColegioEPA.selectedRole.role.type == 'student') {
-                window.location.href = window.location.host + "/student"
-            } else {
-                window.location.href = window.location.host + "/teacher"
+            if (this.validationUser(user))
+            {
+                if (ColegioEPA.selectedRole.role.type == 'student') {
+                    window.location.href = window.location.host + "/student"
+                } else {
+                    window.location.href = window.location.host + "/teacher"
+                }
+                this.get("target").transitionTo("users");
             }
-            this.get("target").transitionTo("users");
         }
+    },
+    validationUser: function(user) {
+        var validateData = true;
+        if ($('input[name=nameUser]').val().length == 0) {
+            validateData = false;
+            alert('insertar el nombre del usuario');
+        } else if ($('input[name=lastNameUser]').val().length == 0) {
+            validateData = false;
+            alert('insertar el apellido del usuario');
+        } else if ($('input[name=ciUser]').val().length == 0) {
+            validateData = false;
+            alert('insertar el ci del usuario');
+        } else if ($('input[name=phoneUser]').val().length == 0) {
+            validateData = false;
+            alert('insertar el telefono del usuario');
+        } else if ($('input[name=cellPhoneUser]').val().length == 0) {
+            validateData = false;
+            alert('insertar el telefono del usuario');
+        } else if ($('input[name=addressUser]').val().length == 0) {
+            validateData = false;
+            alert('insertar la direccion del usuario');
+        }
+        return validateData;
     },
     isNew: function() {
         console.log("calculating isNew");
@@ -76,11 +101,23 @@ ColegioEPA.RolesController = Ember.ArrayController.create({
         ColegioEPA.Role.create({type:'administrator', label:'Administrador'}),
     ]
 });
+
+function queryStringHash(key) {
+    var re = new RegExp('(?:\\?|&)' + key + '=(.*?)(?=&|$)','gi');
+    var value, m;
+    while ((m = re.exec(window.location.hash)) != null) {
+        value = m[1];
+    }
+    return value;
+}
+
 ColegioEPA.selectedRole.set('role', ColegioEPA.RolesController.objectAt(2));
 if (window.location.hash.search('=') > 0) {
-    if (utilsEPA.queryStringHash('selectedRole') == "student") {
+    if (queryStringHash('selectedRole') == "student") {
+        $(document).ready(function() { $('#usuario').text('Nuevo Estudiante'); });
         ColegioEPA.selectedRole.set('role', ColegioEPA.RolesController.objectAt(0));
     } else {
+        $(document).ready(function() { $('#usuario').text('Nuevo Profesor'); });
         ColegioEPA.selectedRole.set('role', ColegioEPA.RolesController.objectAt(1));
     }
 }

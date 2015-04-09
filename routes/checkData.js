@@ -33,8 +33,6 @@ router.put('/validateCourse', function(req, res) {
                 endTimeNewCourse.setMinutes(parseInt(endTimeValues[1]));
                 var validCourse = true;
                 var messageError;
-                console.log('startTimeNewCourse', startTimeNewCourse);
-                console.log('endTimeNewCourse', endTimeNewCourse);
                 courses.forEach(function(exitsCourse) {
                     var existCourseStartTime = new Date();
                     var verifacteTime = exitsCourse.startTime.split(":");
@@ -45,7 +43,6 @@ router.put('/validateCourse', function(req, res) {
                     var verifacteTime = exitsCourse.endTime.split(":");
                     existCourseEndTime.setHours(parseInt(verifacteTime[0]));
                     existCourseEndTime.setMinutes(parseInt(verifacteTime[1]));
-                    console.log('endTime', existCourseEndTime);
                     if (validCourse) {
                         if ((existCourseStartTime >= startTimeNewCourse && existCourseStartTime <= endTimeNewCourse) || (existCourseEndTime >= startTimeNewCourse && existCourseEndTime <= endTimeNewCourse)) {
                                 messageError = "Hay un conflicto con el curso :"+exitsCourse.name;

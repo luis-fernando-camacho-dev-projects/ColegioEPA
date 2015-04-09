@@ -1,6 +1,6 @@
 <% include ../partialsViewAdministrator/header %>
 <script src="javascripts/routes/UserRoute.js"/>
-<script type="text/javascript" src="javascript/lib/jquery.form-validator.min.js"></script>>
+<script type="text/javascript" src="javascript/lib/jquery.form-validator.min.js"></script>
 <script type="text/x-handlebars" id="index">
 <p> Pagina de Usuarios </p>
 </script>
@@ -40,21 +40,22 @@
 </script>
 
 <script type="text/x-handlebars" data-template-name="_userForm" >
+    <p> los campos de abajo son obligatorios </p>
     <form id ="UserForm" class="form-horizontal">
-        <label for="name">Nombre</label>
-            {{view Ember.TextField valueBinding="name" placeholder="nombre del usuario"}}
-        <label for="lastName">Apellido</label>
-            {{view Ember.TextField valueBinding="lastName" placeholder="apellido del usuario"}}
-        <label for="ci">CI </label>
-            {{view Ember.TextField valueBinding="ci" placeholder="ci del usuario "}}
-        <label for="phone">telefono fijo </label>
-            {{input type="tel" data-validation="number" data-validation-allowing="range[4000000;9000000]" valueBinding="phone" placeholder="telefono fijo del usuario "}}
-        <label for="cellPhone">cellPhone </label>
-            {{input type="tel" valueBinding="cellPhone" data-validation="number" data-validation-allowing="range[1;9000000]" placeholder="celular del usuario "}}
-        <label for="address">Dirreccion</label>
-            {{view Ember.TextField valueBinding="address" placeholder="direccion del usuario"}}
-        <label  for="role">Rol</label>
-            {{view Ember.Select selectionBinding="ColegioEPA.selectedRole.role" contentBinding= "ColegioEPA.RolesController" optionValuePath="content.type" optionLabelPath="content.label"  prompt="Selecionar el rol"}}
+        <label for="nameUser">Nombre</label>
+            {{view Ember.TextField valueBinding="name" placeholder="nombre del usuario" name="nameUser"}}
+        <label for="lastNameUser">Apellido</label>
+            {{view Ember.TextField valueBinding="lastName" placeholder="apellido del usuario" name="lastNameUser"}}
+        <label for="ciUser">CI </label>
+            {{view Ember.TextField valueBinding="ci" placeholder="ci del usuario " name="ciUser"}}
+        <label for="phoneUser">telefono fijo </label>
+            {{input type="number" data-validation="number" data-validation-allowing="range[4000000;9000000]" valueBinding="phone" placeholder="telefono fijo del usuario " name="phoneUser"}}
+        <label for="cellPhoneUser">celular del usuario </label>
+            {{input type="tel" valueBinding="cellPhone" data-validation="number" data-validation-allowing="range[1;9000000]" placeholder="celular del usuario " name="cellPhoneUser"}}
+        <label for="addressUser">Direccion del usuario</label>
+            {{view Ember.TextField valueBinding="address" placeholder="direccion del usuario" name="addressUser"}}
+        <label  for="roleUser">Rol</label>
+            {{view Ember.Select selectionBinding="ColegioEPA.selectedRole.role" contentBinding= "ColegioEPA.RolesController" optionValuePath="content.type" optionLabelPath="content.label"  prompt="Selecionar el rol" name="roleUser"}}
             <div>
             <input type="button" class="btn" {{action updateItem this}} value="Guardar">
             <input type="button" class="btn" onclick="utilsEPA.cleanUpTextFields('UserForm')" value="Limpiar Campos"/>
@@ -65,7 +66,7 @@
     <script type="text/x-handlebars" data-template-name="users/edit">
     <div style="padding-left:45px">
         {{#if controller.isNew}}
-        <h1>Nuevo Usuario</h1>
+        <h1 id="usuario">Nuevo Usuario</h1>
         {{else}}
             <h1>Editando Usuario</h1>
         {{/if}}
