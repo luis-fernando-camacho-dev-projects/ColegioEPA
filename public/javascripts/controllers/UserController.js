@@ -8,12 +8,15 @@ ColegioEPA.UsersEditController = Ember.ObjectController.extend({
             user.set('token', this.get('name')+'-'+this.get('lastName') + ';'+ this.get('phone')+'-'+this.get('cellPhone')+';'+this.get('address'));
             if (this.validationUser(user))
             {
+                user.save();
                 if (ColegioEPA.selectedRole.role.type == 'student') {
-                    window.location.href = window.location.host + "/student"
+                    window.location.href = utilsEPA.getHost() + "/student"
+                } else if (ColegioEPA.selectedRole.role.type == 'teacher') {
+                    window.location.href = utilsEPA.getHost() + "/teacher"
                 } else {
-                    window.location.href = window.location.host + "/teacher"
+                    this.get("target").transitionTo("users");
                 }
-                this.get("target").transitionTo("users");
+                
             }
         }
     },

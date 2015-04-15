@@ -10,16 +10,58 @@ ColegioEPA.EnrollmentsEditController = Ember.ObjectController.extend({
             ColegioEPA.CourseValues.forEach(function(item, index, enumerable) {
                 enrollment.get('courses').pushObject(item);
             });
+            if (this.validationEnrollment(enrollment)) {
+                debugger;
+                var spin = spin || $('#validation-data-dialog').dialog(
+                    {
+                    closeOnEscape:true,
+                    show:"show",
+                        modal: true,
+                        buttons: {
+                            Cancelar: function() {
+                            $(this).dialog( "close");
+                            //window.location.href = utilsEPA.getHost() + "/course";
+                            }
+                        }
+                    });
+                var enrollmentJSON = enrollment.toJSON();
+                var getCourses = $.ajax({ url:utilsEPA.getHost() + '/validateData/validateEnrollment', type:"PUT", crossDomain:true, dataType: "json", contentType:"application/x-www-form-urlencoded; charset=UTF-8", data:enrollmentJSON,
+                    success:function(result) {
+                        debugger;
+                        enrollment.save();
+                        ColegioEPA.CourseValues.clear();
+                        myseft.get("target").transitionTo("enrollments");
+                        spin.dialog("close");
+                    },
+                    error:function(res,message) {
+                        $('#message').text(res.responseJSON.message);
+                        $('#validationImgLoading').hide();
+                    }
+                });
 
-            enrollment.save();
-            ColegioEPA.CourseValues.clear();
-            this.get("target").transitionTo("enrollments");
+                
+                
+
+            }
         },
         deleteCourse:function(course) {
             ColegioEPA.CourseValues.removeObject(course);
             this.courseBackup.removeObject(course);
         },
         editCourse: function(course) {
+        }
+    },
+    validationEnrollment : function(enrollment) {
+        var validEnrollment = true;
+        if (typeof enrollment.get('payDate') == 'undefined') {
+            validationEnrollment = false;
+            alert('la fecha de pago no puede ser vacia');
+        } else if (typeof enrollment.get('nit') == 'undefined') {
+            alert('el nit de pago no puede ser vacio');
+            validationEnrollment = false;
+        } else if (typeof enrollment.get('discount') == 'undefined') {
+            alert('el descuento de la inscripcion no debe ser vacio');
+            validationEnrollment = false;
         }
     },
     isNew: function() {

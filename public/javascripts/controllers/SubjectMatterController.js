@@ -1,9 +1,32 @@
 ColegioEPA.SubjectsEditController = Ember.ObjectController.extend({
     actions: {
-        updateItem: function(location) {
-        location.save();
-        this.get("target").transitionTo("subjects");
+        updateItem: function(subject) {
+            if (this.validateSubject(subject)) {
+                subject.save();
+                this.get("target").transitionTo("subjects");
+            }
+        
       }
+    },
+    validateSubject: function(subject) {
+        var subjectValid = true;
+        if (typeof subject.get('name') == 'undefined') {
+            alert('el titulo del contenido de materia no debe ser vacio');
+            subjectValid = false;
+        } else if (typeof subject.get('contentSubject') == 'undefined') {
+            alert('el contenido de materia no debe ser vacio');
+            subjectValid = false;
+        } else if (typeof subject.get('schedule') == 'undefined') {
+            alert('el horario del contenido de materia no debe ser vacio');
+            subjectValid = false;
+        } else if (typeof subject.get('days') == 'undefined') {
+            alert('los dias del contenido de materia no debe ser vacio');
+            subjectValid = false;
+        } else if (typeof subject.get('matterLevelDetail') == 'undefined') {
+            alert('los detaller del contenido de materia no debe ser vacio');
+            subjectValid = false;
+        }
+        return subjectValid;
     },
       isNew: function() {
         console.log("calculating isNew");

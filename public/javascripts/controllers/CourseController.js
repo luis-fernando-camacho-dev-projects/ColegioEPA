@@ -38,8 +38,6 @@ ColegioEPA.CoursesEditController = Ember.ObjectController.extend({
     },
     validationCourse: function(course) {
         var validData = true;
-
-
         if(course.get('teacher') == null) {
             validData = false;
             alert('selecionar un profesor para el curso');
