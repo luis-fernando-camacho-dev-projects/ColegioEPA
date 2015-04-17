@@ -67,27 +67,28 @@ router.put('/validateCourse', function(req, res) {
         });
     });
 });
-router.post('/validateEnrollment', function(req, res) {
+router.put('/validateEnrollment', function(req, res) {
     var db = req.db;
     var newEnrollment = req.body;
     db.collection('enrollmentList', function(err, collection) {
         collection.find({'student': newEnrollment.student}).toArray(function(err, enrollmentsFound) {
             var newCourses = newEnrollment.courses;
             var validEnrollment=true;
-            var messageError;
+            var messageError, courseId;
             enrollmentsFound.forEach(function(enrollmentOld){
                 for (var i=0;i<newCourses.length;i++) {
                     if (enrollmentOld.courses.indexOf(newCourses[i]) == 0)
                     {
                         validEnrollment = false;
                         messageError = "Ya existe una inscripcion con el curso:"+newCourses[i];
+                        courseId = newCourses[i];
                     }
                 }
             }, this);
             if (validEnrollment) {
                 res.json({message:"successs"})
             } else {
-                res.status(401).send({message: messageError});
+                res.status(401).send({message: messageError, courseId : courseId});
             }
         });
     });

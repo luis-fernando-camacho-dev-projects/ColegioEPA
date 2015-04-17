@@ -142,5 +142,17 @@ utilsEPA = {
         var arrDateCourse = date.split('-');
         var arrTimeCourse = time.split(':');
     return new Date(parseInt(arrDateCourse[2]), parseInt(arrDateCourse[1]) -1 , parseInt(arrDateCourse[0]), parseInt(arrTimeCourse[0]), parseInt(arrTimeCourse[1]),0,0);
+    },
+    validateDateGratherThanToday: function(dateToValidate) {
+        var regExpressionBackSlash = new RegExp('-', 'g');
+        var currentDate = new Date();
+            currentDate.setHours(0);
+            currentDate.setMinutes(0);
+        var validateDate = Date.parse(dateToValidate.replace(regExpressionBackSlash,'/'));
+        if (isNaN(validateDate)) {
+                validateDate = this.getDate(dateToValidate, "00:00");
+        }
+        validateDate = this.getDate(dateToValidate, "00:00");
+        return(validateDate < currentDate);
     }
 }

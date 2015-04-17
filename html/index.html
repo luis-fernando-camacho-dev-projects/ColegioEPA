@@ -162,8 +162,20 @@
         var queryParm = "?year="+year +"&month="+month+"&day="+day;
         $.ajax({url:utilsEPA.getHost() + '/utils/courses'+queryParm, type : "GET", dateType:'json',
             contentType: "application/x-www-form -urlencoded; charset=UTF-8", crossDomain:true, success: function(courses) {
+                var times, courseDate;
                 window.courses = courses.courses;
                 window.index = 0;
+                var currentDate = new Date();
+                for(var indexCourse = 0; indexCourse < courses.courses.length ; indexCourse++) {
+                    times = courses.courses[indexCourse].startTime.split(":");
+                    courseDate = new Date();
+                    courseDate.setHours(times[0]);
+                    courseDate.setMinutes(times[1]);
+                    if(currentDate < courseDate) {
+                        window.index = indexCourse;
+                        break;
+                    }
+                }
                 CarouselCourse.setInfoCourse(window.courses[window.index]);
             }
         });

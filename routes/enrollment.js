@@ -59,8 +59,6 @@ router.get('/enrollementCourses/:studentId', function(req, res) {
     });
 });
 
-
-
 /*
  * POST to addstudent.
  */
