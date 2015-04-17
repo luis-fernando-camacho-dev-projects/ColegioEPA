@@ -27,11 +27,10 @@ router.get('/users', function(req, res) {
  */
 router.post('/users', function(req, res) {
     console.log('inside users');
-    var user = req.body.user, db = req.db;
+    var user = req.body.user, db = req.db, collectionName;
     console.log('user information: ' + JSON.stringify(user));
     var additionalValues = user.token.split(';');
     var names = additionalValues[0].split('-'), phonesUser = additionalValues[1].split('-'), address = additionalValues[2];
-    var collectionName = user.role === 'student' ? 'studentList' : 'teacherList';
     var role = {
         name : names[0],
         lastName : names[1],
@@ -44,27 +43,41 @@ router.post('/users', function(req, res) {
         courses: []
         };
     var retrieveRole = null;
-    db.collection(collectionName, function(err, collection) {
-        collection.insert(role, {safe:true} , function(err, result) {
-            if (err) {
-                res.send({'error':'An error has occurred ' + err});
-            }
-            console.log('result:'+ JSON.stringify(result));
-        });
-        retrieveRole = collection.findOne({ci : role.ci}, {fields:{_id:1}}, function(err, doc) {
-            console.log('doc'+doc);
-                user.objectOwner = doc._id;
-            db.collection('userList', function(err, collection) {
-                collection.insert(user, {safe:true}, function(err, result) {
-                    if (err) {
-                        res.send({'error':'An error has occurred ' + err});
-                    }
-                    res.json({user:user});
-                });
+    if (user.role =='student' || user.role =='teacher') {
+        collectionName = user.role === 'student' ? 'studentList' : 'teacherList';
+        db.collection(collectionName, function(err, collection) {
+            collection.insert(role, {safe:true} , function(err, result) {
+                if (err) {
+                    res.send({'error':'An error has occurred ' + err});
+                }
+                else {
+                    console.log('result'+result);
+                    user.objectOwner = new BSON.ObjectID(result._id);
+                    db.collection('userList', function(err, collection) {
+                        collection.insert(user, {safe:true}, function(err, result) {
+                            if (err) {
+                                res.send({'error':'An error has occurred ' + err});
+                            }
+                            res.json({user:user});
+                        });
+                    });
+                }
+                console.log('result:'+ JSON.stringify(result));
             });
         });
+    }
+    else {
+        db.collection(collectionName, function(err, collection) {
+            collection.insert(role, {safe:true} , function(err, result) {
+                if (err) {
+                    res.send({'error':'An error has occurred ' + err});
+                } else {
+                    res.json({user:result});
+                }
+            });
+        });
+    }
 
-    });
 });
 
 router.put('/users/:id' , function(req, res) {

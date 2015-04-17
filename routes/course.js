@@ -22,7 +22,7 @@ router.get('/courses', function(req, res) {
                     collection.find().toArray(function(err, teachers) {
                     value['teachers'] = teachers;
                         db.collection('subjectList', function(err, collection) {
-                            collection.find().toArray(function(err, subjects){
+                            collection.find().toArray(function(err, subjects) {
                                 value['subjects'] = subjects
                                 res.json(value);
                             });

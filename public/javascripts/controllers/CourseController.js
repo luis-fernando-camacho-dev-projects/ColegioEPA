@@ -22,10 +22,10 @@ ColegioEPA.CoursesEditController = Ember.ObjectController.extend({
                 var courseJSON = course.toJSON();
                 var getCourses = $.ajax({ url:utilsEPA.getHost() + '/validateData/validateCourse', type:"PUT", crossDomain:true, dataType: "json", contentType:"application/x-www-form-urlencoded; charset=UTF-8", data:courseJSON,
                     success:function(result) {
-                        debugger;
                         course.save();
                         myseft.get("target").transitionTo("courses");
-                    spin.dialog("close");
+                        spin.dialog("close");
+                        $('#newCourse').remove();
                     },
                     error:function(res,message) {
                     $('#message').text(res.responseJSON.message);
