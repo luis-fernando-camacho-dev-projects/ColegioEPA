@@ -6,6 +6,40 @@ var Server = mongo.Server,
     Db = mongo.Db,
     BSON = mongo.BSONPure;
 
+
+router.get('/courses', function(req, res) {
+    console.log(req.query);
+    var queryRequest = req.query;
+    var db = req.db;
+    var value = {};
+    var dateQuery = new Date(parseInt(queryRequest.year), parseInt(queryRequest.month), parseInt(queryRequest.day));
+    db.collection('courseList', function(err, collection) {
+         collection.find().sort({startTime:1}).toArray(function(err, courses) {
+                if (err) {
+
+                } else {
+                    var coursesAvaliables = [];
+                    console.log('dateQuery',dateQuery);
+                    console.log('courses', courses);
+
+                    courses.forEach(function(course) {
+                        var regExpressionBackSlash = new RegExp('-', 'g'), startTimeNewCourse = new Date(course.endDate.replace(regExpressionBackSlash,'/')), dates;
+                        if (isNaN(startTimeNewCourse.getYear())) {
+                            dates = course.endDate.split('-');
+                            startTimeNewCourse = new Date(parseInt(dates[2]), parseInt(dates[1]), parseInt(dates[0]),0 ,0, 0, 0);
+                        }
+                        console.log('startTimeNewCoures',startTimeNewCourse);
+                        if (startTimeNewCourse >= dateQuery) {
+                            console.log('course',course);
+                            coursesAvaliables.push(course);
+                        }
+                    }, this);
+                    res.send({courses: coursesAvaliables});
+                }
+        });
+    });
+});
+
 router.get('/userName/:login', function(req, res) {
     var db = req.db, loginSearch = req.params.login, result;
     db.collection('userList',function(err, collection) {

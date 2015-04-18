@@ -1,8 +1,100 @@
-<% include ../partialsViewAdministrator/header %>
-  <script src="javascripts/controllers/ScheduleController.js"></script>
-  <script src="javascripts/routes/ScheduleRoute.js"></script>
-  <script type="text/x-handlebars" id="index">
-    <p> Horario de Cursos </p>
-  </script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Escuela Popular de Artes</title>
+  <link rel="stylesheet" href="stylesheets/styleTemplate.css" type="text/css">
+  <link rel="stylesheet" href="javascripts/lib/emberCalendar/ember-calendar.css" type="text/css">
+  <link rel='stylesheet' href='stylesheets/calendarStyle.css'>
+    <link rel='stylesheet' href='stylesheets/calendarStyle.css'>
+    <link rel='stylesheet' href='stylesheets/jquery/jquery-ui.min.css'>
+    <link rel='stylesheet' href='stylesheets/menuStyles.css'>
+    <script src="javascripts/jquery-2.1.1.min.js"></script>
+    <script src="javascripts/lib/daypilot-all.min.js" type="text/javascript"></script>
+    <link type="text/css" rel="stylesheet" href="stylesheets/themeDaypilot/calendar_white.css" />
+</head>
+<body>
+<script src="javascripts/Utils/utilsEPA.js"></script>
+<script src="javascripts/Utils/Session.js"></script>
+
+    <div class="page">
+        <div class="header">
+            <ul class="navigation">
+            <a href="index.html" id="logo"><img src="images/logo.png" alt="logo"></a>
+                <li>
+                    <a href="index.html">Inicio</a>
+                </li>
+                <li>
+                  <a href="programs.html">Programas</a>
+                </li>
+                <li>
+                    <a href="blog.html">Noticias</a>
+                </li>
+                <li>
+                  <a href="contact.html">Contacto</a>
+                </li>
+                 <li class="menu">
+                    <a href="/teacher" id='session'></a>
+                     <ul style="list-style-type: none;display:none">
+                        <li><a id="editUser"  style="margin-top:-7px">Editar</a></li><br/><br/><br/><br/>
+                <li><a id='logout' style="margin-top:-28px">Salir</a></li><br/>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="body">
+            <div class="guitar">
+                <p> Pagina de Estudiantes </p>
+
+                <div class="space">
+                    Semana:
+                    <a href="javascript:window.dp.startDate = window.dp.startDate.addDays(-6); window.dp.update();">Previous</a>
+                    |
+                    <a href="javascript:window.dp.startDate = window.dp.startDate.addDays(6); window.dp.update();">Next</a>
+                </div>
+                    <div id="dp">
+                        dasd
+                    </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+
+    var dp = null;
+    $(document).ready(function() {
+    $.ajax({url: utilsEPA.getHost() + '/api/course/courses', type:"GET", dataType: 'json',contentType: "application/x-www-form -urlencoded; charset=UTF-8",crossDomain: true, headers : {'API_KEY': localStorage.getItem("token")},
+       success: function(courses) {
+            debugger;
+            var dp = $("#dp").daypilotCalendar({
+                        cssClassPrefix: "calendar_white",
+                        startDate: new DayPilot.Date()
+                    });
+                dp.headerDateFormat ="dddd,dd-MM-yyyy";
+                dp.viewType = "Days";
+                dp.days=6;
+            courses.courses.forEach(function(course) {
+                var startDate = utilsEPA.getDate(course['startDate'], course['startTime']);
+                var endDate = utilsEPA.getDate(course['endDate'], course['endTime']);
+                while (startDate.getTime() < endDate.getTime())
+                {
+                    var e = new DayPilot.Event({
+                        start:new DayPilot.Date(startDate,true),
+                        end:(new DayPilot.Date(startDate,true)).addHours(5),
+                        id: DayPilot.guid(),
+                        text:course['name']+'\n'+startDate.toDateString(),
+                        resource:'E'});
+                        dp.events.add(e);
+                        startDate.setDate(startDate.getDate()+1);
+                }
+            });
+            dp.update();
+            window.dp = dp;
+       }});
+});
+    </script>
+    <div>
+        <a href="/teacher" style="margin-left: 350px;">Volver a la Pagina Principal</a>
+    </div>
+<% include /../footers/footer %>
 </body>
 </html>

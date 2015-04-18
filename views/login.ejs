@@ -25,6 +25,8 @@
 </script>
 <script type="text/javascript">
     $(document).ready(function() {
+        $('#leftMenu').hide();
+        $('.menu').hide();
         if (localStorage.token != null) {
             $('#loginForm').hide();
             $('#errorLogin').show();

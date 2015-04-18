@@ -7,5 +7,6 @@ ColegioEPA.Course = DS.Model.extend({
     endDate: DS.attr('string'),
     startTime: DS.attr('string'),
     endTime: DS.attr('string'),
-    cost: DS.attr('number')
+    cost: DS.attr('number'),
+    days: DS.attr('string')
 });

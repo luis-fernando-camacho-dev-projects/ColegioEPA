@@ -1,12 +1,74 @@
 
 ColegioEPA.CoursesEditController = Ember.ObjectController.extend({
     actions: {
-        updateItem: function(location) {
-            location.set('teacher', this.teacherValue);
-            location.set('subject', this.subjectValue),
-            location.save();
-            this.get("target").transitionTo("courses");
+        updateItem: function(course) {
+            var myseft = this;
+            course.set('teacher', this.teacherValue == null ? this.teachers.get('firstObject') : this.teacherValue);
+            course.set('subject', this.subjectValue == null ? this.get('subjects').get('firstObject') :  this.subjectValue);
+            course.set('days', utilsEPA.getDaysFromCourse());
+            if (this.validationCourse(course)) {
+            var spin = spin || $('#validation-data-dialog').dialog(
+                {
+                closeOnEscape:true,
+                show:"show",
+                    modal: true,
+                    buttons: {
+                        Cancelar: function() {
+                        $(this).dialog( "close");
+                        //window.location.href = utilsEPA.getHost() + "/course";
+                        }
+                    }
+                });
+                var courseJSON = course.toJSON();
+                var getCourses = $.ajax({ url:utilsEPA.getHost() + '/validateData/validateCourse', type:"PUT", crossDomain:true, dataType: "json", contentType:"application/x-www-form-urlencoded; charset=UTF-8", data:courseJSON,
+                    success:function(result) {
+                        course.save();
+                        myseft.get("target").transitionTo("courses");
+                        spin.dialog("close");
+                        $('#newCourse').remove();
+                    },
+                    error:function(res,message) {
+                    $('#message').text(res.responseJSON.message);
+                    $('#validationImgLoading').hide();
+                    }
+                });
+            }
+
         }
+    },
+    validationCourse: function(course) {
+        var validData = true;
+        if(course.get('teacher') == null) {
+            validData = false;
+            alert('selecionar un profesor para el curso');
+        } else if(course.get('subject')  == null) {
+            validData = false;
+            alert('selecionar un profesor para el curso');
+        } else if(typeof course.get('name') == 'undefined') {
+            validData = false;
+            alert('el nombre del curso no debe ser vacio');
+        } else if(typeof course.get('startDate') == 'undefined') {
+            validData = false;
+            alert('la fecha de inicio del curso no debe ser vacia');
+        } else if(typeof course.get('endDate') == 'undefined') {
+            validData = false;
+            alert('la fecha de fin del curso no debe ser vacia');
+        } else if(typeof course.get('startTime') == 'undefined') {
+            validData = false;
+            alert('la hora inicio del curso no debe ser vacia');
+        } else if(typeof course.get('endTime') == 'undefined') {
+            validData = false;
+            alert('la hora fin del curso no debe ser vacia');
+        } else if(typeof course.get('cost') == 'undefined') {
+            validData = false;
+            alert('el costo del curso debe ser mayor a 0 ');
+        } else if(course.get('days').length == 0) {
+            validData = false;
+            alert('se debe selecionar un 1 dia de la semana por lo menos');
+        }
+
+        return validData;
+
     },
     isNew: function() {
         console.log("calculating isNew");

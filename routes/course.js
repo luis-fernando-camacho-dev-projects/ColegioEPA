@@ -22,7 +22,7 @@ router.get('/courses', function(req, res) {
                     collection.find().toArray(function(err, teachers) {
                     value['teachers'] = teachers;
                         db.collection('subjectList', function(err, collection) {
-                            collection.find().toArray(function(err, subjects){
+                            collection.find().toArray(function(err, subjects) {
                                 value['subjects'] = subjects
                                 res.json(value);
                             });
@@ -32,6 +32,23 @@ router.get('/courses', function(req, res) {
         });
     });
 });
+
+router.get('/courses/:courseId', function(req, res) {
+    console.log(req.query);
+    var db = req.db;
+    var courseId = req.params.courseId;
+    var value = {};
+    console.log('courseId', courseId);
+    db.collection('courseList', function(err, collection) {
+         collection.find({'_id':new BSON.ObjectID(courseId)}).toArray(function(err, courses) {
+                console.log(courses);
+                res.json({courses:courses});
+            });
+        });
+    });
+
+
+
 
 router.get('/courses/teacher/:teacherId', function(req, res) {
     var db = req.db;

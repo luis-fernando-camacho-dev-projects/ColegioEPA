@@ -12,10 +12,8 @@ $(document).ready(function() {
             utilsEPA.LogOut();
         });
     }catch(e){
-
+        console.log('err');
     }
-
-
 
     //fill form to edit user
     $('#editUser').click(function() {

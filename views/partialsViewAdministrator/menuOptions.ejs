@@ -7,13 +7,7 @@
                     <a href="index.html">Inicio</a>
                 </li>
                 <li>
-                    <a href="about.html">Nosotros</a>
-                </li>
-                <li>
                   <a href="programs.html">Programas</a>
-                </li>
-                <li class="selected">
-                    <a href="/teacher">Admin</a>
                 </li>
                 <li>
                     <a href="blog.html">Noticias</a>
@@ -22,8 +16,8 @@
                   <a href="contact.html">Contacto</a>
                 </li>
                  <li class="menu">
-                    <a href="/teacher" id='session'>user</a>
-                     <ul class="navigation" style="list-style-type: none;display:none">
+                    <a href="/teacher" id='session'></a>
+                     <ul style="list-style-type: none;display:none">
                         <li><a id="editUser"  style="margin-top:-7px">Editar</a></li><br/><br/><br/><br/>
                         <li><a id='logout' style="margin-top:-28px">Salir</a></li><br/>
                     </ul>
@@ -32,7 +26,7 @@
         </div>
         <div class="body">
             <div class="guitar">
-                <ul>
+                <ul id="leftMenu">
                     <li>
                         <a href="/schedule">Horarios de Cursos</a>
                     </li>
@@ -55,6 +49,7 @@
                         <a href="/enrollment">Inscripciones</a>
                     </li>
                 </ul>
+
                   {{#if existCalendar}}
                     <div id="content" style="padding-left:165px">
                     <div id="calendar"></div>

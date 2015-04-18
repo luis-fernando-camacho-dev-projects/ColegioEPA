@@ -40,9 +40,46 @@
     {{/if}}
     <p>{{#linkTo "courses.new"}}<img src="images/add-icon.png"/> Nuevo Curso{{/linkTo}}</p>
 </script>
+<style>
+     fieldset.group  {
+  margin: 0;
+  padding: 0;
+  margin-bottom: 1.25em;
+  padding: .125em;
+  width: 300px;
+}
 
+
+
+fieldset.group legend {
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+  margin-left: 20px;
+  font-size: 100%;
+  color: black;
+}
+
+
+ul.checkbox  {
+  margin: 0;
+  padding: 0;
+  margin-left: 20px;
+  list-style: none;
+}
+
+ul.checkbox li input {
+  margin-right: .25em;
+}
+ul.checkbox li {
+  margin-left: 30px !important ;
+}
+
+
+</style>
 <script type="text/x-handlebars" data-template-name="_courseForm" >
-      <form id="CourseForm" class="form-horizontal">
+        <div class="spin" data-spin/>
+      <form id="CourseForm" class="form-horizontal" style="margin-left:25px">
         <label for="name">nombre del curso</label>
             {{view Ember.TextField valueBinding="name"}}
 
@@ -68,21 +105,35 @@
         <label for="cost">costo Bs</label>
             {{view Ember.TextField valueBinding="cost" type="money" }}
         <br/>
+        <br/>
+        <fieldset class="group" style="margin-left:250px; margin-top: -370px;">
+        <h1> Dias del Curso</h1>
+        <ul class="checkbox">
+            <li><input type="checkbox"  name="monday" id="monday"><label for="monday">Lunes</label></li>
+            <li><input type="checkbox"  name="tuesday" id="tuesday"/><label for="tuesday">Martes</label></li>
+            <li><input type="checkbox"  name="wednesday" id="wednesday"/><label for="wednesday">Miercoles</label></li>
+            <li><input type="checkbox"  name="thursday" id="thursday"/><label for="thursday">Jueves</label></li>
+            <li><input type="checkbox"  name="friday" id="friday"/><label for="friday">Viernes</label></li>
+            <li><input type="checkbox"  name="saturday" id="saturday"/><label for="saturday">Sabado</label></li>
+        </ul>
+        </fieldset>
         <div>
             <input type="button" class="btn" {{action updateItem this}} value="Guardar">
             <input type="button" class="btn" onclick="utilsEPA.cleanUpTextFields('CourseForm')" value="Limpiar Campos"/>
         </div>
+        <h1 id="messageError" style="display:none">El dato ya existe en la base de datos</h1>
     </form>
 </script>
 
 
 <script type="text/x-handlebars" data-template-name="courses/edit">
     {{#if controller.isNew}}
-      <h1>Nuevo Curso</h1>
+      <h1  style="margin-left: 250px" id="newCourse">Nuevo Curso</h1>
     {{else}}
-      <h1>Editar Curso</h1>
+      <h1 style="margin-left: 250px" id="editCourse">Editar Curso</h1>
     {{/if}}
       {{partial "courseForm"}}
 </script>
+
 </body>
 </html>
