@@ -6,19 +6,19 @@
 
 <script type="text/x-handlebars" data-template-name="enrollments/index">
     {{#if exitStudent}}
-        <p>Nr of enrollments = {{content.length}}</p>
+        <p>Nro de Inscripciones = {{content.length}}</p>
     <table class="table table-hover">
         <tr>
-            <th>nombre del Studiante</th>
+            <th>Estudiante</th>
             <th>Fecha de pago</th>
-            <th>Nro cursos</th>
+            <th>Nro Cursos</th>
             <th> NIT </th>
-            <th>costo Matricula</th>
-            <th>costo del los cursos<th>
-            <th>costo Total</th>
+            <th>Costo Matricula</th>
+            <th>Costo Cursos</th>
+            <th>Costo Total</th>
             <th>Editar</th>
             <th>Eliminar</th>
-          </tr>
+        </tr>
 
             {{#each enrollment in controller itemController="enrollmentsEdit"}}
               <td>{{enrollment.student.name}}</td>
@@ -61,13 +61,13 @@
         <br/>
         <table class="table table-hover">
         <tr>
-            <th>Nombre del Curso </th>
-            <th>nombre del Profesor</th>
-            <th>Fecha Inicio Curso</th>
-            <th>Fecha Fin Curso</th>
-            <th>hora inicio</th>
-            <th>hora fin</th>
-            <th>Costo del Curso</th>
+            <th>Curso </th>
+            <th>Profesor</th>
+            <th>Fecha Inicio</th>
+            <th>Fecha Fin</th>
+            <th>Hora Inicio</th>
+            <th>Hora Fin</th>
+            <th>Costo</th>
             <th>Editar</th>
             <th>Eliminar</th>
         </tr>
@@ -105,7 +105,7 @@
     {{/if}}
         {{partial "courseForm"}}
     <p>
-        <button class="btn" {{action updateItem this}}>GUARDAR INSCRIPCION</button>
+        <button class="btn" {{action updateItem this}}>Guardar Inscripcion</button>
     </p>
 </script>
 <!-- start Modal-->

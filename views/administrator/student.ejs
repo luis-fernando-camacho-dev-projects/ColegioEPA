@@ -6,13 +6,13 @@
 
 <script type="text/x-handlebars" data-template-name="students/index">
       {{#if exitStudent}}
-          Busqueda de Estudiante : {{input type='text' value=filter placeholder='Nombre, Ci or correo electronico'}}
-          <p>Nr of students = {{content.length}}</p>
+          Busqueda de Estudiante : {{input type='text' value=filter placeholder='Nombre, Ci o Email'}}
+          <p>Nro de Estudiantes = {{content.length}}</p>
       <table class="table table-hover">
           <tr>
-              <th {{action 'sortBy' 'name'}}><a>nombre</a></th>
-              <th {{action 'sortBy' 'email'}}><a>email</a></th>
-              <th {{action 'sortBy' 'ci'}}><a>ci</a></th>
+              <th {{action 'sortBy' 'name'}}><a>Nombre</a></th>
+              <th {{action 'sortBy' 'email'}}><a>Email</a></th>
+              <th {{action 'sortBy' 'ci'}}><a>CI</a></th>
               <th><a>Telefono-Celular</a></th>
               <th>Editar</th>
               <th>Eliminar</th>
@@ -34,18 +34,19 @@
 </script>
 <script source="" type="text/x-handlebars" data-template-name="_studentForm" >
       <form id="StudentForm" class="form-horizontal">
-        <label for="Nombre">nombre</label>
+        <label for="Nombre">Nombre</label>
           {{view Ember.TextField valueBinding="name"}}
-        <label  for="Email">email</label>
+        <label  for="Email">Email</label>
           {{view Ember.TextField valueBinding="email"}}
         <label for="CI">CI</label>
           {{view Ember.TextField valueBinding="ci"}}
         <label  for="Fecha de Nacimiento">Fecha Nacimiento</label>
           {{custom-date-picker valueBinding="birthDate"}}
-          <div>
-            <input type="button" class="btn" {{action updateItem this}} value="Guardar">
-            <input type="button" class="btn" onclick="utilsEPA.cleanUpTextFields('StudentForm')" value="Limpiar Campos"/>
-          </div>
+        <label></label>  
+        <div>
+          <input type="button" class="btn" {{action updateItem this}} value="Guardar">
+          <input type="button" class="btn" onclick="utilsEPA.cleanUpTextFields('StudentForm')" value="Limpiar Campos"/>
+        </div>
     </form>
   </script>
  <script type="text/x-handlebars" data-template-name="students/edit" >

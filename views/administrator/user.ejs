@@ -40,21 +40,21 @@
 </script>
 
 <script type="text/x-handlebars" data-template-name="_userForm" >
-    <p> los campos de abajo son obligatorios </p>
+    <p> * Campos son obligatorios </p>
     <form id ="UserForm" class="form-horizontal">
-        <label for="nameUser">Nombre</label>
-            {{view Ember.TextField valueBinding="name" placeholder="nombre del usuario" name="nameUser"}}
-        <label for="lastNameUser">Apellido</label>
-            {{view Ember.TextField valueBinding="lastName" placeholder="apellido del usuario" name="lastNameUser"}}
-        <label for="ciUser">CI </label>
-            {{view Ember.TextField valueBinding="ci" placeholder="ci del usuario " name="ciUser"}}
-        <label for="phoneUser">telefono fijo </label>
-            {{input type="number" data-validation="number" data-validation-allowing="range[4000000;9000000]" valueBinding="phone" placeholder="telefono fijo del usuario " name="phoneUser"}}
-        <label for="cellPhoneUser">celular del usuario </label>
-            {{input type="tel" valueBinding="cellPhone" data-validation="number" data-validation-allowing="range[1;9000000]" placeholder="celular del usuario " name="cellPhoneUser"}}
+        <label for="nameUser">* Nombre</label>
+            {{view Ember.TextField valueBinding="name" placeholder="Nombre del usuario" name="nameUser"}}
+        <label for="lastNameUser">* Apellido</label>
+            {{view Ember.TextField valueBinding="lastName" placeholder="Apellido del usuario" name="lastNameUser"}}
+        <label for="ciUser">* CI </label>
+            {{view Ember.TextField valueBinding="ci" placeholder="CI del usuario " name="ciUser"}}
+        <label for="phoneUser">Telefono fijo </label>
+            {{input type="number" data-validation="number" data-validation-allowing="range[4000000;9000000]" valueBinding="phone" placeholder="Telefono fijo del usuario " name="phoneUser"}}
+        <label for="cellPhoneUser">Celular del usuario </label>
+            {{input type="tel" valueBinding="cellPhone" data-validation="number" data-validation-allowing="range[1;9000000]" placeholder="Celular del usuario" name="cellPhoneUser"}}
         <label for="addressUser">Direccion del usuario</label>
-            {{view Ember.TextField valueBinding="address" placeholder="direccion del usuario" name="addressUser"}}
-        <label  for="roleUser">Rol</label>
+            {{view Ember.TextField valueBinding="address" placeholder="Direccion del usuario" name="addressUser"}}
+        <label  for="roleUser">* Rol</label>
             {{view Ember.Select selectionBinding="ColegioEPA.selectedRole.role" contentBinding= "ColegioEPA.RolesController" optionValuePath="content.type" optionLabelPath="content.label"  prompt="Selecionar el rol" name="roleUser"}}
             <div>
             <input type="button" class="btn" {{action updateItem this}} value="Guardar">
