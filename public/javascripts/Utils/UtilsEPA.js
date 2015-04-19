@@ -35,34 +35,54 @@ utilsEPA = {
     },
 
     fillUser: function() {
-        var user = this.getUser(), url;
-        if (this.getRole() === 'student') {
-            url=this.getHost() + "/api/student/students/"+this.getObjectOwner();
+        var user = this.getUser(), url, valuesUser;
+
+        if (this.getRole() == 'administrator') {
+            valuesUser = user.configValues.split(";");
+            names = valuesUser[0].split("-");
+            phones = valuesUser[2].split("-");
+            $('#login').val(user.login);
+            $('#password').val(user.password);
+            $('#name').val(names[0]);
+            $('#ci').val(valuesUser[1]);
+            $('#email').val(user.email);
+            $('#birthDate').val(valuesUser[4]);
+            $('#cellPhone').val(phones[0]);
+            $('#phone').val(phones[1]);
+            $('#address').val(valuesUser[3]);
+            $('#lastName').val(names[1]);
+
         } else {
-            url= this.getHost() + "/api/teacher/teachers/"+this.getObjectOwner();
-        }
-        $.ajax({url:url,type:'GET', dataType: 'json',contentType: "application/json; charset=utf-8",headers : {'API_KEY': localStorage.getItem("token")},
-            success:function(result) {
-                var valueREST;
-                if (typeof(result.student) !== "undefined") {
-                    valueREST = result.student;
-                } else {
-                    valueREST = result.teacher;
-                }
-                $('#login').val(user.login);
-                $('#password').val(user.password);
-                $('#name').val(valueREST.name);
-                $('#ci').val(valueREST.ci);
-                $('#email').val(user.email);
-                $('#birthDate').val(valueREST.birthDate);
-                $('#cellPhone').val(valueREST.cellPhone);
-                $('#phone').val(valueREST.phone);
-                $('#address').val(valueREST.address);
-                $('#lastName').val(valueREST.lastName);
-            }, error:function(res) {
-                alert("Bad thing happend! " + res.statusText);
+            if (this.getRole() === 'student') {
+                url=this.getHost() + "/api/student/students/"+this.getObjectOwner();
+            } else {
+                url= this.getHost() + "/api/teacher/teachers/"+this.getObjectOwner();
             }
-        });
+            $.ajax({url:url,type:'GET', dataType: 'json',contentType: "application/json; charset=utf-8",headers : {'API_KEY': localStorage.getItem("token")},
+                success:function(result) {
+                    var valueREST;
+                    if (typeof(result.student) !== "undefined") {
+                        valueREST = result.student;
+                    } else {
+                        valueREST = result.teacher;
+                    }
+                    $('#login').val(user.login);
+                    $('#password').val(user.password);
+                    $('#name').val(valueREST.name);
+                    $('#ci').val(valueREST.ci);
+                    $('#email').val(user.email);
+                    $('#birthDate').val(valueREST.birthDate);
+                    $('#cellPhone').val(valueREST.cellPhone);
+                    $('#phone').val(valueREST.phone);
+                    $('#address').val(valueREST.address);
+                    $('#lastName').val(valueREST.lastName);
+                }, error:function(res) {
+                    alert("Bad thing happend! " + res.statusText);
+                }
+            });
+        }
+
+
     },
     updateSession: function(newUser) {
         var currentUser = this.getUser();
