@@ -2,15 +2,15 @@
 <script src="javascripts/routes/TeacherRoute.js"></script>
 <script type="text/x-handlebars" data-template-name="teachers/index">
     {{#if exitStudent}}
-        Busqueda de Profesores : {{input type='text' value=filter placeholder='Nombre, Ci or correo electronico'}}
-        <p>Nro de profesores= {{content.length}}</p>
+        Busqueda de Profesores : {{input type='text' value=filter placeholder='Nombre, CI o Email'}}
+        <p>Nro de Profesores= {{content.length}}</p>
     <table class="table table-hover">
         <tr>
-            <th>nombre</th>
-            <th>apellido</th>
-            <th>email</th>
-            <th>ci</th>
-            <th>fecha de nacimiento</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Email</th>
+            <th>CI</th>
+            <th>Fecha de nacimiento</th>
           </tr>
             {{#each teacher in filteredContent itemController="teachersEdit"}}
               <td>{{teacher.name}}</td>
@@ -31,11 +31,11 @@
 
 <script source="" type="text/x-handlebars" data-template-name="_teacherForm" >
       <form id="TeacherForm" class="form-horizontal">
-        <label for="Nombre">nombre</label>
+        <label for="Nombre">Nombre</label>
           {{view Ember.TextField valueBinding="name" placeholder="Nombre del profesor"}}
         <label for="Apellido">Apellido </label>
           {{view Ember.TextField valueBinding="lastName" placeholder="Apellido del profesor"}}
-        <label  for="Email">email</label>
+        <label  for="Email">Email</label>
           {{view Ember.TextField valueBinding="email" placeholder="Email del Profesor"}}
         <label for="CI">ci</label>
           {{view Ember.TextField valueBinding="ci" placeholder="ci del profesor"}}
@@ -45,7 +45,7 @@
           {{view Ember.TextField valueBinding="cellPhone" placeholder="ci del profesor"}}
         <label for="Address">Direccion</label>
           {{view Ember.TextField valueBinding="address" placeholder="direcion del profesor"}}
-        <label  for="birthDate">fecha de nacimiento</label>
+        <label  for="birthDate">Fecha de nacimiento</label>
           {{custom-date-picker valueBinding="birthDate" placeholder="fecha de nacimiento"}}
         <br/>
         <div>
