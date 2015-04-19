@@ -64,7 +64,6 @@
     $(document).ready(function() {
     $.ajax({url: utilsEPA.getHost() + '/api/course/courses', type:"GET", dataType: 'json',contentType: "application/x-www-form -urlencoded; charset=UTF-8",crossDomain: true, headers : {'API_KEY': localStorage.getItem("token")},
        success: function(courses) {
-            debugger;
             var dp = $("#dp").daypilotCalendar({
                         cssClassPrefix: "calendar_white",
                         startDate: new DayPilot.Date()

@@ -67,8 +67,8 @@ router.post('/users', function(req, res) {
         });
     }
     else {
-        db.collection(collectionName, function(err, collection) {
-            collection.insert(role, {safe:true} , function(err, result) {
+        db.collection('userList', function(err, collection) {
+            collection.insert(user, {safe:true} , function(err, result) {
                 if (err) {
                     res.send({'error':'An error has occurred ' + err});
                 } else {
