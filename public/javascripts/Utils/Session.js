@@ -7,7 +7,16 @@ $(document).ready(function() {
      });
     try
     {
-        $('#session').text(utilsEPA.getLogin());
+        var role = utilsEPA.getRole(), displayRole;
+        if (role == 'student') {
+            displayRole = 'Stud.'
+        } else if (role == 'teacher') {
+            displayRole = 'Prof.'
+        } else {
+            displayRole = 'Admin.'
+        }
+
+        $('#session').text(utilsEPA.getLogin()+"("+displayRole+")");
         $('#logout').on('click', function() {
             utilsEPA.LogOut();
         });
@@ -31,7 +40,7 @@ $(document).ready(function() {
                                         ci : $('#ci').val(),
                                         objectOwner : utilsEPA.getObjectOwner(),
                                         birthDate : $('#birthDate').val(),
-                                        token : $('#name').val()+"-"+$('#lastName').val()+";"+$('#phone').val()+"-"+$('#cellPhone').val()+";"+$('#address').val()
+token : $('#name').val()+"-"+$('#lastName').val()+";"+$('#ci').val()+";"+$('#phone').val()+"-"+$('#cellPhone').val()+";"+$('#address').val()+";"+$('#birthDate').val()
                                     }
                                 };
                     utilsEPA.updateSession(user.user);
@@ -47,16 +56,18 @@ $(document).ready(function() {
                     delete dataInfo.role;
                     $.ajax({url:'http://localhost:3000/user/users/'+utilsEPA.getId(), type:"PUT", dataType: 'json',contentType: "application/x-www-form-urlencoded; charset=UTF-8",crossDomain: true, data:user,
                                 success:function(result) {
-                                    $.ajax({url: utilsEPA.getUrlByUser() , type:"PUT", dataType:'json', contentType:"application/x-www-form-urlencoded; charset=UTF-8",
-                                        crossDomain:true, data : utilsEPA.builtUserInfo(dataInfo), headers : {'API_KEY': localStorage.getItem("token")},
-                                        success: function(result) {
-                                            window.href = "http://localhost:3000/student/attendance"
-                                        }, error: function(result) {
-                                        }
-                                    });
-                                }, error:function(res) {
-                                    alert("Bad thing happend! " + res.statusText);
-                                }
+                                    if (utilsEPA.getRole() != 'administrator') {
+                                        $.ajax({url: utilsEPA.getUrlByUser() , type:"PUT", dataType:'json', contentType:"application/x-www-form-urlencoded; charset=UTF-8",
+                                            crossDomain:true, data : utilsEPA.builtUserInfo(dataInfo), headers : {'API_KEY': localStorage.getItem("token")},
+                                            success: function(result) {
+                                                window.href = "http://localhost:3000/student/attendance"
+                                            }, error: function(result) {
+                                            }
+                                        });
+                                    }
+                                    }, error:function(res) {
+                                        alert("Bad thing happend! " + res.statusText);
+                                    }
                     });
                 },
                     submitError: function($form,event, errors) {

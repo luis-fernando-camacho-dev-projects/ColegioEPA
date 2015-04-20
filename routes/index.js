@@ -50,10 +50,10 @@ function _genToken(user) {
     }, require('../config/secret')());
 
     var userResponse = user;
+    userResponse.configValues = user.token;
     userResponse.token = token;
     userResponse.typeUser = 'testType';
     userResponse._idUser ='IdUser';
-
     return userResponse;
 };
 

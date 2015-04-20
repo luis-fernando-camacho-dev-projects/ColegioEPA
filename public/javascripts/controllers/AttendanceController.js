@@ -29,7 +29,7 @@ ColegioEPA.AttendancesEditController = Ember.ObjectController.extend({
                 alert('la clase a reemplazar no puede tomar una fecha vacia');
                 correctValue = false;
             } else if (attendance.get('postponedDate') === 'undefined') {
-                alert('la clase a reemplazar no puede tomar una fecha vacia');
+                alert('la clase a reemplazar no puede tomar una fecha vyacia');
                 correctValue = false;
             }
             if (correctValue && utilsEPA.validateDateGratherThanToday(attendance.get('classReplaceDate'))) {

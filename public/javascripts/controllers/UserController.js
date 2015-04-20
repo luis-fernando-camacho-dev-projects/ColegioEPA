@@ -3,9 +3,9 @@ ColegioEPA.UsersEditController = Ember.ObjectController.extend({
         updateItem: function(user) {
             user.set('login',this.get('ci'));
             user.set('password', this.get('ci'));
-            user.set('email','');
+            user.set('email','vacio');
             user.set('role', ColegioEPA.selectedRole.role.type);
-            user.set('token', this.get('name')+'-'+this.get('lastName') + ';'+ this.get('phone')+'-'+this.get('cellPhone')+';'+this.get('address'));
+            user.set('token', this.get('name')+'-'+this.get('lastName') + ';'+ this.get('ci') +";"+ this.get('phone')+'-'+this.get('cellPhone')+';'+this.get('address')+ ';vacio');
             if (this.validationUser(user))
             {
                 user.save();
@@ -16,28 +16,28 @@ ColegioEPA.UsersEditController = Ember.ObjectController.extend({
                 } else {
                     this.get("target").transitionTo("users");
                 }
-                
+
             }
         }
     },
     validationUser: function(user) {
         var validateData = true;
-        if ($('input[name=nameUser]').val().length == 0) {
+        if ($('input[name=nameUser]').val().trim().length == 0) {
             validateData = false;
             alert('insertar el nombre del usuario');
-        } else if ($('input[name=lastNameUser]').val().length == 0) {
+        } else if ($('input[name=lastNameUser]').val().trim().length == 0) {
             validateData = false;
             alert('insertar el apellido del usuario');
-        } else if ($('input[name=ciUser]').val().length == 0) {
+        } else if ($('input[name=ciUser]').val().trim().length == 0) {
             validateData = false;
             alert('insertar el ci del usuario');
-        } else if ($('input[name=phoneUser]').val().length == 0) {
+        } else if ($('input[name=phoneUser]').val().trim().length == 0) {
             validateData = false;
             alert('insertar el telefono del usuario');
-        } else if ($('input[name=cellPhoneUser]').val().length == 0) {
+        } else if ($('input[name=cellPhoneUser]').val().trim().length == 0) {
             validateData = false;
             alert('insertar el telefono del usuario');
-        } else if ($('input[name=addressUser]').val().length == 0) {
+        } else if ($('input[name=addressUser]').val().trim().length == 0) {
             validateData = false;
             alert('insertar la direccion del usuario');
         }
