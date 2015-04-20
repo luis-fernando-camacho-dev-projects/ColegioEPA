@@ -72,8 +72,19 @@
                         </ul>
                     </div>
                 </div>
+                <div></div>
                 <div id="sidebarCourses" class="sidebar" style="float:left;overflow-y: auto;height:1000px;">
-                    <h2><b>Cursos Para HOY<b></h2>
+                    <h2><b>Cursos de Hoy - <b>
+                    <b id="currentDate">
+                        <script>  var currentDate = new Date(); 
+                        var month = currentDate.getMonth()+1;
+                        var day = currentDate.getUTCDate();
+                        var year = currentDate.getFullYear();
+                        var dateFormat = month +"/"+day+"/"+year;
+                        document.getElementById("currentDate").innerHTML= dateFormat;
+                        </script>
+                        </b>
+                    </h2>
                 </div>
             </div>
         </div>
@@ -157,8 +168,6 @@
             }
         });
     });
-
-
     </script>
 </body>
 </html>
