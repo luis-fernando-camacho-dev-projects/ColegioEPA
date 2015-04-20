@@ -9,24 +9,23 @@ var Server = mongo.Server,
 
 router.get('/courses', function(req, res) {
     console.log(req.query);
+    var language= req.headers["accept-language"];
     var queryRequest = req.query;
     var db = req.db;
     var value = {};
-    var dateQuery = new Date(parseInt(queryRequest.year), parseInt(queryRequest.month), parseInt(queryRequest.day));
+    var dateQuery = new Date(parseInt(queryRequest.year), parseInt(queryRequest.month), parseInt(queryRequest.day),0,0,0,0);
     db.collection('courseList', function(err, collection) {
          collection.find().sort({startTime:1}).toArray(function(err, courses) {
                 if (err) {
 
                 } else {
                     var coursesAvaliables = [];
-                    console.log('dateQuery',dateQuery);
-                    console.log('courses', courses);
-
                     courses.forEach(function(course) {
                         var regExpressionBackSlash = new RegExp('-', 'g'), startTimeNewCourse = new Date(course.endDate.replace(regExpressionBackSlash,'/')), dates;
-                        if (isNaN(startTimeNewCourse.getYear())) {
+                        if (language.indexOf('es') != 0) {
                             dates = course.endDate.split('-');
-                            startTimeNewCourse = new Date(parseInt(dates[2]), parseInt(dates[1]), parseInt(dates[0]),0 ,0, 0, 0);
+                            console.log("ISNAN");
+                            startTimeNewCourse = new Date(parseInt(dates[2]), parseInt(dates[1]), parseInt(dates[0]));
                         }
                         console.log('startTimeNewCoures',startTimeNewCourse);
                         if (startTimeNewCourse >= dateQuery) {

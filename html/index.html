@@ -72,40 +72,8 @@
                         </ul>
                     </div>
                 </div>
-                <div class="sidebar">
-                    <ul id="courses">
-                        <li ="current_course">
-                            <span>Niños</span>
-                            <a href="javascript:CarouselCourse.previous(window.courses)" >anterior</a>
-                            <a href="javascript:CarouselCourse.next(window.courses)" style="margin-left: 120px;">siguiente</a>
-                            <h2 id="title" style="margin-left: 85px;font-size: x-large;">Curso Interactivo de Niños</h2>
-                            <a href="blog.html"><img src="images/singing-kids.jpg" alt=""></a>
-                            <p id="times" style="margin:0px"></p>
-                            <p id="dates" style="margin:0px"></p>
-                            <p id="description">
-                            </p>
-                        </li>
-                    </ul>
-
-                    <ul>
-                        <li>
-                            <span>Regulares</span> <a href="blog.html"><img src="images/singer.jpg" alt=""></a>
-                            <h2>Programas Regulares</h2>
-                            <p>
-                              Nuestros Programas Regulares en Música constituyen una educación artística integral superior para los estudiantes iniciantes y avanzados,
-                            </p>
-                        </li>
-                    </ul>
-                    <ul>
-                        <li>
-                            <span>Libres</span> <a href="blog.html"><img src="images/violin-lesson.jpg" alt=""></a>
-                            <h2>Cursos Libres</h2>
-                            <p>
-                                Nuestros Cursos Libres de Instrumento están abiertos durante todo el año, brindando horarios flexibles para aquellas personas que desean capacitarse en un instrumento.
-                            </p>
-                        </li>
-                    </ul>
-                    <a href="blog.html">Mas topicos</a>
+                <div id="sidebarCourses" class="sidebar" style="float:left;overflow-y: auto;height:1000px;">
+                    <h2><b>Cursos Para HOY<b></h2>
                 </div>
             </div>
         </div>
@@ -158,26 +126,34 @@
     </div>
     <script>
     $(document).ready(function() {
-        debugger;
+        //debugger;
         var currentDate = new Date(), year = currentDate.getFullYear(), month = currentDate.getMonth() + 1, day= currentDate.getUTCDate();
         var queryParm = "?year="+year +"&month="+month+"&day="+day;
         $.ajax({url:utilsEPA.getHost() + '/utils/courses'+queryParm, type : "GET", dateType:'json',
             contentType: "application/x-www-form -urlencoded; charset=UTF-8", crossDomain:true, success: function(courses) {
-                var times, courseDate;
+                var times, courseDate, currentDate = new Date() , courseTomorow=[];
                 window.courses = courses.courses;
                 window.index = 0;
-                var currentDate = new Date();
-                for(var indexCourse = 0; indexCourse < courses.courses.length ; indexCourse++) {
-                    times = courses.courses[indexCourse].startTime.split(":");
-                    courseDate = new Date();
-                    courseDate.setHours(times[0]);
-                    courseDate.setMinutes(times[1]);
+                courses.courses.forEach(function(course){
+                    var courseDate = new Date(), times = course.startTime.split(":");
+                        courseDate.setHours(times[0]);
+                        courseDate.setMinutes(times[1]);
+                        debugger;
                     if(currentDate < courseDate) {
-                        window.index = indexCourse;
-                        break;
+                        CarouselCourse.addCourseToSideBar(course,"sidebarCourses");
+                        /*window.index = indexCourse;
+                        break;*/
+                    } else {
+                        courseTomorow.push(course);
                     }
-                }
-                CarouselCourse.setInfoCourse(window.courses[window.index]);
+
+                }, this);
+                $('#sidebarCourses').append('<h2><b>Cursos para Manaña</b></h2>');
+                courseTomorow.forEach(function(course){
+                    CarouselCourse.addCourseToSideBar(course,"sidebarCourses");
+                },this);
+                $('#sidebarCourses').append('<a href="blog.html">Todos los cursos</a>');
+                //CarouselCourse.setInfoCourse(window.courses[window.index]);
             }
         });
     });

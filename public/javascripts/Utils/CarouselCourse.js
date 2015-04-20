@@ -17,5 +17,12 @@ CarouselCourse = {
     previous: function(courses) {
         window.index = window.index -1 < 0? courses.length -1 : window.index - 1;
         this.setInfoCourse(courses[window.index]);
+    },
+    addCourseToSideBar: function(course, container) {
+        var times = "hora de inicio:" + course.startTime + "-hora fin:" + course.endTime,
+            datesRange= "<br/> fecha de inicio:" + course.startDate + "<br/> fecha de fin" + course.endDate;
+            $("#"+container).append("<ul><li  style='min-height:0px'><span>"+course.name+"</span><p>"+times+datesRange+ "</p></li></ul>");
     }
+
+
 }
