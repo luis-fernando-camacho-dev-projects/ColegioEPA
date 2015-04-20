@@ -49,12 +49,17 @@
                         <a href="/enrollment">Inscripciones</a>
                     </li>
                 </ul>
-                  <div id="content" class="content">
+
+                  {{#if existCalendar}}
+                    <div id="content" style="padding-left:165px">
+                    <div id="calendar"></div>
+                    </div>
+                  {{else}}
+                    <div id="content" class="content">
                       {{outlet}}
                       {{outlet 'modal'}}
-                  </div>
-
+                    </div>
+                  {{/if}}
             </div>
         </div>
 <% include /../footers/footer %>
-
