@@ -1,5 +1,5 @@
 <div id="dialog-form" title="Editar informacion del Usuario" style="display:none" >
-  <p class="validateTips">los campos de abajo son obligatorios.</p>
+  <p class="validateTips">Los campos de abajo son obligatorios.</p>
   <form id="user-from" >
 
     <div class="control-group">
@@ -11,21 +11,21 @@
     <div class="control-group">
         <label class="control-label" for="password">Password</label>
         <div class="controls">
-            <input placeHolder="password del Usuario" type="password" id="password" pattern="^.*(?=.{4,10})(?=.*\d)(?=.*[a-zA-Z]).*$" data-validation-pattern-message="formato de password incorrecto" />
+            <input placeHolder="Password del Usuario" type="password" id="password" pattern="^.*(?=.{4,10})(?=.*\d)(?=.*[a-zA-Z]).*$" data-validation-pattern-message="Formato de password incorrecto" />
         </div>
     </div>
         <!-- control for name -->
     <div class="control-group">
-        <label for="name" class="control-label">Name</label>
+        <label for="name" class="control-label">Nombre</label>
         <div class="controls">
-            <input placeHolder="nombre del Usuario" type="text" name="name" id="name" pattern="^[A-Za-z0-9 ]{3,20}$" data-validation-required-message="el nombre es requerido" />
+            <input placeHolder="Nombre del Usuario" type="text" name="name" id="name" pattern="^[A-Za-z0-9 ]{3,20}$" data-validation-required-message="El nombre es requerido" />
         </div>
     </div>
         <!-- control for last name-->
     <div class="control-group">
         <label for="lastName" class="control-label">Apellido</label>
         <div class="controls">
-            <input placeHolder="nombre del Usuario" type="text" name="lastName" id="lastName" pattern="^[A-Za-z0-9 ]{3,20}$" data-validation-required-message="apellido" />
+            <input placeHolder="Apellido del Usuario" type="text" name="lastName" id="lastName" pattern="^[A-Za-z0-9 ]{3,20}$" data-validation-required-message="Apellido" />
         </div>
     </div>
     <!-- control for ci -->
@@ -33,7 +33,7 @@
     <div class="control-group">
         <label for="ci" class="control-label">CI</label>
         <div class="controls">
-            <input placeHolder="carnet de identidad" type="number" name="ci" id="ci" data-validation-callback-callback="validateCI"/>
+            <input placeHolder="Carnet de identidad" type="number" name="ci" id="ci" data-validation-callback-callback="validateCI"/>
         </div>
     </div>
 
@@ -41,39 +41,39 @@
     <div class="control-group">
         <label for="email"  class="control-label">Email</label>
         <div class="controls">
-            <input placeHolder="correo electronico"  type="email" name="email" id="email" data-validation-email-message="ingrese una direccion de correo electronico valida"/>
+            <input placeHolder="correo electronico"  type="email" name="email" id="email" data-validation-email-message="Ingrese una direccion de correo electronico valida"/>
         </div>
     </div>
     <!-- control for student birth date -->
     <div class="control-group">
         <label for="birthDate" class="control-label">Fecha de Nacimiento </label>
         <div class="controls">
-            <input placeHolder="fecha de nacimento" type="tex" pattern="(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d" name="birthDate" id="birthDate" data-validation-pattern-message="fecha de nacimiento invalida"/>
+            <input placeHolder="Fecha de nacimento" type="tex" pattern="(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d" name="birthDate" id="birthDate" data-validation-pattern-message="Fecha de nacimiento invalida"/>
         </div>
     </div>
     <!-- control for phone number -->
     <div class="control-group">
         <label for="phone" class="control-label">Telefono</label>
         <div class="controls">
-            <input placeHolder="Telefono" type="number" min="2000000" name="phone" id="phone" data-validation-min-message="invalido numero de telefono fijo"/>
+            <input placeHolder="Telefono" type="number" min="2000000" name="phone" id="phone" data-validation-min-message="Numero de telefono fijo invalido"/>
         </div>
     </div>
     <!-- control for cell Phone -->
     <div class="control-group">
-        <label for="CellPhone" class="control-label">Celular del Usuario</label>
+        <label for="CellPhone" class="control-label">Celular</label>
         <div class="controls">
             <input placeHolder="celular del Usuario" type="number"  min="2000000" name="cellPhone" id="cellPhone" data-validation-min-message="invalido Celular del Usuario"/>
         </div>
     </div>
     <div class="control-group">
-        <label for="address" class="control-label">Dirreccion del Usuario</label>
+        <label for="address" class="control-label">Dirreccion</label>
         <div class="controls">
             <input placeHolder="dirreccion del Usuario" type="text" name="address" id="address" data-validation-required-message="invalido Celular del Usuario" required />
         </div>
     </div>
     <div>
-        <input id="save" type="submit" value="GUARDAR" class="btn">
-        <input id="cancel" type="button" value="CANCELAR"  class="btn" style="float:right">
+        <input id="save" type="submit" value="Guardar" class="btn">
+        <input id="cancel" type="button" value="Cancelar"  class="btn" style="float:right">
     </div>
   </form>
 </div>

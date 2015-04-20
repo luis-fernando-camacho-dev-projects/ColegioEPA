@@ -19,7 +19,7 @@ utilsEPA = {
         }
     },
     getUser: function() {
-        return JSON.parse(localStorage.getItem('user'));  
+        return JSON.parse(localStorage.getItem('user'));
     },
     getRole: function() {
         return this.getUser().role;
