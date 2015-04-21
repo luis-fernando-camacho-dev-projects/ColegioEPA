@@ -9,20 +9,27 @@ $(document).ready(function() {
     {
         var role = utilsEPA.getRole(), displayRole;
         if (role == 'student') {
-            displayRole = 'Stud.'
+            displayRole = 'Stud.';
         } else if (role == 'teacher') {
-            displayRole = 'Prof.'
+            displayRole = 'Prof.';            
         } else {
-            displayRole = 'Admin.'
+            displayRole = 'Admin.';
         }
-
-        $('#session').text(utilsEPA.getLogin()+"("+displayRole+")");
         $('#logout').on('click', function() {
             utilsEPA.LogOut();
         });
     }catch(e){
         console.log('err');
     }
+    
+    try
+    {
+        var nameUser = utilsEPA.getUser().configValues.split("-")[0];
+        $('#session').text(nameUser + "("+displayRole+")");
+    } catch( e) {
+
+    }
+    
 
     //fill form to edit user
     $('#editUser').click(function() {

@@ -52,7 +52,7 @@ router.post('/users', function(req, res) {
                 }
                 else {
                     console.log('result'+result);
-                    user.objectOwner = new BSON.ObjectID(result._id);
+                    user.objectOwner = new BSON.ObjectID(result[0]._id);
                     db.collection('userList', function(err, collection) {
                         collection.insert(user, {safe:true}, function(err, result) {
                             if (err) {
