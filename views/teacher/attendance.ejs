@@ -6,16 +6,16 @@
 
 <script type="text/x-handlebars" data-template-name="attendances/index">
     {{#if exitStudent}}
-        Busqueda de assitencia : {{input type='text' value=filter placeholder='Nombre del curso,profesor , fecha inicio or fecha fin'}}
-        <p>Nr asistencias registradas = {{content.length}}</p>
+        Busqueda de assitencia : {{input type='text' value=filter placeholder='Curso,Profesor, Fecha inicio o Fecha fin'}}
+        <p>Nr Asistencias registradas = {{content.length}}</p>
     <table class="table table-hover">
         <tr>
-            <th>curso</th>
-            <th>profesor</th>
-            <th>tipo de assitencia</th>
-            <th>fecha de asistencia</th>
-            <th>fecha de la clase a reponer</th>
-            <th>fecha de compensacion</th>
+            <th>Curso</th>
+            <th>Profesor</th>
+            <th>Tipo de assitencia</th>
+            <th>Fecha de asistencia</th>
+            <th>Fecha de la clase a reponer</th>
+            <th>Fecha de compensacion</th>
             <th>Editar</th>
             <th>Eliminar</th>
           </tr>
@@ -77,10 +77,10 @@
     {{/if}}
     {{partial "attendanceForm"}}
     {{#if controller.isNew}}
-        <input type="button" class="btn" value="GUARDAR ASISTENCIA" {{action updateItem this}}/>
+        <input type="button" class="btn" value="Guardar Asistencia" {{action updateItem this}}/>
         <input type="button" class="btn" onclick="utilsEPA.cleanUpTextFields('AttendanceForm')" value="Limpiar Campos"/>
     {{else}}
-        <input type="button" class="btn" value="EDITAR ASISTENCIA" {{action updateItem this}}/>
+        <input type="button" class="btn" value="Editar Asistencia" {{action updateItem this}}/>
         <input type="button" class="btn" onclick="utilsEPA.cleanUpTextFields('AttendanceForm')" value="Limpiar Campos"/>
     {{/if}}
 </script>

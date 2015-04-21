@@ -34,13 +34,13 @@
             {{/each}}
     </table>
     {{else}}
-     NO users
+     No hay Usuarios
     {{/if}}
     <p>{{#linkTo "users.new"}}<img src="images/add-icon.png"/> Nuevo Usuario{{/linkTo}}</p>
 </script>
 
 <script type="text/x-handlebars" data-template-name="_userForm" >
-    <p> * Campos son obligatorios </p>
+    <p> Campos Requeridos (*) </p>
     <form id ="UserForm" class="form-horizontal">
         <label for="nameUser">* Nombre</label>
             {{view Ember.TextField valueBinding="name" placeholder="Nombre del usuario" name="nameUser"}}
@@ -73,6 +73,5 @@
             {{partial "userForm"}}
     </div>
     </script>
-
 </body>
 </html>
