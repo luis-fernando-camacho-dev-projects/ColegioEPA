@@ -149,7 +149,7 @@
                     var courseDate = new Date(), times = course.startTime.split(":");
                         courseDate.setHours(times[0]);
                         courseDate.setMinutes(times[1]);
-                        debugger;
+                        
                     if(currentDate < courseDate) {
                         CarouselCourse.addCourseToSideBar(course,"sidebarCourses");
                         /*window.index = indexCourse;
@@ -159,11 +159,14 @@
                     }
 
                 }, this);
-                $('#sidebarCourses').append('<h2><b>Cursos para Manaña</b></h2>');
-                courseTomorow.forEach(function(course){
-                    CarouselCourse.addCourseToSideBar(course,"sidebarCourses");
-                },this);
-                $('#sidebarCourses').append('<a href="blog.html">Todos los cursos</a>');
+                if (courseTomorow.length > 0) {
+                    $('#sidebarCourses').append('<h2><b>Cursos para Manaña</b></h2>');
+                        courseTomorow.forEach(function(course){
+                        CarouselCourse.addCourseToSideBar(course,"sidebarCourses");
+                    },this);
+                    $('#sidebarCourses').append('<a href="blog.html">Todos los cursos</a>');
+                }
+                
                 //CarouselCourse.setInfoCourse(window.courses[window.index]);
             }
         });

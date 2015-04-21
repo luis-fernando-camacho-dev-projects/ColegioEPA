@@ -44,25 +44,25 @@ ColegioEPA.CoursesEditController = Ember.ObjectController.extend({
         } else if(course.get('subject')  == null) {
             validData = false;
             alert('selecionar un profesor para el curso');
-        } else if(typeof course.get('name') == 'undefined') {
+        } else if(typeof course.get('name') == 'undefined' || course.get('name').trim().length == 0) {
             validData = false;
             alert('el nombre del curso no debe ser vacio');
-        } else if(typeof course.get('startDate') == 'undefined') {
+        } else if(typeof course.get('startDate') == 'undefined' || course.get('startDate').trim().length == 0) {
             validData = false;
             alert('la fecha de inicio del curso no debe ser vacia');
-        } else if(typeof course.get('endDate') == 'undefined') {
-            validData = false;
+        } else if(typeof course.get('endDate') == 'undefined' || course.get('endDate').trim().length == 0) {
+            validData = false;1
             alert('la fecha de fin del curso no debe ser vacia');
-        } else if(typeof course.get('startTime') == 'undefined') {
+        } else if(typeof course.get('startTime') == 'undefined' || course.get('startTime').trim().length == 0) {
             validData = false;
             alert('la hora inicio del curso no debe ser vacia');
-        } else if(typeof course.get('endTime') == 'undefined') {
+        } else if(typeof course.get('endTime') == 'undefined' || course.get('endTime').trim().length == 0) {
             validData = false;
             alert('la hora fin del curso no debe ser vacia');
         } else if(typeof course.get('cost') == 'undefined') {
             validData = false;
             alert('el costo del curso debe ser mayor a 0 ');
-        } else if(course.get('days').length == 0) {
+        } else if(course.get('days').trim().length == 0) {
             validData = false;
             alert('se debe selecionar un 1 dia de la semana por lo menos');
         }

@@ -9,20 +9,21 @@ ColegioEPA.SubjectsEditController = Ember.ObjectController.extend({
       }
     },
     validateSubject: function(subject) {
+        
         var subjectValid = true;
-        if (typeof subject.get('name') == 'undefined') {
+        if (typeof subject.get('name') == 'undefined' || subject.get('name').trim().length == 0) {
             alert('el titulo del contenido de materia no debe ser vacio');
             subjectValid = false;
-        } else if (typeof subject.get('contentSubject') == 'undefined') {
+        } else if (typeof subject.get('contentSubject') == 'undefined' || subject.get('contentSubject').trim().length == 0) {
             alert('el contenido de materia no debe ser vacio');
             subjectValid = false;
-        } else if (typeof subject.get('schedule') == 'undefined') {
+        } else if (typeof subject.get('schedule') == 'undefined' || subject.get('schedule').trim().length == 0) {
             alert('el horario del contenido de materia no debe ser vacio');
             subjectValid = false;
-        } else if (typeof subject.get('days') == 'undefined') {
+        } else if (typeof subject.get('days') == 'undefined' || subject.get('days').trim().length == 0) {
             alert('los dias del contenido de materia no debe ser vacio');
             subjectValid = false;
-        } else if (typeof subject.get('matterLevelDetail') == 'undefined') {
+        } else if (typeof subject.get('matterLevelDetail') == 'undefined' || subject.get('matterLevelDetail').trim().length == 0) {
             alert('los detaller del contenido de materia no debe ser vacio');
             subjectValid = false;
         }
