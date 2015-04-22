@@ -6,21 +6,17 @@ ColegioEPA.Enrollment = DS.Model.extend({
     nit: DS.attr('number'),
     discount: DS.attr('number', {defaultValue:0}),
     totalCostCourse: function() {
-        /*
+        
         var courses = this.get('courses'),
         totalCost =0;
-        courses.foreach(function(course){
-            totalCost + = course.get('cost');
-        });
-        return totalCost;*/
-        return 0;
-    }.property('courses'),
+        courses.content.forEach(function(content){
+            totalCost += content.get('data').cost;
+        },this);
+        return totalCost;
+        //return 0;
+    }.property('totalCostCourse'),
     totalPay: function () {
-        /*
-        var totalCost = (this.get('totalCostCourse') + this.get('costEnrollment')),
-            discount =(this.get('totalCostCourse') + this.get('costEnrollment')) * this.get('discount'),
-            netCost = totalCost -discount;
-            return netCost;*/
-            return 0;
-    }.property('totalCostCourse','costEnrollment','discount')
+        var totalCost = this.get('totalCostCourse') - this.get('discount') + this.get('costEnrollment');
+        return totalCost;
+    }.property('totalCost')
 });

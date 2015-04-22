@@ -168,11 +168,20 @@ utilsEPA = {
         var currentDate = new Date();
             currentDate.setHours(0);
             currentDate.setMinutes(0);
+            currentDate.setSeconds(0);
+            currentDate.setSeconds(0);
+            currentDate.setMilliseconds(0);
         var validateDate = Date.parse(dateToValidate.replace(regExpressionBackSlash,'/'));
+        //debugger;
         if (isNaN(validateDate)) {
                 validateDate = this.getDate(dateToValidate, "00:00");
         }
         validateDate = this.getDate(dateToValidate, "00:00");
-        return(validateDate < currentDate);
+        //debugger;
+        validateDate.setHours(0);
+        validateDate.setMinutes(0);
+        validateDate.setSeconds(0);
+        validateDate.setMilliseconds(0);
+        return(validateDate >= currentDate);
     }
 }
