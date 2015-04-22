@@ -21,7 +21,7 @@ CarouselCourse = {
     addCourseToSideBar: function(course, container) {
         var times = "hora de inicio:" + course.startTime + "-hora fin:" + course.endTime,
             datesRange= "<br/> fecha de inicio:" + course.startDate + "<br/> fecha de fin" + course.endDate;
-            $("#"+container).append("<ul><li  style='min-height:0px'><span>"+course.name+"</span><p>"+times+datesRange+ "</p></li></ul>");
+            $("#"+container).append("<ul><li  style='min-height:0px'><span><a href="+utilsEPA.getHost()+"/publicCourse?courseId="+course._id + ">"+course.name+"</a></span><p>"+times+datesRange+ "</p></li></ul>");
     }
 
 

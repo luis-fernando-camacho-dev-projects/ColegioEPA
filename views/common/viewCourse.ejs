@@ -5,12 +5,14 @@
     <meta charset="UTF-8">
     <title>Guitar - Music School Website Template</title>
     <link rel="stylesheet" href="stylesheets/styleTemplate.css" type="text/css">
+    <script src="javascripts/lib/jquery.min.js"></script>
+    <script src="javascripts/Utils/UtilsEPA.js"></script>
 </head>
 <body>
     <div class="page">
         <div class="header">
             <a href="index.html" id="logo"><img src="images/logo.png" alt="logo"></a>
-            <ul class="navigation">
+            <ul  class="navigation">
                 <li>
                     <a href="index.html">Inicio</a>
                 </li>
@@ -33,29 +35,12 @@
         </div>
         <div class="body">
             <div class="guitar">
-                <ul>
-                    <li>
-                        <a href="programs.html">Piano</a>
-                    </li>
-                    <li>
-                        <a href="violin.html">Violin</a>
-                    </li>
-                    <li>
-                        <a href="saxophone.html">Trompeta</a>
-                    </li>
-                    <li class="selected">
-                        <a href="guitar.html">Guitarra</a>
-                    </li>
-                    <li>
-                        <a href="drums.html">Bateria</a>
-                    </li>
-                    <li class="last">
-                        <a href="voice-lesson.html">Lecciones <br> de Canto</a>
-                    </li>
+                <ul id="menu">
+
                 </ul>
                 <div class="content">
                     <div>
-                        <h2 id="courseName">GUITARRA CRIOLLA</h2>
+                        <h2 id="name">GUITARRA CRIOLLA</h2>
                         <div>
                             <p id="contenido">
                                 Clases privadas tanto dentro los Programas Regulares en Música como en los Cursos Libres donde se lleva un programa completo en Guitarra Criolla con mención en Folklore.
@@ -64,25 +49,9 @@
                         <a href="blog.html"><img src="images/guitar3.jpg" alt=""></a>
                     </div>
                     <div id="detalles" class="section" style='width:95%'>
-                        <div>
-                            <h4>Programa Regular en Música: Ciclos Básico e Intermedio</h4>
-                            <p>CARGA HORARIA MÍNIMA: 8 Hrs. Semanales</p>
-                            <p>MATRÍCULA SEMESTRAL: 180 Bs.</p>
-                            <p>PENSIÓN MENSUAL: 350 Bs.</p>
-                        </div>
-                        <div>
-                            <h4>Programa Regular en Música: Ciclo Avanzado en los Departamentos Moderno y Clásico</h4>
-                            <p>CARGA HORARIA MÍNIMA: 10 Hrs. Semanales</p>
-                            <p>MATRÍCULA SEMESTRAL: 180 Bs.</p>
-                            <p>PENSIÓN MENSUAL: 400 Bs.</p>
-                        </div>
-                        <div>
-                            <h4>Programa Regular en Música: Ciclo Básico Niños</h4>
-                            <p>CARGA HORARIA MÍNIMA: 6 Hrs. Semanales</p>
-                            <p>MATRÍCULA SEMESTRAL: 180 Bs.</p>
-                            <p>PENSIÓN MENSUAL: 350 Bs.</p>
-                        </div>
                     </div>
+                    <div id="horario"/>
+                    <div id="fecha"/>
                 </div>
             </div>
         </div>
@@ -134,4 +103,40 @@
         </div>
     </div>
 </body>
+<script>
+$(document).ready(function(){
+    var courseId = utilsEPA.getParameterHeaderBrowserByName('courseId');
+    var currentDate = new Date(), year = currentDate.getFullYear(),
+        month = currentDate.getMonth() + 1, day= currentDate.getUTCDate();
+    var queryParm = "?year="+year +"&month="+month+"&day="+day;
+    $.ajax({async:false, url: utilsEPA.getHost() + "/utils/coursesDetails/" +
+        courseId , type:"GET", dataType:'json', contentType:"application/x-www-form-urlencoded; charset=UTF-8",
+        crossDomain:true, headers : {'API_KEY': localStorage.getItem("token")},
+            success: function(result) {
+                $('#name').text(result.courses[0].name);
+            $('#contenido').text(result.courses[0].subjectDetails.contentSubject);
+                $('#detalles').append(result.courses[0].subjectDetails.matterLevelDetail);
+                $('#horario').append("<h2> hora:"+result.courses[0].startTime+"-"+result.courses[0].endTime +"</h2>");
+                $('#fecha').append("<h2> fecha de fin:"+result.courses[0].endDate+"</h2>");
+            }, error: function(result) {
+            }
+    });
+    $.ajax({async:false, url: utilsEPA.getHost() + "/utils/courses" +
+        queryParm , type:"GET", dataType:'json', contentType:"application/x-www-form-urlencoded; charset=UTF-8",
+        crossDomain:true, headers : {'API_KEY': localStorage.getItem("token")},
+            success: function(result) {
+                result.courses.forEach(function(course) {
+                    var courseId = utilsEPA.getParameterHeaderBrowserByName('courseId');
+                    if (courseId === course._id) {
+                        $('#menu').append('<li class="selected"><a href="'+utilsEPA.getHost()+'/publicCourse?courseId='+course._id +'" >' + course.name +'Inicio</a></li>');
+                    } else {
+                        $('#menu').append('<li><a href="'+utilsEPA.getHost()+'/publicCourse?courseId='+course._id +'">' + course.name +'Inicio</a></li>');
+                    }
+                });
+            }
+            , error: function(result) {
+            }
+    });
+ })
+</script>
 </html>

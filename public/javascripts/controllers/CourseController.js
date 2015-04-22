@@ -2,7 +2,7 @@
 ColegioEPA.CoursesEditController = Ember.ObjectController.extend({
     actions: {
         updateItem: function(course) {
-            
+
             var myseft = this;
             course.set('teacher', this.teacherValue == null ? this.teachers.get('firstObject') : this.teacherValue);
             course.set('subject', this.subjectValue == null ? this.get('subjects').get('firstObject') :  this.subjectValue);
@@ -23,7 +23,6 @@ ColegioEPA.CoursesEditController = Ember.ObjectController.extend({
                 var courseJSON = course.toJSON();
                 var getCourses = $.ajax({ url:utilsEPA.getHost() + '/validateData/validateCourse', type:"PUT", crossDomain:true, dataType: "json", contentType:"application/x-www-form-urlencoded; charset=UTF-8", data:courseJSON,
                     success:function(result) {
-                        debugger;
                         course.save();
                         myseft.get("target").transitionTo("courses");
                         spin.dialog("close");

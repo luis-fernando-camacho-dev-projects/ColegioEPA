@@ -38,6 +38,24 @@ router.get('/courses', function(req, res) {
         });
     });
 });
+router.get('/coursesDetails/:courseId', function(req, res) {
+    console.log(req.query);
+    var db = req.db;
+    var courseId = req.params.courseId;
+    var value = {};
+    console.log('courseId', courseId);
+    db.collection('courseList', function(err, collection) {
+         collection.find({'_id':new BSON.ObjectID(courseId)}).toArray(function(err, courses) {
+                console.log('couress,,',courses);
+                db.collection('subjectList', function(err, collection) {
+                    collection.find({'_id':new BSON.ObjectID(courses[0].subject)}).toArray(function(err,subject) {
+                        courses[0].subjectDetails = subject[0];
+                        res.json({courses:courses});
+                    });
+                });
+            });
+        });
+});
 
 router.get('/userName/:login', function(req, res) {
     var db = req.db, loginSearch = req.params.login, result;
