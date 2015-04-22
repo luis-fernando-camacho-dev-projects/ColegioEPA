@@ -23,31 +23,38 @@ router.put('/validateCourse', function(req, res) {
             } else {
                 //refactorizar este codigo por favor es bien feo
                 var regExpressionBackSlash = new RegExp('-', 'g');
-                //var startTimeNewCourse = new Date(courseToValidate.startDate.replace(regExpressionBackSlash),'/');
-                var startTimeNewCourse = new Date(courseToValidate.startDate.replace(regExpressionBackSlash,'/'));
+                var datesStarTimes = courseToValidate.startDate.split('-');
+                var startTimeNewCourse = new Date(parseInt(datesStarTimes[2]), parseInt(datesStarTimes[1])-1, parseInt(datesStarTimes[0]));
                 var startTimeValues = courseToValidate.startTime.split(":");
+                console.log('compareStartTime', startTimeNewCourse);
+
                 startTimeNewCourse.setHours(parseInt(startTimeValues[0]));
                 startTimeNewCourse.setMinutes(parseInt(startTimeValues[1]));
-
-                //var endTimeNewCourse = new Date(courseToValidate.endDate.replace(regExpressionBackSlash),'/');
-                var endTimeNewCourse = new Date(courseToValidate.endDate.replace(regExpressionBackSlash,'/'));
+                var datesEndTimes = courseToValidate.endDate.split('-');
+                var endTimeNewCourse = new Date(parseInt(datesEndTimes[2]), parseInt(datesEndTimes[1])-1, parseInt(datesEndTimes[0]));
                 var endTimeValues = courseToValidate.endTime.split(":");
                 endTimeNewCourse.setHours(parseInt(endTimeValues[0]));
                 endTimeNewCourse.setMinutes(parseInt(endTimeValues[1]));
+                console.log('compareEndTime', endTimeNewCourse);
+
                 var validCourse = true;
                 var messageError;
+
                 courses.forEach(function(exitsCourse) {
-                    var existCourseStartTime = new Date(exitsCourse.startDate.replace(regExpressionBackSlash,'/'));
+                    var exitsStartDate = exitsCourse.startDate.split("-");
+                    var existCourseStartTime = new Date(exitsStartDate[2],exitsStartDate[1]-1,exitsStartDate[0]);
                     var verifacteTime = exitsCourse.startTime.split(":");
                     existCourseStartTime.setHours(parseInt(verifacteTime[0]));
                     existCourseStartTime.setMinutes(parseInt(verifacteTime[1]));
                     console.log('startTime', existCourseStartTime);
-                    var existCourseEndTime = new Date(exitsCourse.endDate.replace(regExpressionBackSlash,'/'));
+                    var exitsEndCourse = exitsCourse.endDate.split("-");
+                    var existCourseEndTime = new Date(exitsEndCourse[2],exitsEndCourse[1]-1,exitsStartDate[0]   );
                     var verifacteTime = exitsCourse.endTime.split(":");
                     existCourseEndTime.setHours(parseInt(verifacteTime[0]));
                     existCourseEndTime.setMinutes(parseInt(verifacteTime[1]));
+                    console.log('endTime', existCourseEndTime);
                     if (validCourse) {
-                        if ((existCourseStartTime >= startTimeNewCourse && existCourseStartTime <= endTimeNewCourse) || (existCourseEndTime >= startTimeNewCourse && existCourseEndTime <= endTimeNewCourse)) {
+                        if (existCourseStartTime >= startTimeNewCourse && existCourseStartTime <= endTimeNewCourse) {
                                 messageError = "Hay un conflicto con el curso :"+exitsCourse.name;
                                 validCourse = false;
                         }
