@@ -11,7 +11,7 @@
         <tr>
             <th>Estudiante</th>
             <th>Fecha de pago</th>
-            <th>Nro Cursos</th>
+            <!-- <th>Nro Cursos</th> -->
             <th> NIT </th>
             <th>Costo Matricula</th>
             <th>Costo Cursos</th>
@@ -23,7 +23,7 @@
             {{#each enrollment in controller itemController="enrollmentsEdit"}}
               <td>{{enrollment.student.name}}</td>
               <td>{{enrollment.payDate}}</td>
-              <td>15</td>
+              <!--<td>{{enrollment.totalCostCourses}}</td>-->
               <td>{{enrollment.nit}}</td>
               <td>{{enrollment.costEnrollment}}</td>
               <td>{{enrollment.totalCostCourse}}</td>
