@@ -196,6 +196,9 @@ app.get('/hello', function(req, res) {
 app.get('/index', function(req, res) {
     res.sendfile(html_dir + 'index.html');
 });
+app.get('/publicCourse', function(req, res) {
+    res.render('common/viewCourse');
+});
 
 //end static html content should be inserted here
 
