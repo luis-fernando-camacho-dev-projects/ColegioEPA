@@ -26,10 +26,11 @@ router.put('/validateCourse', function(req, res) {
                 var datesStarTimes = courseToValidate.startDate.split('-');
                 var startTimeNewCourse = new Date(parseInt(datesStarTimes[2]), parseInt(datesStarTimes[1])-1, parseInt(datesStarTimes[0]));
                 var startTimeValues = courseToValidate.startTime.split(":");
-                console.log('compareStartTime', startTimeNewCourse);
+                
 
                 startTimeNewCourse.setHours(parseInt(startTimeValues[0]));
                 startTimeNewCourse.setMinutes(parseInt(startTimeValues[1]));
+                console.log('compareStartTime', startTimeNewCourse);
                 var datesEndTimes = courseToValidate.endDate.split('-');
                 var endTimeNewCourse = new Date(parseInt(datesEndTimes[2]), parseInt(datesEndTimes[1])-1, parseInt(datesEndTimes[0]));
                 var endTimeValues = courseToValidate.endTime.split(":");
@@ -42,13 +43,13 @@ router.put('/validateCourse', function(req, res) {
 
                 courses.forEach(function(exitsCourse) {
                     var exitsStartDate = exitsCourse.startDate.split("-");
-                    var existCourseStartTime = new Date(exitsStartDate[2],exitsStartDate[1]-1,exitsStartDate[0]);
+                    var existCourseStartTime = new Date(parseInt(exitsStartDate[2]), parseInt(exitsStartDate[1])-1, parseInt(exitsStartDate[0]));
                     var verifacteTime = exitsCourse.startTime.split(":");
                     existCourseStartTime.setHours(parseInt(verifacteTime[0]));
                     existCourseStartTime.setMinutes(parseInt(verifacteTime[1]));
                     console.log('startTime', existCourseStartTime);
                     var exitsEndCourse = exitsCourse.endDate.split("-");
-                    var existCourseEndTime = new Date(exitsEndCourse[2],exitsEndCourse[1]-1,exitsStartDate[0]   );
+                    var existCourseEndTime = new Date(parseInt(exitsEndCourse[2]), parseInt(exitsEndCourse[1])-1, parseInt(exitsStartDate[0]));
                     var verifacteTime = exitsCourse.endTime.split(":");
                     existCourseEndTime.setHours(parseInt(verifacteTime[0]));
                     existCourseEndTime.setMinutes(parseInt(verifacteTime[1]));

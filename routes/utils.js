@@ -21,12 +21,11 @@ router.get('/courses', function(req, res) {
                 } else {
                     var coursesAvaliables = [];
                     courses.forEach(function(course) {
-                        var regExpressionBackSlash = new RegExp('-', 'g'), startTimeNewCourse = new Date(course.endDate.replace(regExpressionBackSlash,'/')), dates;
-                        if (language.indexOf('es') != 0) {
+                        var regExpressionBackSlash = new RegExp('-', 'g'), startTimeNewCourse = null;
                             dates = course.endDate.split('-');
                             console.log("ISNAN");
                             startTimeNewCourse = new Date(parseInt(dates[2]), parseInt(dates[1]), parseInt(dates[0]));
-                        }
+                        
                         console.log('startTimeNewCoures',startTimeNewCourse);
                         if (startTimeNewCourse >= dateQuery) {
                             console.log('course',course);
