@@ -2,6 +2,7 @@
 ColegioEPA.CoursesEditController = Ember.ObjectController.extend({
     actions: {
         updateItem: function(course) {
+
             var myseft = this;
             course.set('teacher', this.teacherValue == null ? this.teachers.get('firstObject') : this.teacherValue);
             course.set('subject', this.subjectValue == null ? this.get('subjects').get('firstObject') :  this.subjectValue);

@@ -37,7 +37,7 @@ ColegioEPA.EnrollmentsEditController = Ember.ObjectController.extend({
                     },
                     error:function(res,message) {
                         ColegioEPA.CourseValues.clear();
-                         $.ajax({async:false, url: utilsEPA.getHost() + "/api/course/courses/" + res.responseJSON.courseId , type:"GET", dataType:'json', contentType:"application/x-www-form-urlencoded; charset=UTF-8",
+                        $.ajax({async:false, url: utilsEPA.getHost() + "/api/course/courses/" + res.responseJSON.courseId , type:"GET", dataType:'json', contentType:"application/x-www-form-urlencoded; charset=UTF-8",
                                 crossDomain:true, headers : {'API_KEY': localStorage.getItem("token")},
                                 success: function(result) {
                                     $('#message').text("el curso "+ result.courses[0].name + " ya ha sido registrado en una inscripcion anterior");

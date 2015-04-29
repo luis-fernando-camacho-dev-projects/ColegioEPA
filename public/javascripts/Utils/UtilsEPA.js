@@ -183,5 +183,11 @@ utilsEPA = {
         validateDate.setSeconds(0);
         validateDate.setMilliseconds(0);
         return(validateDate >= currentDate);
+    },
+    getParameterHeaderBrowserByName: function(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
     }
 }
