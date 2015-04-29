@@ -6,16 +6,16 @@
 
 <script type="text/x-handlebars" data-template-name="attendances/index">
     {{#if exitStudent}}
-        Busqueda de assitencia : {{input type='text' value=filter placeholder='Curso,Profesor, Fecha inicio o Fecha fin'}}
-        <p>Nr Asistencias registradas = {{content.length}}</p>
+        Busqueda de asistencia : {{input type='text' value=filter placeholder='Curso,Profesor, Fecha inicio o Fecha fin'}}
+        <p>Nro Asistencias registradas = {{content.length}}</p>
     <table class="table table-hover">
         <tr>
             <th>Curso</th>
             <th>Profesor</th>
-            <th>Tipo de assitencia</th>
-            <th>Fecha de asistencia</th>
-            <th>Fecha de la clase a reponer</th>
-            <th>Fecha de compensacion</th>
+            <th>Tipo de Asitencia</th>
+            <th>Fecha de Asistencia</th>
+            <th>Fecha de Clase a reponer</th>
+            <th>Fecha de Compensacion</th>
             <th>Editar</th>
             <th>Eliminar</th>
           </tr>
@@ -34,7 +34,7 @@
     {{else}}
      No hay asistencias registradas
     {{/if}}
-    <p>{{#linkTo "attendances.new"}}<img src="/../images/add-icon.png"/> registrar nueva asistencia{{/linkTo}}</p>
+    <p>{{#linkTo "attendances.new"}}<img src="/../images/add-icon.png"/> Registrar nueva asistencia{{/linkTo}}</p>
 </script>
 
 <script type="text/x-handlebars" data-template-name="_attendanceForm" >
@@ -50,8 +50,6 @@
         <label >tipo de asistencia</label><br/>
         {{view Ember.Select contentBinding="typeAttendances" optionLabelPath="content" selectionBinding="typeAttendanceClass" valueBinding="typeAttendance" }}
         {{outlet attendanceForm}}
-
-
     </form>
 </script>
 
@@ -62,18 +60,17 @@
 </script>
 
 <script type="text/x-handlebars" data-template-name="test2">
-    <label for="classReplaceDate">Fecha de Clase A posponer </label>
+    <label for="classReplaceDate">Fecha de Clase a posponer </label>
     {{custom-date-picker elementId='element1' valueBinding="content.classReplaceDate"}}
-    <label for="postponedDate">Fecha de Clase A reemplazar </label>
+    <label for="postponedDate">Fecha de Clase a reemplazar </label>
     {{custom-date-picker elementId='element2' valueBinding="content.postponedDate"}}
 </script>
-
 
 <script type="text/x-handlebars" data-template-name="attendances/edit">
     {{#if controller.isNew}}
       <h1>Registrar Nueva Asistencia</h1>
     {{else}}
-      <h1>Editar Assitencia</h1>
+      <h1>Editar Asitencia</h1>
     {{/if}}
     {{partial "attendanceForm"}}
     {{#if controller.isNew}}

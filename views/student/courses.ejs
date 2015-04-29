@@ -2,20 +2,19 @@
 <script src="/../javascripts/jquery.dataTables.min.js"></script>
 <link rel="stylesheet" href="/../stylesheets/jquery.dataTables.css" type="text/css">
 <script type="text/x-handlebars" id="index">
-<h1 style="text-align: center"> Materias Inscriptas </h1>
+<h1 style="text-align: center"> Materias Inscritas </h1>
 <table id="table" class="display" style="width:700px;text-align: center;">
 <thead>
-    <th> Nombre del Curso</th>
-    <th> Fecha de inicio </th>
-    <th> Fecha de fin</th>
-    <th> Hora de inicio </th>
-    <th> Hora de fin</th>
+    <th> Curso</th>
+    <th> Fecha de Inicio </th>
+    <th> Fecha de Fin</th>
+    <th> Hora de Inicio </th>
+    <th> Hora de Fin</th>
 </thead>
 </table>
 </script>
 <script type="text/javascript">
 $(document).ready(function() {
-    debugger;
     $.ajax({url: utilsEPA.getHost() + '/api/enrollment/enrollementCourses/' + utilsEPA.getObjectOwner(), type:"GET", dataType: 'json',contentType: "application/x-www-form -urlencoded; charset=UTF-8",crossDomain: true, headers : {'API_KEY': localStorage.getItem("token")},
        success: function(courses) {
             $('#table').dataTable({

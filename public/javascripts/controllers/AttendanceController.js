@@ -19,8 +19,8 @@ ColegioEPA.AttendancesEditController = Ember.ObjectController.extend({
             if (typeof attendance.get('markedDate') === 'undefined') {
                 alert('la clase tomada no puede tomar una fecha vacia');
                 correctValue = false;
-            }
-            if (correctValue &&  utilsEPA.validateDateGratherThanToday(attendance.get('markedDate'))) {
+            } 
+            else if (!utilsEPA.validateDateGratherThanToday(attendance.get('markedDate'))) {
                 correctValue = false;
                 alert('la fecha de la clase tomada debe ser mayor o igual que el dia de hoy');
             }
@@ -32,13 +32,17 @@ ColegioEPA.AttendancesEditController = Ember.ObjectController.extend({
                 alert('la clase a reemplazar no puede tomar una fecha vyacia');
                 correctValue = false;
             }
-            if (correctValue && utilsEPA.validateDateGratherThanToday(attendance.get('classReplaceDate'))) {
+            else if (!utilsEPA.validateDateGratherThanToday(attendance.get('classReplaceDate'))) {
                 correctValue = false;
                 alert('la fecha de la clase a postegar debe ser mayor o igual que el dia de hoy');
             }
-            else if (correctValue && utilsEPA.validateDateGratherThanToday(attendance.get('postponedDate'))) {
+            else if (!utilsEPA.validateDateGratherThanToday(attendance.get('postponedDate'))) {
                 correctValue = false;
                 alert('la fecha de la clase a reemplazar debe ser mayor o igual que el dia de hoy');
+            }
+            if (attendance.get('postponedDate') == attendance.get('classReplaceDate')) {
+                correctValue = false;
+                alert('la fecha a postergar no debe ser igual a la fecha a reemplazar la clase');
             }
         }
         return correctValue;
